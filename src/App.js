@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import wp from 'wordpress'
-import logo from './logo.svg';
+import Graph from './app/Graph';
+import Modal from './app/Modal';
 import './App.css';
 
 const client = wp.createClient({
@@ -10,6 +11,14 @@ const client = wp.createClient({
 });
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      modalOpen : false
+    };
+
+    this.onCloseModal = this.onCloseModal.bind(this);
+  }
   componentWillMount(){
 
     client.getPosts({type:"noticia"},null,function( error, posts ) {
@@ -26,16 +35,16 @@ class App extends Component {
     });
   }
 
+  onCloseModal(){
+    this.setState({ modalOpen: false });
+  };
+
   render() {
+    const {modalOpen} = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Modal open={modalOpen} onClose={this.onCloseModal} data={[]} />
+        <Graph />
       </div>
     );
   }
