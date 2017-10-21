@@ -18,6 +18,7 @@ class App extends Component {
     };
 
     this.onCloseModal = this.onCloseModal.bind(this);
+    this.onNodeSelect = this.onNodeSelect.bind(this);
   }
   componentWillMount(){
 
@@ -39,12 +40,16 @@ class App extends Component {
     this.setState({ modalOpen: false });
   };
 
+  onNodeSelect(){
+    this.setState({ modalOpen: true });
+  };
+
   render() {
     const {modalOpen} = this.state;
     return (
       <div className="App">
         <Modal open={modalOpen} onClose={this.onCloseModal} data={[]} />
-        <Graph />
+        <Graph events = {{select : this.onNodeSelect}} />
       </div>
     );
   }

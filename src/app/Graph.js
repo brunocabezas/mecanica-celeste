@@ -30,11 +30,7 @@ const defaultProps = {
       {from: 2, to: 5}
     ]
   },
-  events : {
-    select: function(event) {
-      var { nodes, edges } = event;
-    }
-  },
+  events : null,
   options : {
     edges: {
       color: "#000000"
