@@ -6,10 +6,10 @@ import Categories from './app/Categories';
 import './App.css';
 
 const categories = [
-  {label : "declamaciones" , color :""},
-  {label : "relatos" , color :""},
-  {label : "politicas" , color :""},
-  {label : "observaciones" , color :""},
+  {label : "declamaciones" , color :"#FD7B35"},
+  {label : "relatos" , color :"#A7BCC9"},
+  {label : "politicas" , color :"#1F201E"},
+  {label : "observaciones" , color :"#818280"},
   {label : "misterios" , color :""},
   {label : "la cueca" , color :""}
 ];
@@ -29,7 +29,7 @@ class App extends Component {
     };
 
     this.onCloseModal = this.onCloseModal.bind(this);
-    this.onNodeSelect = this.onNodeSelect.bind(this);
+    this.onNodeClick = this.onNodeClick.bind(this);
   }
   componentWillMount(){
 
@@ -51,18 +51,24 @@ class App extends Component {
     this.setState({ modalOpen: false });
   };
 
-  onNodeSelect(){
-    this.setState({ modalOpen: true });
+  onNodeClick(e){
+    const {nodes} = e;
+    if (nodes.length===1 && nodes[0])
+      this.setState({
+        modalOpen: true,
+        activeNode : nodes[0]
+      });
   };
 
   render() {
-    const {modalOpen} = this.state;
+    const {modalOpen} = this.state,
+      events = {click : this.onNodeClick};
     return (
       <div className="app">
         <h1 className="app__title">poética astronómica</h1>
         <Categories onClick={"onFilter"} categories={categories}/>
         <Modal open={modalOpen} onClose={this.onCloseModal} data={[]} />
-        <Graph events = {{select : this.onNodeSelect}} />
+        <Graph events = {events} />
       </div>
     );
   }

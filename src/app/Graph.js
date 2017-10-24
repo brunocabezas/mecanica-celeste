@@ -17,10 +17,10 @@ const props = {
 const defaultProps = {
   data : {
     nodes: [
-      {id: 1, label: ''},
-      {id: 2, label: ''},
-      {id: 3, label: ''},
-      {id: 4, label: ''},
+      {id: 1, label: 'asdas',color :"#FD7B35",size : 25},
+      {id: 2, label: '',color :"#A7BCC9",size : 10},
+      {id: 3, label: '',color :"#1F201E", size : 30},
+      {id: 4, label: '',color :"#818280", size: 40},
       {id: 5, label: ''}
     ],
     edges: [
@@ -33,7 +33,23 @@ const defaultProps = {
   events : null,
   options : {
     edges: {
-      color: "#000000"
+      arrows : {
+        to : {enabled : false}
+      },
+      chosen: false,
+      color : { color:"#818280"}
+    },
+    nodes : {
+      shape : "dot",
+      chosen : {
+        node : function(values, id, selected, hovering) {
+          if(hovering)
+            values.color = "red";
+        }
+      }
+    },
+    interaction:{
+      hover: true
     }
   }
 };
