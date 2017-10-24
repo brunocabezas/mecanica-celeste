@@ -2,7 +2,17 @@ import React, { Component } from 'react';
 import wp from 'wordpress'
 import Graph from './app/Graph';
 import Modal from './app/Modal';
+import Categories from './app/Categories';
 import './App.css';
+
+const categories = [
+  {label : "declamaciones" , color :""},
+  {label : "relatos" , color :""},
+  {label : "politicas" , color :""},
+  {label : "observaciones" , color :""},
+  {label : "misterios" , color :""},
+  {label : "la cueca" , color :""}
+];
 
 const client = wp.createClient({
   url: "www.loselectrodomesticos.cl",
@@ -14,7 +24,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      modalOpen : false
+      modalOpen : false,
+      activeNode : null
     };
 
     this.onCloseModal = this.onCloseModal.bind(this);
@@ -47,7 +58,9 @@ class App extends Component {
   render() {
     const {modalOpen} = this.state;
     return (
-      <div className="App">
+      <div className="app">
+        <h1 className="app__title">poética astronómica</h1>
+        <Categories onClick={"onFilter"} categories={categories}/>
         <Modal open={modalOpen} onClose={this.onCloseModal} data={[]} />
         <Graph events = {{select : this.onNodeSelect}} />
       </div>

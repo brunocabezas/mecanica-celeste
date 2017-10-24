@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+body,
+html,
+#root{
+  background-color: #FDF0E7;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
