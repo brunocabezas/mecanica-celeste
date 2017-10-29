@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import wp from 'wordpress'
-import Graph from './app/Graph';
-import Modal from './app/Modal';
-import Categories from './app/Categories';
+import Graph from './Graph';
+import Modal from './Modal';
+import Categories from './Categories';
+import nodes from '../mocks/nodes.mock';
 import './App.css';
 
 const categories = [
@@ -51,23 +52,32 @@ class App extends Component {
     this.setState({ modalOpen: false });
   };
 
-  onNodeClick(nodes){
-    if (nodes.length===1 && nodes[0])
+  onNodeClick(nodeId){
+    const node = nodes.find(n=>n.id=nodeId)
+    if (node)
       this.setState({
         modalOpen: true,
-        activeNode : nodes[0]
+        activeNode : node
       });
   };
 
   render() {
-    const {modalOpen,activeNode} = this.state;
+    const {modalOpen,activeNode} = this.state,
+      data = { nodes,
+        edges : [
+          {from: 1, to: 2},
+          {from: 1, to: 3},
+          {from: 2, to: 4},
+          {from: 2, to: 5}
+        ]
+      };
 
     return (
       <div className="app">
         <h1 className="app__title">poética astronómica</h1>
         <Categories onClick={"onFilter"} categories={categories}/>
         <Modal open={modalOpen} onClose={this.onCloseModal} data={activeNode} />
-        <Graph onClick = {this.onNodeClick} />
+        <Graph onClick = {this.onNodeClick} data={data} />
       </div>
     );
   }

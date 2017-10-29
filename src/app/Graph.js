@@ -4,7 +4,7 @@ import VisGraph from 'react-graph-vis';
 
 const props = {
   data : PropTypes.shape({
-    /* todo define properties */
+    /* todo define node properties */
     nodes : PropTypes.array,
     edges : PropTypes.arrayOf(PropTypes.shape({
       from : PropTypes.number,
@@ -15,24 +15,11 @@ const props = {
   onClick : PropTypes.func
 };
 
-const nodes = [
-  {id: 1, label: "", hidedlabel: 'LOREM IPSUM', color :"#FD7B35",size : 25},
-  {id: 2, label : "", hidedlabel: 'RELATOS',color :"#A7BCC9",size : 10},
-  {id: 3, label : "", hidedlabel: 'POLITICAS',color :"#1F201E", size : 30},
-  {id: 4, label : "", hidedlabel: 'CONVERSACIONES',color :"#818280", size: 40},
-  {id: 5, label : "", hidedlabel: 'LA CUECA'},
-  {id: 6, label : "", hidedlabel: 'DECLAMACIONES'}
-];
 
 const defaultProps = {
   data : {
-    nodes,
-    edges: [
-      {from: 1, to: 2},
-      {from: 1, to: 3},
-      {from: 2, to: 4},
-      {from: 2, to: 5}
-    ]
+    nodes : [],
+    edges: []
   },
   events : null,
   options : {
@@ -60,7 +47,7 @@ const defaultProps = {
         if (nodeData.label.length>0){
           nodeData.label = "";
         } else {
-          nodeData.label = nodeData.hidedlabel;
+          nodeData.label = nodeData.hidenLabel;
         }
 
         callback(nodeData);
@@ -127,9 +114,12 @@ class Graph extends Component {
     if (nodes.length>0){
       this.state.network.focus(nodes[0])
     }
-    const position = event.center;
+    const position = event.center
+
+    if (nodes.length===1 && nodes[0]){
+      this.props.onClick(nodes[0])
+    }
     // this.state.network.moveTo({position})
-    this.props.onClick(nodes)
   }
 
   render() {
