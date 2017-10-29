@@ -47,7 +47,7 @@ const defaultProps = {
         if (nodeData.label.length>0){
           nodeData.label = "";
         } else {
-          nodeData.label = nodeData.hidenLabel;
+          nodeData.label = nodeData.hiddenLabel;
         }
 
         callback(nodeData);

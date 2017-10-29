@@ -49,11 +49,14 @@ class App extends Component {
   }
 
   onCloseModal(){
-    this.setState({ modalOpen: false });
+    this.setState({
+      modalOpen: false,
+      activeNode : null
+    });
   };
 
   onNodeClick(nodeId){
-    const node = nodes.find(n=>n.id=nodeId)
+    const node = nodes.find(n=>n.id===nodeId);
     if (node)
       this.setState({
         modalOpen: true,

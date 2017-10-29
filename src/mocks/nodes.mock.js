@@ -1,7 +1,7 @@
 const nodes = [
   { id: 1,
     label: "",
-    hidenLabel: 'LOREM IPSUM',
+    hiddenLabel: 'LOREM IPSUM',
     description : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod\n" +
     "tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis\n" +
     "nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.\n" +
@@ -17,29 +17,29 @@ const nodes = [
   },
   { id: 2,
     label : "",
-    hidenLabel: 'RELATOS',
+    hiddenLabel: 'RELATOS',
     color :"#A7BCC9",
     size : 10
   },
   { id: 3,
     label : "",
-    hidenLabel: 'POLITICAS',
+    hiddenLabel: 'POLITICAS',
     color :"#1F201E",
     size : 30
   },
   { id: 4,
     label : "",
-    hidenLabel: 'CONVERSACIONES',
+    hiddenLabel: 'CONVERSACIONES',
     color :"#818280",
     size: 40
   },
   { id: 5,
     label : "",
-    hidenLabel: 'LA CUECA'
+    hiddenLabel: 'LA CUECA'
   },
   { id: 6,
     label : "",
-    hidenLabel: 'DECLAMACIONES'
+    hiddenLabel: 'DECLAMACIONES'
   }
 ];
 
