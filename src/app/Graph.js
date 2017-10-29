@@ -112,11 +112,15 @@ class Graph extends Component {
 
   onNodeClick({nodes,event}){
     if (nodes.length>0){
-      this.state.network.focus(nodes[0])
+      /*this.state.network.focus(nodes[0],{animation: {             // animation object, can also be Boolean
+        duration: 1000,                 // animation duration in milliseconds (Number)
+        easingFunction: "easeInOutQuad" // Animation easing function, available are:
+      }       })*/
     }
-    const position = event.center
+    // const position = event.center;
 
     if (nodes.length===1 && nodes[0]){
+      // opening modal
       this.props.onClick(nodes[0])
     }
     // this.state.network.moveTo({position})

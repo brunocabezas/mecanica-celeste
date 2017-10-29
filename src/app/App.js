@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import wp from 'wordpress'
 import Graph from './Graph';
 import Modal from './Modal';
 import Categories from './Categories';
@@ -14,12 +13,6 @@ const categories = [
   {label : "misterios" , color :""},
   {label : "la cueca" , color :""}
 ];
-
-const client = wp.createClient({
-  url: "www.loselectrodomesticos.cl",
-  username: "api_test",
-  password: "asdasd"
-});
 
 class App extends Component {
   constructor(props){

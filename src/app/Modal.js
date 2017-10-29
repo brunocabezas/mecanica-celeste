@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player'
 import ReactModal from 'react-responsive-modal';
+import './Modal.styl';
 
 const props = {
   /* todo improve prop def */
@@ -14,22 +15,10 @@ const defaultProps = {
   data : null
 };
 
-const style = {
-  content : {
-    position                   : 'absolute',
-    top                        : '40px',
-    left                       : '40px',
-    right                      : '40px',
-    bottom                     : '40px',
-    border                     : 'transparent',
-    background                 : '#fff',
-    overflow                   : 'auto',
-    WebkitOverflowScrolling    : 'touch',
-    borderRadius               : '4px',
-    outline                    : 'none',
-    padding                    : '20px'
-
-  }
+const modalStyle = {
+  background: "transparent",
+  boxShadow: "none",
+  border : "none"
 };
 
 class Modal extends Component {
@@ -38,16 +27,17 @@ class Modal extends Component {
     const {open, onClose, data} = this.props;
 
     // console.log(data);
-    return !data && !open ? null :
-      <ReactModal style={style} open={open} onClose={onClose} little>
+    return !data ? null :
+      <ReactModal modalStyle={modalStyle} open={open} onClose={onClose}>
         <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
         <div className="info">
-          <h2>{data.hiddenLabel}</h2>
+          <h2 className={"hola"}>{data.hiddenLabel}</h2>
           <p>{data.description}</p>
         </div>
       </ReactModal>;
   }
 }
 
+Modal.defaultProps = defaultProps;
 Modal.propTypes = props;
 export default Modal;

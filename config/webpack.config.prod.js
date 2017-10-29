@@ -2,6 +2,7 @@
 
 const autoprefixer = require('autoprefixer');
 const path = require('path');
+const jeet = require('jeet');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -152,6 +153,19 @@ module.exports = {
               
               compact: true,
             },
+          },
+          {
+            test: /\.styl$/,
+            use: [
+              'style-loader',
+              'css-loader',
+              {
+                loader: 'stylus-loader',
+                options: {
+                  use: [jeet()],
+                },
+              },
+            ],
           },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
