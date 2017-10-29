@@ -33,26 +33,25 @@ class App extends Component {
   }
   componentWillMount(){
 
-    client.getPosts({type:"noticia"},null,function( error, posts ) {
+   /* client.getPosts({type:"noticia"},null,function( error, posts ) {
       console.log(error,posts)
         // console.log( "Found " + posts.length + " posts!" );
-    });
+    });*/
 
    /* client.getPostTypes(function( error, posts ) {
       console.log(error,posts)
     });*/
-
+/*
     client.getMediaLibrary({type:'galeria'},function( error, posts ) {
       console.log(error,posts)
-    });
+    });*/
   }
 
   onCloseModal(){
     this.setState({ modalOpen: false });
   };
 
-  onNodeClick(e){
-    const {nodes} = e;
+  onNodeClick(nodes){
     if (nodes.length===1 && nodes[0])
       this.setState({
         modalOpen: true,
@@ -61,14 +60,14 @@ class App extends Component {
   };
 
   render() {
-    const {modalOpen} = this.state,
-      events = {click : this.onNodeClick};
+    const {modalOpen,activeNode} = this.state;
+
     return (
       <div className="app">
         <h1 className="app__title">poética astronómica</h1>
         <Categories onClick={"onFilter"} categories={categories}/>
-        <Modal open={modalOpen} onClose={this.onCloseModal} data={[]} />
-        <Graph events = {events} />
+        <Modal open={modalOpen} onClose={this.onCloseModal} data={activeNode} />
+        <Graph onClick = {this.onNodeClick} />
       </div>
     );
   }
