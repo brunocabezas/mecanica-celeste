@@ -26,17 +26,18 @@ class Modal extends Component {
   render() {
     const {open, onClose, data} = this.props;
 
-    // console.log(data);
     return !data ? null :
+      <div ref={"app__modal"}>
       <ReactModal closeIconClassName="close" modalClassName={"modal"} modalStyle={modalStyle} open={open} onClose={onClose}>
         <div className="player">
-          <ReactPlayer width={"100%"} height={"350px"} url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+          {open && <ReactPlayer width={"100%"} height={"350px"} url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />}
         </div>
         <div className="info">
           <h2 style={{color:data.color}} className={"hola"}>{data.hiddenLabel}</h2>
           <p>{data.description}</p>
         </div>
-      </ReactModal>;
+      </ReactModal>
+      </div>;
   }
 }
 

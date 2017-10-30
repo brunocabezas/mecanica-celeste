@@ -31,7 +31,12 @@ const defaultProps = {
         to : {enabled : false}
       },
       chosen: false,
-      color : { color:"#818280"}
+      color : { color:"#818280"},
+      font : { strokeWidth : 0},
+      hoverWidth : function (width) {
+        console.log(width)
+        return 0.;},
+      selectionWidth : 0
     },
     nodes : {
       labelHighlightBold : false,
@@ -54,7 +59,9 @@ const defaultProps = {
       }
     },
     interaction:{
-      hover: true
+      hover: true,
+      dragView : false,
+      hoverConnectedEdges : false
     }
   }
 };
@@ -73,6 +80,7 @@ class Graph extends Component {
     };
 
     this.hoverNode = this.hoverNode.bind(this);
+    this.hoverEdge = this.hoverEdge.bind(this);
     this.blurNode = this.blurNode.bind(this);
     this.onNodeClick = this.onNodeClick.bind(this);
     this.setLabelColor = this.setLabelColor.bind(this);
@@ -80,7 +88,6 @@ class Graph extends Component {
   }
 
   hoverNode({pointer,event,node}) {
-    // console.log(pointer,event,node)
     if (this.state.network) {
       const {network} = this.state;
       network.enableEditMode();
@@ -96,6 +103,11 @@ class Graph extends Component {
     event.target.style.cursor = "auto";
     network.disableEditMode();
     network.unselectAll();
+  }
+
+  hoverEdge(a){
+    /*console.log(this.state.network.getConnectedNodes(a.edge))
+    console.log("hoverEdge",a);*/
   }
 
   setNetworkInstance(nw) {
@@ -133,6 +145,7 @@ class Graph extends Component {
     const events = Object.assign({},
       {click : this.onNodeClick },
       {hoverNode : this.hoverNode },
+      // {hoverEdge : this.hoverEdge },
       {blurNode : this.blurNode }
     );
 
