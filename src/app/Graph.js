@@ -92,7 +92,8 @@ class Graph extends Component {
   setLabelColor(values, id, selected, hovering) {
     const node = this.state.data.nodes.find(n=>n.id===id);
     if (node)
-      values.color = node.color;
+      values.color = node.category ? node.category.color :
+        node.color;
   }
 
   onNodeClick({nodes,event}){

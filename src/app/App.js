@@ -2,18 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Graph from './Graph';
 import Modal from './Modal';
-import Categories from './Categories';
+import Categories from './categories/Categories';
 import nodes from '../mocks/nodes.mock';
 import './App.css';
-
-const categories = [
-  {label : "declamaciones" , color :"#FD7B35"},
-  {label : "relatos" , color :"#A7BCC9"},
-  {label : "politicas" , color :"#1F201E"},
-  {label : "observaciones" , color :"#818280"},
-  {label : "misterios" , color :""},
-  {label : "la cueca" , color :""}
-];
 
 const propTypes = {
   data : PropTypes.shape({
@@ -22,7 +13,9 @@ const propTypes = {
       from : PropTypes.number,
       to : PropTypes.number
     }))
-  })
+  }),
+  // todo improve prop type def
+  categories : PropTypes.array
 };
 
 const defaultProps = {
@@ -59,7 +52,7 @@ class App extends Component {
 
   render() {
     const {modalOpen,activeNode} = this.state,
-      {data} = this.props,
+      {data,categories} = this.props,
       showGraph = !!(data && data.nodes);
 
     return (

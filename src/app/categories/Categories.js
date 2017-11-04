@@ -1,5 +1,6 @@
 import React, {Component } from 'react';
 import PropTypes from 'prop-types';
+import Circle from './CircleSVG'
 import './Categories.css';
 
 const propTypes = {
@@ -21,7 +22,9 @@ class Categories extends Component {
     return !show ? null :
       <ul className={"app__categories"}>
         {categories.map((cat,i)=>
-          <li key={i+cat.label}>{cat.label}</li>
+          <li key={i+cat.label}>
+            <Circle size={16} r={"5"} color={cat.color}/> {cat.label}
+          </li>
         )}
       </ul>;
   }
