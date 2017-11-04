@@ -15,9 +15,11 @@ export const nodes = (nodes,categories = null)=> {
         wpId: obj.id,
         id: i + 1,
         label: "",
+        acf : obj.acf,
         hiddenLabel: obj.title ? obj.title.rendered : "",
         category,
-        color : category && category.color || colors.randomElement()
+        color : category ? category.color :
+          colors.randomElement()
       });
     });
 };

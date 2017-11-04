@@ -5,8 +5,9 @@ import {
 } from './selectors'
 import App from './app/App'
 
-const acfUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/acf/v3/",
-  wpRestUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/";
+const wpRestUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/";
+// acfUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/acf/v3/";
+
 
 const postsRoute = wpRestUrl+"posts",
   categoriesRoute = wpRestUrl+"repositorio";

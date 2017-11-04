@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Graph from './Graph';
 import Modal from './Modal';
 import Categories from './categories/Categories';
-import nodes from '../mocks/nodes.mock';
+// import nodes from '../mocks/nodes.mock';
 import './App.css';
 
 const propTypes = {
@@ -42,7 +42,8 @@ class App extends Component {
   };
 
   onNodeClick(nodeId){
-    const node = nodes.find(n=>n.id===nodeId);
+    const {data} = this.props,
+      node = data && data.nodes.find(n=>n.id===nodeId);
     if (node)
       this.setState({
         modalOpen: true,

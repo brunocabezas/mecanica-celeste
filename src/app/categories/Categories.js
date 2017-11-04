@@ -1,4 +1,4 @@
-import React, {Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Circle from './CircleSVG'
 import './Categories.css';
@@ -11,24 +11,19 @@ const propTypes = {
   onClick : PropTypes.string
 };
 
-class Categories extends Component {
-  constructor(props){
-    super(props);
-  }
-  render() {
-    const {categories} = this.props,
-        show =categories && categories.length>0;
+const Categories = (props) =>{
+  const {categories} = props,
+      show =categories && categories.length>0;
 
-    return !show ? null :
-      <ul className={"app__categories"}>
-        {categories.map((cat,i)=>
-          <li key={i+cat.label}>
-            <Circle size={16} r={"5"} color={cat.color}/> {cat.label}
-          </li>
-        )}
-      </ul>;
-  }
-}
+  return !show ? null :
+    <ul className={"app__categories"}>
+      {categories.map((cat,i)=>
+        <li key={i+cat.label}>
+          <Circle size={16} r={"5"} color={cat.color}/> {cat.label}
+        </li>
+      )}
+    </ul>;
+};
 
 Categories.propTypes = propTypes;
 export default Categories;
