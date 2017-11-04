@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VisGraph from 'react-graph-vis';
+import graphOpts from './graph.config';
 
 const props = {
   data : PropTypes.shape({
@@ -12,7 +13,8 @@ const props = {
     }))
   }),
   options : PropTypes.object,
-  onClick : PropTypes.func
+  onClick : PropTypes.func,
+  show : PropTypes.bool
 };
 
 
@@ -21,61 +23,24 @@ const defaultProps = {
     nodes : [],
     edges: []
   },
+  show : true,
   events : null,
-  options : {
-    physics:{
-      enabled: true
-    },
-    edges: {
-      arrows : {
-        to : {enabled : false}
-      },
-      chosen: false,
-      color : { color:"#818280"},
-      font : { strokeWidth : 0},
-      hoverWidth : function (width) {
-        console.log(width)
-        return 0.;},
-      selectionWidth : 0
-    },
-    nodes : {
-      labelHighlightBold : false,
-      shape : "dot",
-      chosen : {
-        label : {}
-      }
-    },
-    manipulation:{
-      enabled: false,
-      editNode : function(nodeData,callback) {
-
-        if (nodeData.label.length>0){
-          nodeData.label = "";
-        } else {
-          nodeData.label = nodeData.hiddenLabel;
-        }
-
-        callback(nodeData);
-      }
-    },
-    interaction:{
-      hover: true,
-      dragView : false,
-      hoverConnectedEdges : false
-    }
-  }
+  options : graphOpts
 };
 
 class Graph extends Component {
   constructor(props){
     super(props);
+
+    const {data} = this.props;
+
     this.state = {
       showLabel : false,
       /* graph instance */
       network : null,
       data : {
-        nodes : this.props.data.nodes || [],
-        edges : this.props.data.edges || []
+        nodes : data ? data.nodes : [],
+        edges : data ? data.edges : []
       }
     };
 
@@ -85,6 +50,14 @@ class Graph extends Component {
     this.onNodeClick = this.onNodeClick.bind(this);
     this.setLabelColor = this.setLabelColor.bind(this);
     this.setNetworkInstance = this.setNetworkInstance.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps){
+    if (nextProps.data && (
+      !this.props.data ||
+      !this.props.data.nodes)){
+      this.setState({data:nextProps.data});
+    }
   }
 
   hoverNode({pointer,event,node}) {
@@ -149,15 +122,13 @@ class Graph extends Component {
       {blurNode : this.blurNode }
     );
 
-    // console.log(events);
-    return (
+    return !this.props.show || !data || !data.nodes ? null :
       <VisGraph
         getNetwork={this.setNetworkInstance}
         graph={data}
         options={options}
         events={events}
-      />
-    );
+      />;
   }
 }
 
