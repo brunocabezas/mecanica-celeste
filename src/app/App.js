@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Graph from "./Graph";
 import Modal from "./Modal";
-import Categories from "./categories/Categories";
 import { nodes } from "./app.props";
 import "./_app.styl";
 
@@ -65,7 +64,7 @@ class App extends Component {
 
   render() {
     const { modalOpen, activeNode } = this.state,
-      { data, categories, loading } = this.props,
+      { data, loading } = this.props,
       showGraph = !!(data && data.nodes);
 
     const contentElem = loading ? (
@@ -73,11 +72,10 @@ class App extends Component {
         <span className="loader-wrapper">Cargando . . .</span>
       </div>
     ) : (
-      <span>
-        <Categories onClick={"onFilter"} categories={categories} />
+      <div className="app__content">
         <Modal open={modalOpen} onClose={this.onCloseModal} data={activeNode} />
         <Graph show={showGraph} onClick={this.onNodeClick} data={data} />
-      </span>
+      </div>
     );
     return (
       <div ref={"app"} className="app">
