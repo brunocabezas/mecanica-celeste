@@ -42,13 +42,19 @@ class AppContainer extends Component {
 
   render() {
     const { nodes, loading, categories } = this.state;
+    const smoothH = { enabled: true, type: "horizontal", roundness: 0.9 };
+    const smoothV = { enabled: true, type: "vertical", roundness: 0.9 };
     const data = {
       nodes,
       edges: [
-        { from: 1, to: 2 },
-        { from: 1, to: 3 },
-        { from: 2, to: 4 },
-        { from: 2, to: 3 }
+        {
+          from: 1,
+          to: 2,
+          smooth: smoothH
+        },
+        { from: 2, to: 3, smooth: smoothV },
+        { from: 3, to: 4, smooth: smoothH },
+        { from: 4, to: 1, smooth: smoothV }
       ]
     };
 

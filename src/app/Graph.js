@@ -107,7 +107,7 @@ export default class Graph extends Component {
     const yZero = -(height / 2);
 
     ctx.strokeStyle = "white";
-    ctx.setLineDash([4]);
+    ctx.setLineDash([1, 4]);
 
     //First two vertical lines (Right and left)
     ctx.beginPath();
@@ -142,8 +142,8 @@ export default class Graph extends Component {
     ctx.lineTo(xZero + 20, yZero + height);
     ctx.stroke();
 
-    console.log(ctx.canvas.width, ctx.canvas.height, ctx);
-    console.log("x1:", xZero + 20, yZero, "x2", xZero, yZero + lineHeight);
+    //console.log(ctx.canvas.width, ctx.canvas.height, ctx);
+    //console.log("x1:", xZero + 20, yZero, "x2", xZero, yZero + lineHeight);
   };
 
   render() {

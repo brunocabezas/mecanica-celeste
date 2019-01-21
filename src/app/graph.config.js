@@ -1,15 +1,15 @@
 export default {
   physics: {
-    enabled: true
+    enabled: false
   },
   edges: {
-    dashes: [2, 2],
+    dashes: [4, 1],
     arrows: {
       to: { enabled: false }
     },
     chosen: false,
     color: { color: "#FFFFFF" },
-    font: { strokeWidth: 0 },
+    font: { strokeWidth: 10 },
     hoverWidth: function(width) {
       // console.log(width)
       return 0;
@@ -21,6 +21,10 @@ export default {
     shape: "dot",
     chosen: {
       label: {}
+    },
+    font: {
+      color: "#FFFFFF",
+      face: 'Lato, "Lucida Grande", Tahoma, Sans-Serif;'
     }
   },
   manipulation: {
@@ -37,7 +41,8 @@ export default {
   },
   interaction: {
     hover: true,
-    dragView: false,
+    dragView: true,
+    dragNodes: false,
     hoverConnectedEdges: false
   }
 };
