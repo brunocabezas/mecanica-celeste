@@ -1,29 +1,56 @@
-//@import "jeet";
 
-.modal
+.node-modal
   clearfix()
   padding
+  display -webkit-flex
+  display -ms-flex
+  display flex
+  flex-direction unset
+  width 100%
   .close
     color white
     fill white
-    top 0
-    right 0
-  .app__modal-info,
-  .app__modal-player
-    column(1/2)
+    top 15px
+    right 15px
 
   .app__modal-info
+    flex 1
+    padding 5px
     h2
       margin-top: 0
     p
       color white
-  .app__modal-player div
-    position: relative
-    .player {
-      position: absolute;
-      top: 0;
-      max-width:"100%"
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+
+  .app__modal-player
+    flex 1
+    width 100%
+    div
+      position: relative
+      width 100%
+      .player
+        position: absolute;
+        top: 0;
+        max-width:"100%"
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+  @media screen and (max-width: 600px)
+    flex-direction column
+    position absolute
+    top 0
+    right 0
+    left 0
+    width 100%
+    .close
+      top 10
+      right 10
+
+    .app__modal-info,
+    .app__modal-player
+     flex 1
+
+     .app__modal-player
+       width 100%
+       div
+         width 100%

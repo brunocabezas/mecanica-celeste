@@ -30,4 +30,4 @@ export const nodes = PropTypes.arrayOf(
       }).isRequired
     ).isRequired
   }).isRequired
-).isRequired;
+);

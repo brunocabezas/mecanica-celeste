@@ -70,7 +70,7 @@ class App extends Component {
     console.log(data);
     return (
       <div ref={"app"} className="app">
-        <h1 className="app__title">poética astronómica</h1>
+        <h1 className="app__title">Mecánica celeste</h1>
         <Categories onClick={"onFilter"} categories={categories} />
         <Modal open={modalOpen} onClose={this.onCloseModal} data={activeNode} />
         <Graph show={showGraph} onClick={this.onNodeClick} data={data} />

@@ -16,10 +16,15 @@ const defaultProps = {
   data: null
 };
 
-const modalStyle = {
-  background: "transparent",
-  boxShadow: "none",
-  border: "none"
+const defaultModalProps = {
+  closeIconClassName: "close",
+  modalClassName: "node-modal",
+  modalStyle: {
+    background: "transparent",
+    boxShadow: "none",
+    border: "none"
+  },
+  overlayStyle: { padding: "0" }
 };
 
 const videoHeight = "350px";
@@ -31,13 +36,7 @@ class Modal extends Component {
     let videoUrl = hasVideo && data.acf.video.split("src=")[1];
     videoUrl = hasVideo && videoUrl.substring(1, videoUrl.length).split('"')[0];
 
-    const modalProps = {
-      closeIconClassName: "close",
-      modalClassName: "modal",
-      modalStyle,
-      open,
-      onClose
-    };
+    const modalProps = { ...defaultModalProps, open, onClose };
 
     return !data ? null : (
       <div ref={"app__modal"}>
