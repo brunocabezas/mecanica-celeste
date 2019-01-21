@@ -26,7 +26,8 @@ const propTypes = {
       desc: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired
     })
-  )
+  ),
+  loading: PropTypes.bool.isRequired
 };
 
 const defaultProps = {
@@ -64,16 +65,24 @@ class App extends Component {
 
   render() {
     const { modalOpen, activeNode } = this.state,
-      { data, categories } = this.props,
+      { data, categories, loading } = this.props,
       showGraph = !!(data && data.nodes);
 
-    console.log(data);
-    return (
-      <div ref={"app"} className="app">
-        <h1 className="app__title">Mecánica celeste</h1>
+    const contentElem = loading ? (
+      <div className="app__loader">
+        <span className="loader-wrapper">Cargando . . .</span>
+      </div>
+    ) : (
+      <span>
         <Categories onClick={"onFilter"} categories={categories} />
         <Modal open={modalOpen} onClose={this.onCloseModal} data={activeNode} />
         <Graph show={showGraph} onClick={this.onNodeClick} data={data} />
+      </span>
+    );
+    return (
+      <div ref={"app"} className="app">
+        <h1 className="app__title">Mecánica celeste</h1>
+        {contentElem}
       </div>
     );
   }
