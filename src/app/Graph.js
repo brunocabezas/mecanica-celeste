@@ -96,27 +96,30 @@ export default class Graph extends Component {
     // this.state.network.moveTo({position})
   };
 
+  // draw main white dashed cross with its lines
   drawCross = ctx => {
     const width = (ctx.canvas.width * 2) / 3;
     const height = ctx.canvas.height;
     const heightDivideBy4 = height / 4;
     // Height is divide by 4; the cross is twice as big as one line
-    const lineHeight = heightDivideBy4;
-    const crossHeight = heightDivideBy4 * 2;
+    const lineHeight = heightDivideBy4 + 15;
+    const crossHeight = heightDivideBy4 * 2 - 30;
     const xZero = -(width / 2);
     const yZero = -(height / 2);
+    const verticalLinesInclination = 35;
 
     ctx.strokeStyle = "white";
+    // dashes of width/space_between with ratio of 1/4
     ctx.setLineDash([1, 4]);
 
     //First two vertical lines (Right and left)
     ctx.beginPath();
-    ctx.moveTo(xZero + 20, yZero);
+    ctx.moveTo(xZero + verticalLinesInclination, yZero);
     ctx.lineTo(xZero, yZero + lineHeight);
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.moveTo(xZero + width - 20, yZero);
+    ctx.moveTo(xZero + width - verticalLinesInclination, yZero);
     ctx.lineTo(xZero + width, yZero + lineHeight);
     ctx.stroke();
 
@@ -134,12 +137,12 @@ export default class Graph extends Component {
     //Last two vertical lines (Right and left)
     ctx.beginPath();
     ctx.moveTo(xZero + width, yZero + lineHeight + crossHeight);
-    ctx.lineTo(xZero + width - 20, yZero + height);
+    ctx.lineTo(xZero + width - verticalLinesInclination, yZero + height);
     ctx.stroke();
 
     ctx.beginPath();
     ctx.moveTo(xZero, yZero + lineHeight + crossHeight);
-    ctx.lineTo(xZero + 20, yZero + height);
+    ctx.lineTo(xZero + verticalLinesInclination, yZero + height);
     ctx.stroke();
 
     //console.log(ctx.canvas.width, ctx.canvas.height, ctx);

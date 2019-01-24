@@ -2,13 +2,13 @@ import { colors } from "./helpers";
 
 const setSmallCircleNodes = node => {
   const radius = 100;
-  if (node.id == 1) {
+  if (node.id === 1) {
     return { ...node, physics: false, fixed: true, ...{ x: 0, y: radius } };
-  } else if (node.id == 2) {
+  } else if (node.id === 2) {
     return { ...node, physics: false, fixed: true, ...{ x: radius, y: 0 } };
-  } else if (node.id == 3) {
+  } else if (node.id === 3) {
     return { ...node, physics: false, fixed: true, ...{ x: 0, y: -radius } };
-  } else if (node.id == 4) {
+  } else if (node.id === 4) {
     return { ...node, physics: false, fixed: true, ...{ x: -radius, y: 0 } };
   } else {
     return node;
@@ -16,7 +16,7 @@ const setSmallCircleNodes = node => {
 };
 
 const setCenterNode = node => {
-  if (node.id == 5) {
+  if (node.id === 5) {
     return { ...node, physics: false, fixed: true, ...{ x: 0, y: 0 } };
   } else {
     return node;
