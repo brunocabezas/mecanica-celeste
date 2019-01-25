@@ -8,7 +8,7 @@ import APImock from "./mocks/api.mock.js";
 const wpRestUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/";
 // acfUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/acf/v3/";
 
-const postsRoute = wpRestUrl + "posts",
+const postsRoute = wpRestUrl + "posts?per_page=100",
   categoriesRoute = wpRestUrl + "repositorio";
 
 class AppContainer extends Component {
@@ -50,11 +50,12 @@ class AppContainer extends Component {
         {
           from: 1,
           to: 2,
-          smooth: smoothH
+          smooth: smoothH,
+          dashes: [1, 4]
         },
-        { from: 2, to: 3, smooth: smoothV },
-        { from: 3, to: 4, smooth: smoothH },
-        { from: 4, to: 1, smooth: smoothV }
+        { from: 2, to: 3, smooth: smoothV, dashes: [1, 4] },
+        { from: 3, to: 4, smooth: smoothH, dashes: [1, 4] },
+        { from: 4, to: 1, smooth: smoothV, dashes: [1, 4] }
       ]
     };
 

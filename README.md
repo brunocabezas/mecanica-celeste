@@ -6,15 +6,15 @@ App that displays videos in a space-like way using [react-graph-vis network modu
 
 Next Steps:
 
-- [ ] Correct shape of lines
-- [ ] Add new circle with more nodes
-- [ ] Write to see what information is missing
+- [x] Correct shape of lines; set big cross min width
+- [x] Add new circle with more nodes
 - [ ] Style nodes (hover and text)
-- [ ] Check style when displaying information
-- [ ] Limit zoom (https://jsfiddle.net/styb8u9o/)
-- [ ] Style dashes that relate nodes
+- [ ] Check style when displaying information on modal
+- [x] Limit zoom (https://jsfiddle.net/styb8u9o/)
+- [x] Style dashes that relate nodes
 - [ ] Add modal transition?
 - [ ] Add Reset Zoom button
 - [ ] Remove unused components/code (categories)
 - [ ] Add favicon
 - [ ] Check different screen widths
+- [ ] Open modal when clicking labels

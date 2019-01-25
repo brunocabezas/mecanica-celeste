@@ -25,15 +25,20 @@ export default class Graph extends Component {
       nodes: [],
       edges: []
     },
-    show: true,
     events: null,
     options: graphOpts
+  };
+
+  afterzoomlimit = {
+    position: { x: 0, y: 0 },
+    scale: 0.49
   };
 
   state = {
     showLabel: false,
     /* graph instance */
     network: null,
+    show: false,
     data: {
       nodes: this.props.data ? this.props.data.nodes : [],
       edges: this.props.data ? this.props.data.edges : []
@@ -47,13 +52,7 @@ export default class Graph extends Component {
   };
 
   hoverNode = ({ pointer, event, node }) => {
-    if (this.state.network) {
-      const { network } = this.state;
-      network.enableEditMode();
-      event.target.style.cursor = "pointer";
-      network.selectNodes([node]);
-      network.editNode();
-    }
+    event.target.style.cursor = "pointer";
   };
 
   blurNode = ({ pointer, event, node }) => {
@@ -70,8 +69,24 @@ export default class Graph extends Component {
   };
 
   setNetworkInstance = nw => {
+    const { data } = this.props;
+    // When getting instance; modify biggerCircleNodes axis to fit viewport
+    const xViewportOffset = nw.canvas.canvasViewCenter.x / 2;
+    const yViewportOffset = nw.canvas.canvasViewCenter.y / 2;
+    console.log(xViewportOffset, nw, nw.canvas.width);
+    const nodes = data.nodes.map(n => {
+      if (n.id > 5) {
+        return {
+          ...n,
+          x: n.x - xViewportOffset,
+          y: n.y - yViewportOffset
+        };
+      } else return n;
+    });
     this.setState({
-      network: nw
+      network: nw,
+      show: true,
+      data: { ...data, nodes }
     });
   };
 
@@ -80,7 +95,7 @@ export default class Graph extends Component {
     if (node) values.color = node.category ? node.category.color : node.color;
   };
 
-  onNodeClick = ({ nodes, event }) => {
+  onNodeClick = ({ nodes, event, ...others }) => {
     if (nodes.length > 0) {
       /*this.state.network.focus(nodes[0],{animation: {             // animation object, can also be Boolean
         duration: 1000,                 // animation duration in milliseconds (Number)
@@ -88,12 +103,19 @@ export default class Graph extends Component {
       }       })*/
     }
     // const position = event.center;
-
     if (nodes.length === 1 && nodes[0]) {
       // opening modal
       this.props.onClick(nodes[0]);
     }
     // this.state.network.moveTo({position})
+  };
+
+  onZoom = () => {
+    const { network } = this.state;
+    // Limitting zoom to 0,49 scale
+    if (network.getScale() <= 0.49) {
+      network.moveTo(this.afterzoomlimit);
+    }
   };
 
   // draw main white dashed cross with its lines
@@ -104,13 +126,16 @@ export default class Graph extends Component {
     // Height is divide by 4; the cross is twice as big as one line
     const lineHeight = heightDivideBy4 + 15;
     const crossHeight = heightDivideBy4 * 2 - 30;
+    // Axis zeros of the user viewport
     const xZero = -(width / 2);
     const yZero = -(height / 2);
     const verticalLinesInclination = 35;
 
     ctx.strokeStyle = "white";
     // dashes of width/space_between with ratio of 1/4
-    ctx.setLineDash([1, 4]);
+    ctx.lineJoin = "round";
+    ctx.lineWidth = 0.5;
+    ctx.setLineDash([2, 4]);
 
     //First two vertical lines (Right and left)
     ctx.beginPath();
@@ -152,14 +177,16 @@ export default class Graph extends Component {
   render() {
     const { data } = this.state;
     let options = this.props.options;
-    options.nodes.chosen.label = this.setLabelColor;
+    //options.nodes.chosen.label = this.setLabelColor;
     const events = {
+      zoom: this.onZoom,
       click: this.onNodeClick,
       hoverNode: this.hoverNode,
       blurNode: this.blurNode,
       beforeDrawing: this.drawCross
     };
 
+    console.log(options);
     return !this.props.show || !data || !data.nodes ? null : (
       <VisGraph
         getNetwork={this.setNetworkInstance}

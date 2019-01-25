@@ -3,7 +3,7 @@ export default {
     enabled: false
   },
   edges: {
-    dashes: [4, 1],
+    dashes: true,
     arrows: {
       to: { enabled: false }
     },
@@ -19,9 +19,7 @@ export default {
   nodes: {
     labelHighlightBold: false,
     shape: "dot",
-    chosen: {
-      label: {}
-    },
+    size: 4,
     font: {
       color: "#FFFFFF",
       face: 'Lato, "Lucida Grande", Tahoma, Sans-Serif;'
@@ -30,12 +28,6 @@ export default {
   manipulation: {
     enabled: false,
     editNode: function(nodeData, callback) {
-      if (nodeData.label.length > 0) {
-        nodeData.label = "";
-      } else {
-        nodeData.label = nodeData.hiddenLabel;
-      }
-
       callback(nodeData);
     }
   },
