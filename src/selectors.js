@@ -4,7 +4,7 @@ import { colors } from "./helpers";
 const physics = false;
 const fixed = true;
 const smallRadius = 100;
-const bigRadius = 300;
+const bigRadius = 200;
 
 // Set small circle based on smallRadius
 const setSmallCircleNodes = node => {
@@ -37,11 +37,13 @@ const setCenterNode = node => {
 
 // Set small circle based on bigRadius
 let biggerCircleNodesCount = 0;
+const xOffset = 150;
+const yOffset = -100;
 const setBigCircleNodes = (node = [], nodesCount = 0) => {
   if (node.id <= 5) {
     return node;
   }
-  const width = bigRadius * 2;
+  const width = 600;
   const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
   biggerCircleNodesCount += 1;
   console.log("x", bigRadius * Math.cos(angle) + width / 2, node.label);
@@ -51,8 +53,8 @@ const setBigCircleNodes = (node = [], nodesCount = 0) => {
     physics: false,
     fixed,
     // For a semicircle, we would use (i / numNodes) * Math.PI.
-    x: bigRadius * Math.cos(angle) + width / 2,
-    y: bigRadius * Math.sin(angle) + width / 2
+    x: bigRadius * Math.cos(angle) + width / 2 + xOffset,
+    y: bigRadius * Math.sin(angle) + width / 2 + yOffset
   };
 };
 

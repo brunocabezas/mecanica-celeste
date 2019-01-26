@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import VisGraph from "react-graph-vis";
 import graphOpts from "./graph.config";
 
+let biggerCircleNodesCount = 0;
+const MAX_WIDTH = 600;
 export default class Graph extends Component {
   static props = {
     data: PropTypes.shape({
@@ -47,7 +49,19 @@ export default class Graph extends Component {
 
   componentWillReceiveProps = nextProps => {
     if (nextProps.data && (!this.props.data || !this.props.data.nodes)) {
-      this.setState({ data: nextProps.data });
+      const nodesCount = nextProps.data.nodes.filter(n => n.id > 5).length;
+
+      this.setState({
+        data: {
+          ...nextProps.data,
+          nodes: nextProps.data.nodes.map(node =>
+            this.setBigCircleNodes(node, nodesCount)
+          )
+        }
+      });
+      if (this.state.network) {
+        this.state.network.moveTo({ position: { x: 0, y: 0 } });
+      }
     }
   };
 
@@ -71,23 +85,38 @@ export default class Graph extends Component {
   setNetworkInstance = nw => {
     const { data } = this.props;
     // When getting instance; modify biggerCircleNodes axis to fit viewport
-    const xViewportOffset = nw.canvas.canvasViewCenter.x / 2;
-    const yViewportOffset = nw.canvas.canvasViewCenter.y / 2;
-    console.log(xViewportOffset, nw, nw.canvas.width);
-    const nodes = data.nodes.map(n => {
-      if (n.id > 5) {
-        return {
-          ...n,
-          x: n.x - xViewportOffset,
-          y: n.y - yViewportOffset
-        };
-      } else return n;
-    });
-    this.setState({
-      network: nw,
-      show: true,
-      data: { ...data, nodes }
-    });
+    const xViewportOffset =
+      nw.canvas.canvasViewCenter.x * 2 > 600 ? 300 : nw.canvasViewCenter / 2;
+    const yViewportOffset =
+      nw.canvas.canvasViewCenter.y * 2 > 600 ? 300 : nw.canvasViewCenter / 2;
+    const nodesCount = [...data.nodes].filter(n => n.id > 5).length;
+    const network = {
+      canvas: { width: nw.canvas.width, height: nw.canvas.height }
+    };
+    console.log(network, nw);
+    const nodes = data.nodes
+
+      .map(node => this.setBigCircleNodes(node, nodesCount, nw))
+      .map(n => {
+        if (n.id > 5) {
+          return {
+            ...n,
+            x: n.x - xViewportOffset,
+            y: n.y - yViewportOffset
+          };
+        } else return n;
+      });
+    console.log(nodes);
+    this.setState(
+      {
+        network: nw,
+        show: true,
+        data: { ...data, nodes }
+      },
+      () => {
+        nw.moveTo({ position: { x: 0, y: 0 } });
+      }
+    );
   };
 
   setLabelColor = (values, id, selected, hovering) => {
@@ -120,8 +149,12 @@ export default class Graph extends Component {
 
   // draw main white dashed cross with its lines
   drawCross = ctx => {
-    const width = (ctx.canvas.width * 2) / 3;
-    const height = ctx.canvas.height;
+    const canvasWidth =
+      ctx.canvas.width > MAX_WIDTH ? MAX_WIDTH : ctx.canvas.width;
+    const canvasHeight =
+      ctx.canvas.height > MAX_WIDTH ? MAX_WIDTH : ctx.canvas.height;
+    const width = (canvasWidth * 2) / 3;
+    const height = canvasHeight;
     const heightDivideBy4 = height / 4;
     // Height is divide by 4; the cross is twice as big as one line
     const lineHeight = heightDivideBy4 + 15;
@@ -174,6 +207,36 @@ export default class Graph extends Component {
     //console.log("x1:", xZero + 20, yZero, "x2", xZero, yZero + lineHeight);
   };
 
+  setBigCircleNodes = (node = [], nodesCount = 0, networkInstance = null) => {
+    const xOffset = 0;
+    const yOffset = -0;
+    if (!this.state.network && !networkInstance) {
+      console.error("No network instance");
+      return node;
+    }
+    const network = networkInstance || this.state.network;
+    console.log(networkInstance);
+    const canvasWidth =
+      network.canvas.width || network.canvas.canvasViewCenter.x * 2;
+    const width = canvasWidth > MAX_WIDTH ? MAX_WIDTH : canvasWidth;
+    const canvasHeight =
+      network.canvas.height > MAX_WIDTH ? MAX_WIDTH : network.canvas.height;
+    if (node.id <= 5) {
+      return node;
+    }
+    const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
+    biggerCircleNodesCount += 1;
+    console.log("x", 200 * Math.cos(angle) + width / 2, node.label);
+    console.log("y", 200 * Math.sin(angle) + width / 2, node.label);
+    return {
+      ...node,
+      physics: false,
+      fixed: true,
+      // For a semicircle, we would use (i / numNodes) * Math.PI.
+      x: 200 * Math.cos(angle) + width / 2 + xOffset,
+      y: 200 * Math.sin(angle) + width / 2 + yOffset
+    };
+  };
   render() {
     const { data } = this.state;
     let options = this.props.options;
@@ -187,6 +250,9 @@ export default class Graph extends Component {
     };
 
     console.log(options);
+    if (this.state.network) {
+      console.log(this.state.network.getViewPosition());
+    }
     return !this.props.show || !data || !data.nodes ? null : (
       <VisGraph
         getNetwork={this.setNetworkInstance}
