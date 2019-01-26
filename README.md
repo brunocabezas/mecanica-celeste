@@ -8,13 +8,14 @@ Next Steps:
 
 - [x] Correct shape of lines; set big cross min width
 - [x] Add new circle with more nodes
+- [ ] Correct layout
+- [ ] Check different screen widths
 - [ ] Style nodes (hover and text)
 - [ ] Check style when displaying information on modal
 - [x] Limit zoom (https://jsfiddle.net/styb8u9o/)
 - [x] Style dashes that relate nodes
 - [ ] Add modal transition?
-- [ ] Add Reset Zoom button
+- [ ] Add Reset Zoom button/icon
 - [ ] Remove unused components/code (categories)
 - [ ] Add favicon
-- [ ] Check different screen widths
-- [ ] Open modal when clicking labels
+- [ ] Make nodes labels clickable
