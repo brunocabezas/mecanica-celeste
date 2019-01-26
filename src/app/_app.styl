@@ -1,0 +1,37 @@
+
+.app
+	height calc(100%)
+	width calc(100%)
+	-webkit-box-sizing border-box
+	-moz-box-sizing border-box
+	box-sizing border-box
+	margin 0
+	padding 1.5rem
+	background-color black
+	color white
+	position absolute
+
+	&__title
+		width 245px
+		position absolute
+		right 1.5rem
+		color white
+		text-align right
+		text-transform uppercase
+
+	&__loader
+		height calc(100%)
+		width calc(100%)
+		display flex
+		align-items center
+		justify-content center
+		font-family sans-serif
+		.loader-wrapper
+			color white
+
+	&__content
+		display flex
+		justify-content center
+		align-items center
+		height calc(100%)
+		width calc(100%)

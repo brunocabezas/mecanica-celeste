@@ -1,42 +1,40 @@
 export default {
-  physics:{
-    enabled: true
+  physics: {
+    enabled: false
   },
   edges: {
-    arrows : {
-      to : {enabled : false}
+    dashes: true,
+    arrows: {
+      to: { enabled: false }
     },
     chosen: false,
-      color : { color:"#818280"},
-    font : { strokeWidth : 0},
-    hoverWidth : function (width) {
+    color: { color: "#FFFFFF" },
+    font: { strokeWidth: 10 },
+    hoverWidth: function(width) {
       // console.log(width)
-      return 0.;},
-    selectionWidth : 0
+      return 0;
+    },
+    selectionWidth: 0
   },
-  nodes : {
-    labelHighlightBold : false,
-      shape : "dot",
-      chosen : {
-      label : {}
+  nodes: {
+    labelHighlightBold: false,
+    shape: "dot",
+    size: 4,
+    font: {
+      color: "#FFFFFF",
+      face: 'Lato, "Lucida Grande", Tahoma, Sans-Serif;'
     }
   },
-  manipulation:{
+  manipulation: {
     enabled: false,
-      editNode : function(nodeData,callback) {
-
-      if (nodeData.label.length>0){
-        nodeData.label = "";
-      } else {
-        nodeData.label = nodeData.hiddenLabel;
-      }
-
+    editNode: function(nodeData, callback) {
       callback(nodeData);
     }
   },
-  interaction:{
+  interaction: {
     hover: true,
-      dragView : false,
-      hoverConnectedEdges : false
+    dragView: true,
+    dragNodes: false,
+    hoverConnectedEdges: false
   }
-}
+};

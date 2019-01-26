@@ -1,8 +1,21 @@
-### poetica
+### Mecánica Celeste
 
-Project bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and started after [ejecting](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject).
- 
-It fetches data from a particular endpoint and display it as graph.
+App that displays videos in a space-like way using [react-graph-vis network module](https://github.com/crubier/react-graph-vis).
 
-Uses [react-graph-vis](https://github.com/crubier/react-graph-vis) and [react-responsive-modal](https://github.com/pradel/react-responsive-modal) 
-for display info.
+[Create React App](https://github.com/facebookincubator/create-react-app) after [ejecting](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject) is used as boilerplate.
+
+Next Steps:
+
+- [x] Correct shape of lines; set big cross min width
+- [x] Add new circle with more nodes
+- [ ] Correct layout
+- [ ] Check different screen widths
+- [ ] Style nodes (hover and text)
+- [ ] Check style when displaying information on modal
+- [x] Limit zoom (https://jsfiddle.net/styb8u9o/)
+- [x] Style dashes that relate nodes
+- [ ] Add modal transition?
+- [ ] Add Reset Zoom button/icon
+- [ ] Remove unused components/code (categories)
+- [ ] Add favicon
+- [ ] Make nodes labels clickable
