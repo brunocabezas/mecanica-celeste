@@ -4,7 +4,7 @@ import {
   categories as categoriesSelector
 } from "./selectors";
 import App from "./app/App";
-import APImock from "./mocks/api.mock.js";
+// import APImock from "./mocks/api.mock.js";
 const wpRestUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/";
 // acfUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/acf/v3/";
 

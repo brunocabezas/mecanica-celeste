@@ -4,7 +4,7 @@ import { colors } from "./helpers";
 const physics = false;
 const fixed = true;
 const smallRadius = 100;
-const bigRadius = 200;
+// const bigRadius = 200;
 
 // Set small circle based on smallRadius
 const setSmallCircleNodes = node => {
@@ -35,28 +35,25 @@ const setCenterNode = node => {
   };
 };
 
-// Set small circle based on bigRadius
-let biggerCircleNodesCount = 0;
-const xOffset = 150;
-const yOffset = -100;
-const setBigCircleNodes = (node = [], nodesCount = 0) => {
-  if (node.id <= 5) {
-    return node;
-  }
-  const width = 600;
-  const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
-  biggerCircleNodesCount += 1;
-  console.log("x", bigRadius * Math.cos(angle) + width / 2, node.label);
-  console.log("y", bigRadius * Math.sin(angle) + width / 2, node.label);
-  return {
-    ...node,
-    physics: false,
-    fixed,
-    // For a semicircle, we would use (i / numNodes) * Math.PI.
-    x: bigRadius * Math.cos(angle) + width / 2 + xOffset,
-    y: bigRadius * Math.sin(angle) + width / 2 + yOffset
-  };
-};
+// let biggerCircleNodesCount = 0;
+// const xOffset = 150;
+// const yOffset = -100;
+// const setBigCircleNodes = (node = [], nodesCount = 0) => {
+//   if (node.id <= 5) {
+//     return node;
+//   }
+//   const width = 600;
+//   const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
+//   biggerCircleNodesCount += 1;
+//   return {
+//     ...node,
+//     physics: false,
+//     fixed,
+//     // For a semicircle, we would use (i / numNodes) * Math.PI.
+//     x: bigRadius * Math.cos(angle) + width / 2 + xOffset,
+//     y: bigRadius * Math.sin(angle) + width / 2 + yOffset
+//   };
+// };
 
 export const nodes = (nodeArray, categories = null) => {
   if (!nodeArray) return nodeArray;
@@ -76,11 +73,8 @@ export const nodes = (nodeArray, categories = null) => {
   }));
 
   // Obtaining length of nodes to place on bigger circle
-  const biggerCircleNodes = [...nodes].filter(n => n.id > 5).length;
-  return nodes
-    .map(setSmallCircleNodes)
-    .map(setCenterNode)
-    .map(node => setBigCircleNodes(node, biggerCircleNodes));
+  // const biggerCircleNodes = [...nodes].filter(n => n.id > 5).length;
+  return nodes.map(setSmallCircleNodes).map(setCenterNode);
 };
 
 export const categories = categories => {

@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import VisGraph from "react-graph-vis";
 import graphOpts from "./graph.config";
 
-let biggerCircleNodesCount = 0;
+// max width of the drawing
 const MAX_WIDTH = 600;
+// helper to count nodes belonging to the bigger circle
+let biggerCircleNodesCount = 0;
+
 export default class Graph extends Component {
   static props = {
     data: PropTypes.shape({
@@ -84,34 +87,38 @@ export default class Graph extends Component {
 
   setNetworkInstance = nw => {
     const { data } = this.props;
-    // When getting instance; modify biggerCircleNodes axis to fit viewport
+    // When getting instance; modify biggerCircleNodes coordinates to fit already existing drawing
+    // X and Y offsets depend on the viewport; the drawing has MAX_WIDTH as constant and if
+    // viewport is bigger using (300, 300) as default
     const xViewportOffset =
-      nw.canvas.canvasViewCenter.x * 2 > 600 ? 300 : nw.canvasViewCenter / 2;
+      nw.canvas.canvasViewCenter.x * 2 > MAX_WIDTH
+        ? 300
+        : nw.canvasViewCenter / 2;
     const yViewportOffset =
-      nw.canvas.canvasViewCenter.y * 2 > 600 ? 300 : nw.canvasViewCenter / 2;
-    const nodesCount = [...data.nodes].filter(n => n.id > 5).length;
-    const network = {
-      canvas: { width: nw.canvas.width, height: nw.canvas.height }
-    };
-    console.log(network, nw);
-    const nodes = data.nodes
-
-      .map(node => this.setBigCircleNodes(node, nodesCount, nw))
-      .map(n => {
-        if (n.id > 5) {
-          return {
-            ...n,
-            x: n.x - xViewportOffset,
-            y: n.y - yViewportOffset
-          };
-        } else return n;
-      });
-    console.log(nodes);
+      nw.canvas.canvasViewCenter.y * 2 > MAX_WIDTH
+        ? 300
+        : nw.canvasViewCenter / 2;
+    // Counting nodes for the big circle
+    const nodesCount = data.nodes.filter(n => n.id > 5).length;
+    // Transforming nodes to set state
     this.setState(
       {
         network: nw,
         show: true,
-        data: { ...data, nodes }
+        data: {
+          ...data,
+          nodes: data.nodes
+            .map(node => this.setBigCircleNodes(node, nodesCount, nw))
+            .map(n => {
+              if (n.id > 5) {
+                return {
+                  ...n,
+                  x: n.x - xViewportOffset,
+                  y: n.y - yViewportOffset
+                };
+              } else return n;
+            })
+        }
       },
       () => {
         nw.moveTo({ position: { x: 0, y: 0 } });
@@ -204,30 +211,26 @@ export default class Graph extends Component {
     ctx.stroke();
 
     //console.log(ctx.canvas.width, ctx.canvas.height, ctx);
-    //console.log("x1:", xZero + 20, yZero, "x2", xZero, yZero + lineHeight);
   };
 
   setBigCircleNodes = (node = [], nodesCount = 0, networkInstance = null) => {
     const xOffset = 0;
     const yOffset = -0;
     if (!this.state.network && !networkInstance) {
-      console.error("No network instance");
+      console.warn("No network instance");
       return node;
     }
     const network = networkInstance || this.state.network;
-    console.log(networkInstance);
     const canvasWidth =
       network.canvas.width || network.canvas.canvasViewCenter.x * 2;
     const width = canvasWidth > MAX_WIDTH ? MAX_WIDTH : canvasWidth;
-    const canvasHeight =
-      network.canvas.height > MAX_WIDTH ? MAX_WIDTH : network.canvas.height;
+    // const canvasHeight =
+    //   network.canvas.height > MAX_WIDTH ? MAX_WIDTH : network.canvas.height;
     if (node.id <= 5) {
       return node;
     }
     const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
     biggerCircleNodesCount += 1;
-    console.log("x", 200 * Math.cos(angle) + width / 2, node.label);
-    console.log("y", 200 * Math.sin(angle) + width / 2, node.label);
     return {
       ...node,
       physics: false,
@@ -240,7 +243,7 @@ export default class Graph extends Component {
   render() {
     const { data } = this.state;
     let options = this.props.options;
-    //options.nodes.chosen.label = this.setLabelColor;
+
     const events = {
       zoom: this.onZoom,
       click: this.onNodeClick,
@@ -249,10 +252,6 @@ export default class Graph extends Component {
       beforeDrawing: this.drawCross
     };
 
-    console.log(options);
-    if (this.state.network) {
-      console.log(this.state.network.getViewPosition());
-    }
     return !this.props.show || !data || !data.nodes ? null : (
       <VisGraph
         getNetwork={this.setNetworkInstance}
