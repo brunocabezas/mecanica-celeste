@@ -1,12 +1,13 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+
 export const nodes = PropTypes.arrayOf(
   PropTypes.shape({
     edges: PropTypes.arrayOf(
       PropTypes.shape({
         from: PropTypes.number.isRequired,
         id: PropTypes.string.isRequired,
-        to: PropTypes.number.isRequired
-      }).isRequired
+        to: PropTypes.number.isRequired,
+      }).isRequired,
     ).isRequired,
     nodes: PropTypes.arrayOf(
       PropTypes.shape({
@@ -20,14 +21,14 @@ export const nodes = PropTypes.arrayOf(
           nombre: PropTypes.string.isRequired,
           profesion: PropTypes.string.isRequired,
           resena: PropTypes.string.isRequired,
-          video: PropTypes.string.isRequired
+          video: PropTypes.string.isRequired,
         }).isRequired,
         color: PropTypes.string.isRequired,
         hiddenLabel: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
         label: PropTypes.string.isRequired,
-        wpId: PropTypes.number.isRequired
-      }).isRequired
-    ).isRequired
-  }).isRequired
+        wpId: PropTypes.number.isRequired,
+      }).isRequired,
+    ).isRequired,
+  }).isRequired,
 );

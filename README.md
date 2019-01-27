@@ -15,7 +15,7 @@ Next Steps:
 - [x] Limit zoom (https://jsfiddle.net/styb8u9o/)
 - [x] Style dashes that relate nodes
 - [ ] Add modal transition?
-- [ ] Add Reset Zoom button/icon
+- [ ] Add Reset Zoom button/icon (https://www.onlinewebfonts.com/icon/490098)
 - [ ] Remove unused components/code (categories)
 - [ ] Add favicon
 - [ ] Make nodes labels clickable
