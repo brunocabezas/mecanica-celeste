@@ -34,7 +34,6 @@ class AppContainer extends Component {
           .then(response => response.json())
           .then(json => {
             const nodes = nodesSelector(json, categories);
-            // console.log(nodes)
             this.setState({ nodes });
           })
           .catch(err => {

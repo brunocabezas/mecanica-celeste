@@ -54,12 +54,5 @@ const smallCircleEdges = [
   { from: 3, to: 4, smooth: smoothH, dashes: [1, 4] },
   { from: 4, to: 1, smooth: smoothV, dashes: [1, 4] }
 ];
-const bigCircleEdges = [
-  {
-    from: 5,
-    to: 6,
-    smooth: smoothH,
-    dashes: [1, 4]
-  }
-];
+const bigCircleEdges = [];
 export const edges = [...smallCircleEdges, ...bigCircleEdges];

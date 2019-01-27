@@ -52,15 +52,8 @@ export default class Graph extends Component {
 
   componentWillReceiveProps = nextProps => {
     if (nextProps.data && (!this.props.data || !this.props.data.nodes)) {
-      const nodesCount = nextProps.data.nodes.filter(n => n.id > 5).length;
-
       this.setState({
-        data: {
-          ...nextProps.data,
-          nodes: nextProps.data.nodes.map(node =>
-            this.setBigCircleNodes(node, nodesCount)
-          )
-        }
+        data: nextProps.data
       });
       if (this.state.network) {
         this.state.network.moveTo({ position: { x: 0, y: 0 } });
@@ -106,7 +99,7 @@ export default class Graph extends Component {
         network: nw,
         show: true,
         data: {
-          ...data,
+          edges: [...data.edges, ...this.getBigCircleEdges(data.nodes)],
           nodes: data.nodes
             .map(node => this.setBigCircleNodes(node, nodesCount, nw))
             .map(n => {
@@ -216,7 +209,7 @@ export default class Graph extends Component {
   setBigCircleNodes = (node = [], nodesCount = 0, networkInstance = null) => {
     const xOffset = 0;
     const yOffset = -0;
-    if (!this.state.network && !networkInstance) {
+    if (node.id <= 5 || (!this.state.network && !networkInstance)) {
       console.warn("No network instance");
       return node;
     }
@@ -224,11 +217,6 @@ export default class Graph extends Component {
     const canvasWidth =
       network.canvas.width || network.canvas.canvasViewCenter.x * 2;
     const width = canvasWidth > MAX_WIDTH ? MAX_WIDTH : canvasWidth;
-    // const canvasHeight =
-    //   network.canvas.height > MAX_WIDTH ? MAX_WIDTH : network.canvas.height;
-    if (node.id <= 5) {
-      return node;
-    }
     const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
     biggerCircleNodesCount += 1;
     return {
@@ -239,6 +227,23 @@ export default class Graph extends Component {
       x: 200 * Math.cos(angle) + width / 2 + xOffset,
       y: 200 * Math.sin(angle) + width / 2 + yOffset
     };
+  };
+
+  getBigCircleEdges = (nodes = []) => {
+    // const smoothH = { enabled: true, type: "horizontal", roundness: 0.5 };
+    // const smoothV = { enabled: true, type: "vertical", roundness: 0.5 };
+    const count = nodes.filter(n => n.id > 5).length;
+    return [
+      ...nodes
+        .filter(n => n.id > 5)
+        .map(n => ({
+          from: n.id,
+          to: n.id + 1,
+          dashes: [1, 4]
+        })),
+      //  From the last one to the start of big circle nodes
+      { from: 5 + count, to: 6, dashes: [1, 4] }
+    ];
   };
   render() {
     const { data } = this.state;
