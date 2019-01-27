@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import DOMPurify from 'dompurify';
 import ReactModal from 'react-responsive-modal';
+import { node as nodeProps } from './app.props';
 import './_modal.styl';
 
 const props = {
   /* todo improve prop def */
-  data: PropTypes.object,
+  data: nodeProps,
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
@@ -31,10 +32,7 @@ const videoHeight = '350px';
 class Modal extends Component {
   render() {
     const { open, onClose, data } = this.props;
-
-
     const hasVideo = data && data.acf && data.acf.video.length > 0;
-
     let videoUrl = hasVideo && data.acf.video.split('src=')[1];
     videoUrl = hasVideo && videoUrl.substring(1, videoUrl.length).split('"')[0];
 
@@ -46,12 +44,7 @@ class Modal extends Component {
           <div className="app__modal-player">
             {open && hasVideo && (
               <div style={{ height: videoHeight }}>
-                <ReactPlayer
-                  className="player"
-                  width="100%"
-                  height={videoHeight}
-                  url={videoUrl}
-                />
+                <ReactPlayer className="player" width="100%" height={videoHeight} url={videoUrl} />
               </div>
             )}
           </div>

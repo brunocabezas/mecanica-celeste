@@ -1,5 +1,3 @@
-import { colors } from './helpers';
-
 // Helpers to set fixed nodes
 const physics = false;
 const fixed = true;
@@ -78,7 +76,7 @@ const setCenterNode = (node) => {
 //   };
 // };
 
-export const nodes = (nodeArray, categories = null) => {
+export const nodes = (nodeArray) => {
   if (!nodeArray) return nodeArray;
 
   // Create base node array
@@ -87,10 +85,6 @@ export const nodes = (nodeArray, categories = null) => {
     id: i + 1,
     acf: obj.acf,
     label: obj.title ? obj.title.rendered.toUpperCase() : '',
-    category:
-      !categories || !obj.repositorio.length === 0
-        ? null
-        : categories.find(cat => cat.id === obj.repositorio[0]),
     color: '#FFFFFF',
     borderWidth: 0,
   }));
@@ -100,15 +94,15 @@ export const nodes = (nodeArray, categories = null) => {
   return newNodes.map(setSmallCircleNodes).map(setCenterNode);
 };
 
-export const categories = (cats) => {
-  if (!cats) return cats;
-
-  return cats.map(obj => ({
-    id: obj.id,
-    label: obj.name,
-    slug: obj.slug,
-    color: colors.randomElement(),
-    desc: obj.description,
-    acf: obj.acf,
-  }));
-};
+// export const categories = (cats) => {
+//   if (!cats) return cats;
+//
+//   return cats.map(obj => ({
+//     id: obj.id,
+//     label: obj.name,
+//     slug: obj.slug,
+//     color: colors.randomElement(),
+//     desc: obj.description,
+//     acf: obj.acf,
+//   }));
+// };

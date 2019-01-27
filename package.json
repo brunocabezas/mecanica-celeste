@@ -42,7 +42,7 @@
     "start": "node scripts/start.js",
     "start:parcel": "NODE_ENV=development npx parcel public/index_parcel.html",
     "build": " node scripts/build.js",
-    "build:parcel": "NODE_ENV=production npx parcel public/index_parcel.html --out-dir parcel-build --public-url ./",
+    "build:parcel": "NODE_ENV=production npx parcel build public/index_parcel.html --out-dir parcel-build --public-url ./",
     "lint": "npx eslint src/",
     "test": "node scripts/test.js --env=jsdom"
   },

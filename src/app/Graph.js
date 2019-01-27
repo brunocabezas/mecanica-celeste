@@ -1,7 +1,9 @@
+/* eslint no-param-reassign: ["error", { "props": false }] */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VisGraph from 'react-graph-vis';
 import graphOpts from './graph.config';
+import { config } from './app.props';
 
 // max width of the drawing
 const MAX_WIDTH = 600;
@@ -9,7 +11,7 @@ const MAX_WIDTH = 600;
 let biggerCircleNodesCount = 0;
 
 export default class Graph extends Component {
-  static props = {
+  static propTypes = {
     data: PropTypes.shape({
       /* todo define node properties */
       nodes: PropTypes.array,
@@ -20,8 +22,8 @@ export default class Graph extends Component {
         }),
       ),
     }),
-    options: PropTypes.object,
-    onClick: PropTypes.func,
+    options: config,
+    onClick: PropTypes.func.isRequired,
     show: PropTypes.bool,
   };
 
@@ -30,7 +32,7 @@ export default class Graph extends Component {
       nodes: [],
       edges: [],
     },
-    events: null,
+    show: false,
     options: graphOpts,
   };
 
@@ -39,33 +41,35 @@ export default class Graph extends Component {
     scale: 0.49,
   };
 
+  /* eslint-disable react/destructuring-assignment */
   state = {
-    showLabel: false,
     /* graph instance */
     network: null,
-    show: false,
     data: {
       nodes: this.props.data ? this.props.data.nodes : [],
       edges: this.props.data ? this.props.data.edges : [],
     },
   };
+  /* eslint-disable react/destructuring-assignment */
 
   componentWillReceiveProps = (nextProps) => {
-    if (nextProps.data && (!this.props.data || !this.props.data.nodes)) {
+    const { data } = this.props;
+    if (nextProps.data && (!data || !data.nodes)) {
       this.setState({
         data: nextProps.data,
       });
-      if (this.state.network) {
-        this.state.network.moveTo({ position: { x: 0, y: 0 } });
+      const { network } = this.state;
+      if (network) {
+        network.moveTo({ position: { x: 0, y: 0 } });
       }
     }
   };
 
-  hoverNode = ({ pointer, event, node }) => {
+  hoverNode = ({ event }) => {
     event.target.style.cursor = 'pointer';
   };
 
-  blurNode = ({ pointer, event, node }) => {
+  blurNode = ({ event }) => {
     const { network } = this.state;
     network.editNode();
     event.target.style.cursor = 'auto';
@@ -73,7 +77,7 @@ export default class Graph extends Component {
     network.unselectAll();
   };
 
-  hoverEdge = (a) => {
+  hoverEdge = () => {
     /* console.log(this.state.network.getConnectedNodes(a.edge))
     console.log("hoverEdge",a); */
   };
@@ -95,7 +99,6 @@ export default class Graph extends Component {
     this.setState(
       {
         network: nw,
-        show: true,
         data: {
           edges: [...data.edges, ...this.getBigCircleEdges(data.nodes)],
           nodes: data.nodes
@@ -117,22 +120,18 @@ export default class Graph extends Component {
     );
   };
 
-  setLabelColor = (values, id, selected, hovering) => {
-    const node = this.state.data.nodes.find(n => n.id === id);
+  setLabelColor = (values, id) => {
+    const { data: { nodes } } = this.state;
+    const node = nodes.find(n => n.id === id);
     if (node) values.color = node.category ? node.category.color : node.color;
   };
 
-  onNodeClick = ({ nodes, event, ...others }) => {
-    if (nodes.length > 0) {
-      /* this.state.network.focus(nodes[0],{animation: {             // animation object, can also be Boolean
-        duration: 1000,                 // animation duration in milliseconds (Number)
-        easingFunction: "easeInOutQuad" // Animation easing function, available are:
-      }       }) */
-    }
-    // const position = event.center;
+  onNodeClick = (args) => {
+    const { nodes } = args;
+    const { onClick } = this.props;
     if (nodes.length === 1 && nodes[0]) {
       // opening modal
-      this.props.onClick(nodes[0]);
+      onClick(nodes[0]);
     }
     // this.state.network.moveTo({position})
   };
@@ -205,14 +204,16 @@ export default class Graph extends Component {
   setBigCircleNodes = (node = [], nodesCount = 0, networkInstance = null) => {
     const xOffset = 0;
     const yOffset = -0;
-    if (node.id <= 5 || (!this.state.network && !networkInstance)) {
+    const { network } = this.state;
+    if (node.id <= 5 || (!network && !networkInstance)) {
       console.warn('No network instance');
       return node;
     }
-    const network = networkInstance || this.state.network;
-    const canvasWidth = network.canvas.width || network.canvas.canvasViewCenter.x * 2;
+    const instance = networkInstance || network;
+    const canvasWidth = instance.canvas.width || instance.canvas.canvasViewCenter.x * 2;
     const width = canvasWidth > MAX_WIDTH ? MAX_WIDTH : canvasWidth;
-    const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
+    // Calculate the angle at which the element will be placed.
+    const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI;
     biggerCircleNodesCount += 1;
     return {
       ...node,
@@ -243,7 +244,7 @@ export default class Graph extends Component {
 
   render() {
     const { data } = this.state;
-    const options = this.props.options;
+    const { options, show } = this.props;
 
     const events = {
       zoom: this.onZoom,
@@ -253,7 +254,7 @@ export default class Graph extends Component {
       beforeDrawing: this.drawCross,
     };
 
-    return !this.props.show || !data || !data.nodes ? null : (
+    return !show || !data || !data.nodes ? null : (
       <VisGraph
         getNetwork={this.setNetworkInstance}
         graph={data}

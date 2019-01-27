@@ -12,7 +12,7 @@ export default {
     chosen: false,
     color: { color: '#FFFFFF' },
     font: { strokeWidth: 10 },
-    hoverWidth(width) {
+    hoverWidth() {
       // console.log(width)
       return 0;
     },

@@ -15,17 +15,6 @@ const propTypes = {
       }),
     ),
   }),
-  // todo improve prop type def
-  categories: PropTypes.arrayOf(
-    PropTypes.shape({
-      acf: PropTypes.array,
-      id: PropTypes.number.isRequired,
-      color: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      desc: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-    }),
-  ),
   loading: PropTypes.bool.isRequired,
 };
 
