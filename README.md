@@ -8,8 +8,8 @@ Next Steps:
 
 - [x] Correct shape of lines; set big cross min width
 - [x] Add new circle with more nodes
-- [ ] Correct layout
-- [ ] Check different screen widths
+- [x] Correct layout
+- [x] Check different screen widths
 - [ ] Style nodes (hover and text)
 - [ ] Check style when displaying information on modal
 - [x] Limit zoom (https://jsfiddle.net/styb8u9o/)
