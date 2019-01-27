@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   nodes as nodesSelector,
-  categories as categoriesSelector
+  categories as categoriesSelector,
 } from './selectors';
 import App from './app/App';
 import { edges } from './app/graph.config';

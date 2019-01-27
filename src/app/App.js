@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Graph from "./Graph";
-import Modal from "./Modal";
-import { nodes } from "./app.props";
-import "./_app.styl";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Graph from './Graph';
+import Modal from './Modal';
+import { nodes } from './app.props';
+import './_app.styl';
 
 const propTypes = {
   data: PropTypes.shape({
@@ -11,9 +11,9 @@ const propTypes = {
     edges: PropTypes.arrayOf(
       PropTypes.shape({
         from: PropTypes.number,
-        to: PropTypes.number
-      })
-    )
+        to: PropTypes.number,
+      }),
+    ),
   }),
   // todo improve prop type def
   categories: PropTypes.arrayOf(
@@ -23,14 +23,14 @@ const propTypes = {
       color: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       desc: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired
-    })
+      slug: PropTypes.string.isRequired,
+    }),
   ),
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
-  data: null
+  data: null,
 };
 
 class App extends Component {
@@ -38,7 +38,7 @@ class App extends Component {
     super(props);
     this.state = {
       modalOpen: false,
-      activeNode: null
+      activeNode: null,
     };
 
     this.onCloseModal = this.onCloseModal.bind(this);
@@ -48,24 +48,31 @@ class App extends Component {
   onCloseModal() {
     this.setState({
       modalOpen: false,
-      activeNode: null
+      activeNode: null,
     });
   }
 
   onNodeClick(nodeId) {
-    const { data } = this.props,
-      node = data && data.nodes.find(n => n.id === nodeId);
-    if (node)
+    const { data } = this.props;
+
+
+    const node = data && data.nodes.find(n => n.id === nodeId);
+    if (node) {
       this.setState({
         modalOpen: true,
-        activeNode: node
+        activeNode: node,
       });
+    }
   }
 
   render() {
-    const { modalOpen, activeNode } = this.state,
-      { data, loading } = this.props,
-      showGraph = !!(data && data.nodes);
+    const { modalOpen, activeNode } = this.state;
+
+
+    const { data, loading } = this.props;
+
+
+    const showGraph = !!(data && data.nodes);
 
     const contentElem = loading ? (
       <div className="app__loader">
@@ -78,7 +85,7 @@ class App extends Component {
       </div>
     );
     return (
-      <div ref={"app"} className="app">
+      <div ref="app" className="app">
         <h1 className="app__title">Mecánica celeste</h1>
         {contentElem}
       </div>

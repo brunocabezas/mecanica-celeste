@@ -30,3 +30,4 @@ dist/
 report.html
 *.orig
 coverage/
+parcel-build
