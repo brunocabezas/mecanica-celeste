@@ -40,3 +40,26 @@ export default {
     hoverConnectedEdges: false
   }
 };
+
+const smoothH = { enabled: true, type: "horizontal", roundness: 0.9 };
+const smoothV = { enabled: true, type: "vertical", roundness: 0.9 };
+const smallCircleEdges = [
+  {
+    from: 1,
+    to: 2,
+    smooth: smoothH,
+    dashes: [1, 4]
+  },
+  { from: 2, to: 3, smooth: smoothV, dashes: [1, 4] },
+  { from: 3, to: 4, smooth: smoothH, dashes: [1, 4] },
+  { from: 4, to: 1, smooth: smoothV, dashes: [1, 4] }
+];
+const bigCircleEdges = [
+  {
+    from: 5,
+    to: 6,
+    smooth: smoothH,
+    dashes: [1, 4]
+  }
+];
+export const edges = [...smallCircleEdges, ...bigCircleEdges];

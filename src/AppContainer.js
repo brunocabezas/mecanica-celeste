@@ -4,6 +4,7 @@ import {
   categories as categoriesSelector
 } from "./selectors";
 import App from "./app/App";
+import { edges } from "./app/graph.config";
 // import APImock from "./mocks/api.mock.js";
 const wpRestUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/";
 // acfUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/acf/v3/";
@@ -35,6 +36,9 @@ class AppContainer extends Component {
             const nodes = nodesSelector(json, categories);
             // console.log(nodes)
             this.setState({ nodes });
+          })
+          .catch(err => {
+            console.log(`error fetching ${postsRoute} : `, err);
           });
       })
       .finally(() => this.setState({ loading: false }));
@@ -42,21 +46,9 @@ class AppContainer extends Component {
 
   render() {
     const { nodes, loading, categories } = this.state;
-    const smoothH = { enabled: true, type: "horizontal", roundness: 0.9 };
-    const smoothV = { enabled: true, type: "vertical", roundness: 0.9 };
     const data = {
       nodes,
-      edges: [
-        {
-          from: 1,
-          to: 2,
-          smooth: smoothH,
-          dashes: [1, 4]
-        },
-        { from: 2, to: 3, smooth: smoothV, dashes: [1, 4] },
-        { from: 3, to: 4, smooth: smoothH, dashes: [1, 4] },
-        { from: 4, to: 1, smooth: smoothV, dashes: [1, 4] }
-      ]
+      edges: edges
     };
 
     return <App categories={categories} loading={loading} data={data} />;
