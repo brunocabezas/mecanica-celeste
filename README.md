@@ -4,6 +4,8 @@ App that displays videos in a space-like way using [react-graph-vis network modu
 
 [Create React App](https://github.com/facebookincubator/create-react-app) after [ejecting](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject) is used as boilerplate.
 
+Uses [Parcel.js](https://parceljs.org) to build and serve app on development.
+
 Next Steps:
 
 - [x] Correct shape of lines; set big cross min width
@@ -16,6 +18,6 @@ Next Steps:
 - [x] Style dashes that relate nodes
 - [ ] Add modal transition?
 - [ ] Add Reset Zoom button/icon (https://www.onlinewebfonts.com/icon/490098)
-- [ ] Remove unused components/code (categories)
+- [x] Remove unused components/code (categories)
 - [ ] Add favicon
 - [ ] Make nodes labels clickable
