@@ -22,3 +22,12 @@ yarn-error.log*
 
 # others
 .idea
+node_modules/
+.cache/
+dist/
+*.log
+.idea/
+report.html
+*.orig
+coverage/
+parcel-build

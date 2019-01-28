@@ -1,0 +1,6 @@
+{
+  "presets":  [
+    [ "react-app", { "absoluteRuntime": false } ]
+  ],
+  "plugins": ["transform-class-properties"]
+}

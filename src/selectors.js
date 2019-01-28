@@ -1,5 +1,3 @@
-import { colors } from "./helpers";
-
 // Helpers to set fixed nodes
 const physics = false;
 const fixed = true;
@@ -7,31 +5,53 @@ const smallRadius = 100;
 // const bigRadius = 200;
 
 // Set small circle based on smallRadius
-const setSmallCircleNodes = node => {
+const setSmallCircleNodes = (node) => {
   if (node.id === 1) {
-    return { ...node, physics, fixed, ...{ x: 0, y: smallRadius } };
-  } else if (node.id === 2) {
-    return { ...node, physics, fixed, ...{ x: smallRadius, y: 0 } };
-  } else if (node.id === 3) {
-    return { ...node, physics, fixed, ...{ x: 0, y: -smallRadius } };
-  } else if (node.id === 4) {
-    return { ...node, physics, fixed, ...{ x: -smallRadius, y: 0 } };
-  } else {
-    return node;
+    return {
+      ...node,
+      physics,
+      fixed,
+      ...{ x: 0, y: smallRadius },
+    };
   }
+  if (node.id === 2) {
+    return {
+      ...node,
+      physics,
+      fixed,
+      ...{ x: smallRadius, y: 0 },
+    };
+  }
+  if (node.id === 3) {
+    return {
+      ...node,
+      physics,
+      fixed,
+      ...{ x: 0, y: -smallRadius },
+    };
+  }
+  if (node.id === 4) {
+    return {
+      ...node,
+      physics,
+      fixed,
+      ...{ x: -smallRadius, y: 0 },
+    };
+  }
+  return node;
 };
 
-const setCenterNode = node => {
+const setCenterNode = (node) => {
   if (node.id !== 5) {
     return node;
   }
   return {
     ...node,
     physics,
-    shape: "text",
+    shape: 'text',
     fixed,
     x: 0,
-    y: 0
+    y: 0,
   };
 };
 
@@ -43,7 +63,8 @@ const setCenterNode = node => {
 //     return node;
 //   }
 //   const width = 600;
-//   const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
+// Calculate the angle at which the element will be placed.
+//   const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI;
 //   biggerCircleNodesCount += 1;
 //   return {
 //     ...node,
@@ -55,37 +76,33 @@ const setCenterNode = node => {
 //   };
 // };
 
-export const nodes = (nodeArray, categories = null) => {
+export const nodes = (nodeArray) => {
   if (!nodeArray) return nodeArray;
 
   // Create base node array
-  const nodes = nodeArray.map((obj, i) => ({
+  const newNodes = nodeArray.map((obj, i) => ({
     wpId: obj.id,
     id: i + 1,
     acf: obj.acf,
-    label: obj.title ? obj.title.rendered.toUpperCase() : "",
-    category:
-      !categories || !obj.repositorio.length === 0
-        ? null
-        : categories.find(cat => cat.id === obj.repositorio[0]),
-    color: "#FFFFFF",
-    borderWidth: 0
+    label: obj.title ? obj.title.rendered.toUpperCase() : '',
+    color: '#FFFFFF',
+    borderWidth: 0,
   }));
 
-  // Obtaining length of nodes to place on bigger circle
-  // const biggerCircleNodes = [...nodes].filter(n => n.id > 5).length;
-  return nodes.map(setSmallCircleNodes).map(setCenterNode);
+  // Obtaining length of newNodes to place on bigger circle
+  // const biggerCircleNodes = [...newNodes].filter(n => n.id > 5).length;
+  return newNodes.map(setSmallCircleNodes).map(setCenterNode);
 };
 
-export const categories = categories => {
-  if (!categories) return categories;
-
-  return categories.map((obj, i) => ({
-    id: obj.id,
-    label: obj.name,
-    slug: obj.slug,
-    color: colors.randomElement(),
-    desc: obj.description,
-    acf: obj.acf
-  }));
-};
+// export const categories = (cats) => {
+//   if (!cats) return cats;
+//
+//   return cats.map(obj => ({
+//     id: obj.id,
+//     label: obj.name,
+//     slug: obj.slug,
+//     color: colors.randomElement(),
+//     desc: obj.description,
+//     acf: obj.acf,
+//   }));
+// };
