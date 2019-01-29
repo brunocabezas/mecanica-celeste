@@ -1,7 +1,4 @@
 // Helpers to set fixed nodes
-const physics = false;
-const fixed = true;
-const smallRadius = 25;
 // const bigRadius = 200;
 
 // Set small circle based on smallRadius
@@ -49,83 +46,48 @@ const smallRadius = 25;
 //   return node;
 // };
 
-const setSmallCircleTextNodes = (node) => {
-  if (node.id === 1) {
-    return {
-      ...node,
-      physics,
-      fixed,
-      x: -15,
-      shape: 'text',
-      y: -15,
-    };
-  }
-  if (node.id === 2) {
-    return {
-      ...node,
-      physics,
-      fixed,
-      shape: 'text',
-      x: smallRadius,
-      y: -50,
-    };
-  }
-  if (node.id === 3) {
-    return {
-      ...node,
-      physics,
-      fixed,
-      shape: 'text',
-      x: -15,
-      y: -smallRadius - 50,
-    };
-  }
-  if (node.id === 4) {
-    return {
-      ...node,
-      physics,
-      fixed,
-      shape: 'text',
-      x: -smallRadius,
-      y: -50,
-    };
-  }
-  return node;
-};
-
-const setCenterNode = (node) => {
-  if (node.id !== 5) {
-    return node;
-  }
-  return {
-    ...node,
-    physics,
-    shape: 'text',
-    fixed,
-    x: 0,
-    y: 0,
-  };
-};
-
-// let biggerCircleNodesCount = 0;
-// const xOffset = 150;
-// const yOffset = -100;
-// const setBigCircleNodes = (node = [], nodesCount = 0) => {
-//   if (node.id <= 5) {
-//     return node;
+// const setSmallCircleTextNodes = (node) => {
+//   if (node.id === 1) {
+//     return {
+//       ...node,
+//       physics,
+//       fixed,
+//       x: -15,
+//       shape: 'text',
+//       y: -15,
+//     };
 //   }
-//   const width = 600;
-// Calculate the angle at which the element will be placed.
-//   const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI;
-//   biggerCircleNodesCount += 1;
-//   return {
-//     ...node,
-//     physics: false,
-//     fixed,
-//     // For a semicircle, we would use (i / numNodes) * Math.PI.
-//     x: bigRadius * Math.cos(angle) + width / 2 + xOffset,
-//     y: bigRadius * Math.sin(angle) + width / 2 + yOffset
-//   };
+//   if (node.id === 2) {
+//     return {
+//       ...node,
+//       physics,
+//       fixed,
+//       shape: 'text',
+//       x: smallRadius,
+//       y: -50,
+//     };
+//   }
+//   if (node.id === 3) {
+//     return {
+//       ...node,
+//       physics,
+//       fixed,
+//       shape: 'text',
+//       x: -15,
+//       y: -smallRadius - 50,
+//     };
+//   }
+//   if (node.id === 4) {
+//     return {
+//       ...node,
+//       physics,
+//       fixed,
+//       shape: 'text',
+//       x: -smallRadius,
+//       y: -50,
+//     };
+//   }
+//   return node;
 // };
 
 export const nodes = (nodeArray) => {
@@ -135,13 +97,16 @@ export const nodes = (nodeArray) => {
   const dotNodes = nodeArray.map((obj, i) => ({
     wpId: obj.id,
     wpLabel: obj.title ? obj.title.rendered.toUpperCase() : '',
-    title: 'Asdas',
+    title: obj.title ? obj.title.rendered.toUpperCase() : '',
     id: i + 1,
     acf: obj.acf,
-    label: false,
-    color: '#FFFFFF',
+    color: {
+      background: 'white',
+      border: 'white',
+      hover: 'gray',
+    },
     shape: 'dot',
-    size: 2,
+    size: 3,
     borderWidth: 0,
   }));
 

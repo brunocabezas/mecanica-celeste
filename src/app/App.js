@@ -43,9 +43,10 @@ class App extends Component {
 
   onNodeClick(nodeId) {
     const { data } = this.props;
+    const id = nodeId > data.nodes.length * 2 - 1 ? nodeId - data.nodes.length * 2 - 1 : nodeId;
+    console.log(nodeId, id);
 
-
-    const node = data && data.nodes.find(n => n.id === nodeId);
+    const node = data && data.nodes.find(n => n.id === id);
     if (node) {
       this.setState({
         modalOpen: true,
@@ -57,9 +58,7 @@ class App extends Component {
   render() {
     const { modalOpen, activeNode } = this.state;
 
-
     const { data, loading } = this.props;
-
 
     const showGraph = !!(data && data.nodes);
 

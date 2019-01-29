@@ -49,9 +49,7 @@ class Modal extends Component {
             )}
           </div>
           <div className="app__modal-info">
-            <h2 style={{ color: data.color }} className="hola">
-              {data.hiddenLabel}
-            </h2>
+            <h2 style={{ color: data.color }}>{data.title}</h2>
             <h4>
               {data.acf.anio}
               {' '}

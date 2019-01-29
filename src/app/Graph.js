@@ -286,6 +286,7 @@ export default class Graph extends Component {
         ...node,
         shape: 'text',
         label: node.wpLabel,
+        labelHighlightBold: true,
         x: 0,
         y: 0,
       };
@@ -306,6 +307,7 @@ export default class Graph extends Component {
       id: dotNodesCount + node.id,
       physics: false,
       fixed: true,
+      labelHighlightBold: true,
       shape: 'text',
       label: node.wpLabel,
       font: { align: textAlign },
@@ -336,6 +338,7 @@ export default class Graph extends Component {
       ...node,
       id: dotNodesCount + node.id,
       physics: false,
+      labelHighlightBold: true,
       fixed: true,
       font: { align: textAlign },
       shape: 'text',
