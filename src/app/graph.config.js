@@ -23,7 +23,7 @@ export default {
     font: {
       color: '#FFFFFF',
       size: 10,
-      face: 'Lato, "Lucida Grande", Tahoma, Sans-Serif;',
+      bold: { size: 10 },
     },
   },
   manipulation: {

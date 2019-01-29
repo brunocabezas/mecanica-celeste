@@ -10,6 +10,7 @@ const MAX_WIDTH = 600;
 const WIDTH_CONSTRAINT = 100;
 // helper to count nodes belonging to the bigger circle
 let biggerCircleNodesCount = 0;
+let biggerCircleTextNodesCount = 0;
 
 // Saves configuration to have custom position to text labels
 const getTextOffset = (id) => {
@@ -120,7 +121,9 @@ export default class Graph extends Component {
       })
       .map(node => this.setSmallCircleNodes(node, 4, nw));
 
-    const textNodes = data.nodes.map(node => this.setSmallCircleTextNodes(node, 4, nw, dotNodes.length));
+    const textNodes = data.nodes
+      .map(node => this.setSmallCircleTextNodes(node, 4, nw, dotNodes.length))
+      .map(node => this.setBigCircleTextNodes(node, nodesCount, nw, dotNodes.length));
     // Transforming nodes to set state
     this.setState(
       {
@@ -276,7 +279,7 @@ export default class Graph extends Component {
     const { network } = this.state;
     if (node.id > 5 || (!network && !networkInstance)) {
       console.warn('No network instance');
-      return node;
+      return { ...node, id: dotNodesCount + node.id };
     }
     if (node.id === 5) {
       return {
@@ -297,6 +300,7 @@ export default class Graph extends Component {
     // Limiting width if nodes is left or right
     const widthConstraint = node.id === 1 || node.id === 3 ? WIDTH_CONSTRAINT : false;
     const textAlign = node.id === 3 ? 'right' : 'left';
+    console.log(dotNodesCount + node.id);
     return {
       ...node,
       id: dotNodesCount + node.id,
@@ -309,6 +313,37 @@ export default class Graph extends Component {
       // For a semicircle, we would use (i / numNodes) * Math.PI.
       x: 75 * Math.cos(angle) + width / 2 + xOffset + textOffset.x,
       y: 75 * Math.sin(angle) + width / 2 + yOffset + textOffset.y,
+    };
+  };
+
+  setBigCircleTextNodes = (
+    node = {},
+    nodesCount = 0,
+    networkInstance = null,
+    dotNodesCount = 0,
+  ) => {
+    const { network } = this.state;
+    const topId = 5 + dotNodesCount;
+    if (node.id <= topId || (!network && !networkInstance)) {
+      console.warn('No network instance');
+      return node;
+    }
+    // Calculate the angle at which the element will be placed.
+    const angle = (biggerCircleTextNodesCount / (nodesCount / 2)) * Math.PI;
+    biggerCircleTextNodesCount += 1;
+    const textAlign = biggerCircleTextNodesCount < nodesCount ? 'right' : 'left';
+    return {
+      ...node,
+      id: dotNodesCount + node.id,
+      physics: false,
+      fixed: true,
+      font: { align: textAlign },
+      shape: 'text',
+      widthConstraint: WIDTH_CONSTRAINT,
+      label: node.wpLabel,
+      // For a semicircle, we would use (i / numNodes) * Math.PI.
+      x: (450 * Math.cos(angle)) / 2,
+      y: (450 * Math.sin(angle)) / 2,
     };
   };
 
