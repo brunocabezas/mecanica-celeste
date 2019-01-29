@@ -20,10 +20,9 @@ export default {
   },
   nodes: {
     labelHighlightBold: false,
-    shape: 'dot',
-    size: 4,
     font: {
       color: '#FFFFFF',
+      size: 10,
       face: 'Lato, "Lucida Grande", Tahoma, Sans-Serif;',
     },
   },
@@ -41,23 +40,32 @@ export default {
   },
 };
 
-const smoothH = { enabled: true, type: 'horizontal', roundness: 0.9 };
-const smoothV = { enabled: true, type: 'vertical', roundness: 0.9 };
+const smoothH = { enabled: true, type: 'horizontal', roundness: 0.8 };
+const smoothV = { enabled: true, type: 'vertical', roundness: 0.8 };
 const smallCircleEdges = [
   {
     from: 1,
     to: 2,
+    smooth: smoothV,
+    dashes: [1, 4],
+  },
+  {
+    from: 2,
+    to: 3,
     smooth: smoothH,
     dashes: [1, 4],
   },
   {
-    from: 2, to: 3, smooth: smoothV, dashes: [1, 4],
+    from: 3,
+    to: 4,
+    smooth: smoothV,
+    dashes: [1, 4],
   },
   {
-    from: 3, to: 4, smooth: smoothH, dashes: [1, 4],
-  },
-  {
-    from: 4, to: 1, smooth: smoothV, dashes: [1, 4],
+    from: 4,
+    to: 1,
+    smooth: smoothH,
+    dashes: [1, 4],
   },
 ];
 const bigCircleEdges = [];

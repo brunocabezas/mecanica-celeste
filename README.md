@@ -20,4 +20,5 @@ Next Steps:
 - [ ] Add Reset Zoom button/icon (https://www.onlinewebfonts.com/icon/490098)
 - [x] Remove unused components/code (categories)
 - [ ] Add favicon
+- [ ] Change title and url when modal is open (and react to changes?)
 - [ ] Make nodes labels clickable
