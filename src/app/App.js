@@ -44,7 +44,7 @@ class App extends Component {
   onNodeClick(nodeId) {
     const { data } = this.props;
     const id = nodeId > data.nodes.length * 2 - 1 ? nodeId - data.nodes.length * 2 - 1 : nodeId;
-    console.log(nodeId, id);
+    // console.log(nodeId, id);
 
     const node = data && data.nodes.find(n => n.id === id);
     if (node) {

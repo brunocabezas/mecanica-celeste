@@ -26,6 +26,8 @@ const getTextOffset = (id) => {
   }
 };
 
+const simpleEqual = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2);
+
 export default class Graph extends Component {
   static propTypes = {
     data: PropTypes.shape({
@@ -70,14 +72,10 @@ export default class Graph extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     const { data } = this.props;
-    if (nextProps.data && (!data || !data.nodes)) {
-      this.setState({
-        data: nextProps.data,
-      });
-      const { network } = this.state;
-      if (network) {
-        network.moveTo({ position: { x: 0, y: 0 } });
-      }
+    if (!simpleEqual(nextProps.data, data) && this.state.network) {
+      this.setState(prevState => ({
+        data: this.setStateFromProps(nextProps.data, prevState.network),
+      }));
     }
   };
 
@@ -98,14 +96,14 @@ export default class Graph extends Component {
     console.log("hoverEdge",a); */
   };
 
-  setNetworkInstance = (nw) => {
-    const { data } = this.props;
-    // When getting instance; modify biggerCircleNodes coordinates to fit already existing drawing
-    // X and Y offsets depend on the viewport; the drawing has MAX_WIDTH as constant and if
-    // viewport is bigger using (300, 300) as default
-    const xViewportOffset = nw.canvas.canvasViewCenter.x * 2 > MAX_WIDTH ? 300 : nw.canvasViewCenter / 2;
-    const yViewportOffset = nw.canvas.canvasViewCenter.y * 2 > MAX_WIDTH ? 300 : nw.canvasViewCenter / 2;
+  setStateFromProps = (data = null, nw = null) => {
+    if (!data || !nw) {
+      return console.error('network instance or props not valid');
+    }
+    const xViewportOffset = 300;
+    const yViewportOffset = 300;
     // Counting nodes for the big circle
+    console.log(yViewportOffset, nw);
     const nodesCount = data.nodes.filter(n => n.id > 5).length;
     const dotNodes = data.nodes
       .map(node => this.setBigCircleNodes(node, nodesCount, nw))
@@ -124,19 +122,26 @@ export default class Graph extends Component {
     const textNodes = data.nodes
       .map(node => this.setSmallCircleTextNodes(node, 4, nw, dotNodes.length))
       .map(node => this.setBigCircleTextNodes(node, nodesCount, nw, dotNodes.length));
+
+    const newData = {
+      edges: [...data.edges, ...this.getBigCircleEdges(data.nodes)],
+      nodes: [...dotNodes, ...textNodes],
+    };
+    console.log(dotNodes, textNodes);
+    // nw.setData(newData);
     // Transforming nodes to set state
-    this.setState(
-      {
-        network: nw,
-        data: {
-          edges: [...data.edges, ...this.getBigCircleEdges(data.nodes)],
-          nodes: [...dotNodes, ...textNodes],
-        },
-      },
-      () => {
-        nw.moveTo({ position: { x: 0, y: 0 } });
-      },
-    );
+    return {
+      network: nw,
+      data: newData,
+    };
+  };
+
+  setNetworkInstance = (nw) => {
+    console.log(nw.canvasViewCenter);
+    const newState = this.setStateFromProps(this.props.data, nw);
+    return this.setState({ ...newState }, () => {
+      console.log(nw);
+    });
   };
 
   setLabelColor = (values, id) => {
@@ -225,7 +230,7 @@ export default class Graph extends Component {
   setBigCircleNodes = (node = [], nodesCount = 0, networkInstance = null) => {
     const { network } = this.state;
     if (node.id <= 5 || (!network && !networkInstance)) {
-      console.warn('No network instance');
+      console.warn('setBigCircleNodes', 'No network instance');
       return node;
     }
     const instance = networkInstance || network;
@@ -301,7 +306,7 @@ export default class Graph extends Component {
     // Limiting width if nodes is left or right
     const widthConstraint = node.id === 1 || node.id === 3 ? WIDTH_CONSTRAINT : false;
     const textAlign = node.id === 3 ? 'right' : 'left';
-    console.log(dotNodesCount + node.id);
+    // console.log(dotNodesCount + node.id);
     return {
       ...node,
       id: dotNodesCount + node.id,
@@ -354,6 +359,18 @@ export default class Graph extends Component {
     // const smoothH = { enabled: true, type: "horizontal", roundness: 0.5 };
     // const smoothV = { enabled: true, type: "vertical", roundness: 0.5 };
     const count = nodes.filter(n => n.id > 5).length;
+    console.log(nodes, [
+      ...nodes
+        .filter(n => n.id > 5)
+        .map(n => ({
+          from: n.id,
+          to: n.id + 1,
+          dashes: [1, 4],
+        }))
+        .slice(0, -1), // Removing last item
+      //  From the lasxt one to the start of big circle nodes
+      { from: 5 + count, to: 6, dashes: [1, 4] },
+    ]);
     return [
       ...nodes
         .filter(n => n.id > 5)

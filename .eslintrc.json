@@ -2,13 +2,14 @@
   "parser": "babel-eslint",
   "extends": "airbnb",
   "env": {
-   "browser": true,
-   "jest": true,
-   "es6": true
- },
- "rules": {
-   "import/prefer-default-export": "off",
-   "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-   "react/no-string-refs" : "off"
- }
+    "browser": true,
+    "jest": true,
+    "es6": true
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/no-string-refs": "off",
+    "max-len": ["error", { "code": 100, "tabWidth": 4, "ignoreComments": true }]
+  }
 }
