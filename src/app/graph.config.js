@@ -19,26 +19,14 @@ export default {
     selectionWidth: 0,
   },
   nodes: {
-    labelHighlightBold: false,
+    labelHighlightBold: true,
     font: {
-      color: '#FFFFFF',
       size: 5,
-      bold: { size: 5 },
     },
-    chosen: {
-      node(values, id, selected, hovering) {
-        console.log(id, values, hovering);
-        if (hovering) {
-          values.color = 'red'; // eslint-disable-line
-          values.size = 5; // eslint-disable-line
-        }
-      },
-      label(values, id, selected, hovering) {
-        if (hovering) {
-          values.color = 'red'; // eslint-disable-line
-        }
-      },
-    },
+    shape: 'dot',
+    size: 3,
+    shadow: true,
+    borderWidth: 0,
   },
   manipulation: {
     enabled: false,

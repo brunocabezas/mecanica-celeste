@@ -100,14 +100,6 @@ export const nodes = (nodeArray) => {
     title: obj.title ? obj.title.rendered.toUpperCase() : '',
     id: i + 1,
     acf: obj.acf,
-    color: {
-      background: 'white',
-      border: 'white',
-      hover: 'gray',
-    },
-    shape: 'dot',
-    size: 3,
-    borderWidth: 0,
   }));
 
   return [...[], ...dotNodes];

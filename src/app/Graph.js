@@ -36,6 +36,7 @@ export default class Graph extends Component {
     data: {
       nodes: [],
       edges: [],
+      groups: {},
     },
     show: false,
     options: graphOpts,
@@ -60,6 +61,7 @@ export default class Graph extends Component {
   componentWillReceiveProps = (nextProps) => {
     const { data } = this.props;
     if (!simpleEqual(nextProps.data, data) && this.state.network) {
+      console.log('cwrp');
       this.setState(prevState => ({
         data: this.setStateFromProps(nextProps.data, prevState.network),
       }));
@@ -109,9 +111,38 @@ export default class Graph extends Component {
       .map(node => setSmallCircleTextNodes(node, 4, nw, dotNodes.length))
       .map(node => setBigCircleTextNodes(node, nodesCount, dotNodes.length));
 
+    const groups = data.nodes.reduce(
+      (acc, curr) => ({
+        ...acc,
+        [`group-${curr.wpId}`]: {
+          color: {
+            hover: { background: 'red' },
+            background: 'white',
+            highlight: 'white',
+          },
+          font: { color: 'white' },
+          chosen: {
+            label(values, id, selected, hovering) {
+              console.log(values, id, selected, hovering);
+              if (hovering) {
+                values.color = 'red'; // eslint-disable-line
+              }
+            },
+            node(values, id, selected, hovering) {
+              if (hovering) {
+                values.color = 'red'; // eslint-disable-line
+              }
+            },
+          },
+        },
+      }),
+      {},
+    );
+
     const newData = {
       edges: [...data.edges, ...getBigCircleEdges(data.nodes)],
       nodes: [...dotNodes, ...textNodes],
+      groups,
     };
 
     return {
@@ -223,7 +254,7 @@ export default class Graph extends Component {
       <VisGraph
         getNetwork={this.setNetworkInstance}
         graph={data}
-        options={options}
+        options={{ ...options, groups: data.groups }}
         events={events}
       />
     );

@@ -7,7 +7,7 @@ export const colors = ['#FD7B35', '#A7BCC9', '#1F201E', '#818280'];
 
 // Helpers to draw svg shapes
 export const MAX_SVG_DRAW_WIDTH = 600;
-const WIDTH_CONSTRAINT = 100;
+const WIDTH_CONSTRAINT = 90;
 
 
 // Saves configuration to have custom position to text labels
@@ -40,6 +40,7 @@ export const setBigCircleNodes = (node = [], nodesCount = 0, network) => {
     ...node,
     physics: false,
     fixed: true,
+    group: `group-${node.wpId}`,
     // For a semicircle, we would use (i / numNodes) * Math.PI.
     x: 200 * Math.cos(angle) + width / 2,
     y: 200 * Math.sin(angle) + width / 2,
@@ -62,6 +63,7 @@ export const setSmallCircleNodes = (node = [], nodesCount = 0, network = null) =
     ...node,
     physics: false,
     fixed: true,
+    group: `group-${node.wpId}`,
     // For a semicircle, we would use (i / numNodes) * Math.PI.
     x: 75 * Math.cos(angle) + width / 2 + xOffset,
     y: 75 * Math.sin(angle) + width / 2 + yOffset,
@@ -70,6 +72,7 @@ export const setSmallCircleNodes = (node = [], nodesCount = 0, network = null) =
 
 // Text nodes
 let biggerCircleTextNodesCount = 0;
+
 export const setBigCircleTextNodes = (node = {}, nodesCount = 0, dotNodesCount = 0) => {
   const topId = 5 + dotNodesCount;
   if (node.id <= topId) {
@@ -83,14 +86,13 @@ export const setBigCircleTextNodes = (node = {}, nodesCount = 0, dotNodesCount =
     ...node,
     id: dotNodesCount + node.id,
     physics: false,
-    labelHighlightBold: true,
     fixed: true,
     font: { align: textAlign },
     shape: 'text',
     widthConstraint: WIDTH_CONSTRAINT,
     label: node.wpLabel,
     // For a semicircle, we would use (i / numNodes) * Math.PI.
-    x: (450 * Math.cos(angle)) / 2,
+    x: (450 * Math.cos(angle)) / 2 - 15,
     y: (450 * Math.sin(angle)) / 2,
   };
 };
@@ -105,7 +107,7 @@ export const setSmallCircleTextNodes = (
   const yOffset = -45;
   // Not doing anything when node isn't on the first four
   if (node.id > 5) {
-    return { ...node, id: dotNodesCount + node.id };
+    return { ...node, group: `group-${node.wpId}`, id: dotNodesCount + node.id };
   }
   // Centered text node inside circle
   if (node.id === 5) {
@@ -113,7 +115,7 @@ export const setSmallCircleTextNodes = (
       ...node,
       shape: 'text',
       label: node.wpLabel,
-      labelHighlightBold: true,
+      group: `group-${node.wpId}`,
       x: 0,
       y: 0,
     };
@@ -133,8 +135,8 @@ export const setSmallCircleTextNodes = (
     id: dotNodesCount + node.id,
     physics: false,
     fixed: true,
-    labelHighlightBold: true,
     shape: 'text',
+    group: `group-${node.wpId}`,
     label: node.wpLabel,
     font: { align: textAlign },
     widthConstraint,
