@@ -22,8 +22,22 @@ export default {
     labelHighlightBold: false,
     font: {
       color: '#FFFFFF',
-      size: 10,
-      bold: { size: 10 },
+      size: 5,
+      bold: { size: 5 },
+    },
+    chosen: {
+      node(values, id, selected, hovering) {
+        console.log(id, values, hovering);
+        if (hovering) {
+          values.color = 'red'; // eslint-disable-line
+          values.size = 5; // eslint-disable-line
+        }
+      },
+      label(values, id, selected, hovering) {
+        if (hovering) {
+          values.color = 'red'; // eslint-disable-line
+        }
+      },
     },
   },
   manipulation: {

@@ -4,27 +4,14 @@ import PropTypes from 'prop-types';
 import VisGraph from 'react-graph-vis';
 import graphOpts from './graph.config';
 import { config } from './app.props';
-
-// max width of the drawing
-const MAX_WIDTH = 600;
-const WIDTH_CONSTRAINT = 100;
-// helper to count nodes belonging to the bigger circle
-let biggerCircleNodesCount = 0;
-let biggerCircleTextNodesCount = 0;
-
-// Saves configuration to have custom position to text labels
-const getTextOffset = (id) => {
-  switch (id) {
-    case 1:
-      return { x: WIDTH_CONSTRAINT / 2 + 10, y: 0 };
-    case 2:
-      return { x: 0, y: 10 };
-    case 4:
-      return { x: 0, y: -10 };
-    default:
-      return { x: -WIDTH_CONSTRAINT / 2 - 10, y: 0 };
-  }
-};
+import {
+  setBigCircleNodes,
+  setSmallCircleNodes,
+  setSmallCircleTextNodes,
+  setBigCircleTextNodes,
+  getBigCircleEdges,
+  MAX_SVG_DRAW_WIDTH,
+} from '../helpers';
 
 const simpleEqual = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2);
 
@@ -103,10 +90,9 @@ export default class Graph extends Component {
     const xViewportOffset = 300;
     const yViewportOffset = 300;
     // Counting nodes for the big circle
-    console.log(yViewportOffset, nw);
     const nodesCount = data.nodes.filter(n => n.id > 5).length;
     const dotNodes = data.nodes
-      .map(node => this.setBigCircleNodes(node, nodesCount, nw))
+      .map(node => setBigCircleNodes(node, nodesCount, nw))
       .map((n) => {
         if (n.id > 5) {
           return {
@@ -117,19 +103,17 @@ export default class Graph extends Component {
         }
         return n;
       })
-      .map(node => this.setSmallCircleNodes(node, 4, nw));
+      .map(node => setSmallCircleNodes(node, 4, nw));
 
     const textNodes = data.nodes
-      .map(node => this.setSmallCircleTextNodes(node, 4, nw, dotNodes.length))
-      .map(node => this.setBigCircleTextNodes(node, nodesCount, nw, dotNodes.length));
+      .map(node => setSmallCircleTextNodes(node, 4, nw, dotNodes.length))
+      .map(node => setBigCircleTextNodes(node, nodesCount, dotNodes.length));
 
     const newData = {
-      edges: [...data.edges, ...this.getBigCircleEdges(data.nodes)],
+      edges: [...data.edges, ...getBigCircleEdges(data.nodes)],
       nodes: [...dotNodes, ...textNodes],
     };
-    console.log(dotNodes, textNodes);
-    // nw.setData(newData);
-    // Transforming nodes to set state
+
     return {
       network: nw,
       data: newData,
@@ -137,11 +121,8 @@ export default class Graph extends Component {
   };
 
   setNetworkInstance = (nw) => {
-    console.log(nw.canvasViewCenter);
     const newState = this.setStateFromProps(this.props.data, nw);
-    return this.setState({ ...newState }, () => {
-      console.log(nw);
-    });
+    return this.setState({ ...newState });
   };
 
   setLabelColor = (values, id) => {
@@ -159,7 +140,6 @@ export default class Graph extends Component {
       // opening modal
       onClick(nodes[0]);
     }
-    // this.state.network.moveTo({position})
   };
 
   onZoom = () => {
@@ -172,8 +152,10 @@ export default class Graph extends Component {
 
   // draw main white dashed cross with its lines
   drawCross = (ctx) => {
-    const canvasWidth = ctx.canvas.width > MAX_WIDTH ? MAX_WIDTH : ctx.canvas.width;
-    const canvasHeight = ctx.canvas.height > MAX_WIDTH ? MAX_WIDTH : ctx.canvas.height;
+    const canvasWidth = ctx.canvas.width > MAX_SVG_DRAW_WIDTH
+      ? MAX_SVG_DRAW_WIDTH : ctx.canvas.width;
+    const canvasHeight = ctx.canvas.height > MAX_SVG_DRAW_WIDTH
+      ? MAX_SVG_DRAW_WIDTH : ctx.canvas.height;
     const width = (canvasWidth * 2) / 3;
     const height = canvasHeight;
     const heightDivideBy4 = height / 4;
@@ -223,166 +205,6 @@ export default class Graph extends Component {
     ctx.moveTo(xZero, yZero + lineHeight + crossHeight);
     ctx.lineTo(xZero + verticalLinesInclination, yZero + height);
     ctx.stroke();
-
-    // console.log(ctx.canvas.width, ctx.canvas.height, ctx);
-  };
-
-  setBigCircleNodes = (node = [], nodesCount = 0, networkInstance = null) => {
-    const { network } = this.state;
-    if (node.id <= 5 || (!network && !networkInstance)) {
-      console.warn('setBigCircleNodes', 'No network instance');
-      return node;
-    }
-    const instance = networkInstance || network;
-    const canvasWidth = instance.canvas.width || instance.canvas.canvasViewCenter.x * 2;
-    const width = canvasWidth > MAX_WIDTH ? MAX_WIDTH : canvasWidth;
-    // Calculate the angle at which the element will be placed.
-    const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI;
-    biggerCircleNodesCount += 1;
-    return {
-      ...node,
-      physics: false,
-      fixed: true,
-      // For a semicircle, we would use (i / numNodes) * Math.PI.
-      x: 200 * Math.cos(angle) + width / 2,
-      y: 200 * Math.sin(angle) + width / 2,
-    };
-  };
-
-  setSmallCircleNodes = (node = [], nodesCount = 0, networkInstance = null) => {
-    const xOffset = -35;
-    const yOffset = -45;
-    const { network } = this.state;
-    if (node.id > 4 || (!network && !networkInstance)) {
-      console.warn('No network instance');
-      return node;
-    }
-    const instance = networkInstance || network;
-    const canvasWidth = instance.canvas.width || instance.canvas.canvasViewCenter.x * 2;
-    const width = canvasWidth > 75 ? 75 : canvasWidth;
-    // Calculate the angle at which the element will be placed.
-    const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI;
-    biggerCircleNodesCount += 1;
-    return {
-      ...node,
-      physics: false,
-      fixed: true,
-      // For a semicircle, we would use (i / numNodes) * Math.PI.
-      x: 75 * Math.cos(angle) + width / 2 + xOffset,
-      y: 75 * Math.sin(angle) + width / 2 + yOffset,
-    };
-  };
-
-  setSmallCircleTextNodes = (
-    node = {},
-    nodesCount = 0,
-    networkInstance = null,
-    dotNodesCount = 0,
-  ) => {
-    const xOffset = -35;
-    const yOffset = -45;
-    const { network } = this.state;
-    if (node.id > 5 || (!network && !networkInstance)) {
-      console.warn('No network instance');
-      return { ...node, id: dotNodesCount + node.id };
-    }
-    if (node.id === 5) {
-      return {
-        ...node,
-        shape: 'text',
-        label: node.wpLabel,
-        labelHighlightBold: true,
-        x: 0,
-        y: 0,
-      };
-    }
-    const textOffset = getTextOffset(node.id);
-    const instance = networkInstance || network;
-    const canvasWidth = instance.canvas.width || instance.canvas.canvasViewCenter.x * 2;
-    const width = canvasWidth > 75 ? 75 : canvasWidth;
-    // Calculate the angle at which the element will be placed.
-    const angle = (biggerCircleNodesCount / (nodesCount / 2)) * Math.PI;
-    biggerCircleNodesCount += 1;
-    // Limiting width if nodes is left or right
-    const widthConstraint = node.id === 1 || node.id === 3 ? WIDTH_CONSTRAINT : false;
-    const textAlign = node.id === 3 ? 'right' : 'left';
-    // console.log(dotNodesCount + node.id);
-    return {
-      ...node,
-      id: dotNodesCount + node.id,
-      physics: false,
-      fixed: true,
-      labelHighlightBold: true,
-      shape: 'text',
-      label: node.wpLabel,
-      font: { align: textAlign },
-      widthConstraint,
-      // For a semicircle, we would use (i / numNodes) * Math.PI.
-      x: 75 * Math.cos(angle) + width / 2 + xOffset + textOffset.x,
-      y: 75 * Math.sin(angle) + width / 2 + yOffset + textOffset.y,
-    };
-  };
-
-  setBigCircleTextNodes = (
-    node = {},
-    nodesCount = 0,
-    networkInstance = null,
-    dotNodesCount = 0,
-  ) => {
-    const { network } = this.state;
-    const topId = 5 + dotNodesCount;
-    if (node.id <= topId || (!network && !networkInstance)) {
-      console.warn('No network instance');
-      return node;
-    }
-    // Calculate the angle at which the element will be placed.
-    const angle = (biggerCircleTextNodesCount / (nodesCount / 2)) * Math.PI;
-    biggerCircleTextNodesCount += 1;
-    const textAlign = biggerCircleTextNodesCount < nodesCount ? 'right' : 'left';
-    return {
-      ...node,
-      id: dotNodesCount + node.id,
-      physics: false,
-      labelHighlightBold: true,
-      fixed: true,
-      font: { align: textAlign },
-      shape: 'text',
-      widthConstraint: WIDTH_CONSTRAINT,
-      label: node.wpLabel,
-      // For a semicircle, we would use (i / numNodes) * Math.PI.
-      x: (450 * Math.cos(angle)) / 2,
-      y: (450 * Math.sin(angle)) / 2,
-    };
-  };
-
-  getBigCircleEdges = (nodes = []) => {
-    // const smoothH = { enabled: true, type: "horizontal", roundness: 0.5 };
-    // const smoothV = { enabled: true, type: "vertical", roundness: 0.5 };
-    const count = nodes.filter(n => n.id > 5).length;
-    console.log(nodes, [
-      ...nodes
-        .filter(n => n.id > 5)
-        .map(n => ({
-          from: n.id,
-          to: n.id + 1,
-          dashes: [1, 4],
-        }))
-        .slice(0, -1), // Removing last item
-      //  From the lasxt one to the start of big circle nodes
-      { from: 5 + count, to: 6, dashes: [1, 4] },
-    ]);
-    return [
-      ...nodes
-        .filter(n => n.id > 5)
-        .map(n => ({
-          from: n.id,
-          to: n.id + 1,
-          dashes: [1, 4],
-        }))
-        .slice(0, -1), // Removing last item
-      //  From the lasxt one to the start of big circle nodes
-      { from: 5 + count, to: 6, dashes: [1, 4] },
-    ];
   };
 
   render() {
