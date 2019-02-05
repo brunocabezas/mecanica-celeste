@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-import { nodes as nodesSelector } from './selectors';
-import App from './app/App';
-import { edges } from './app/graph.config';
-// acfUrl = "http://www.poeticaastronomica.cchv.cl/wp-json/acf/v3/";
-// import APImock from "./mocks/api.mock.js";
+import { nodes as nodesSelector } from '../selectors';
+import App from './App';
+import { edges } from './graph.config';
+
 const wpRestUrl = 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/';
 const postsRoute = `${wpRestUrl}posts?per_page=100`;
-
-// const categoriesRoute = `${wpRestUrl}repositorio`;
 
 class AppContainer extends Component {
   constructor(props) {
@@ -29,7 +26,7 @@ class AppContainer extends Component {
         this.setState({ nodes, loading: false });
       })
       .catch((err) => {
-        console.log(`error fetching ${postsRoute} : `, err);
+        console.error(`error fetching ${postsRoute} : `, err);
         this.setState({ loading: false });
       });
   }
