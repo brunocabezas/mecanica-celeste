@@ -1,38 +1,23 @@
 
-.node-modal
-  clearfix()
-  display -webkit-flex
-  display -ms-flex
-  display flex
-  flex-direction unset
-  width 100%
+.modal
   .close
     color white
     fill white
     top 15px
     right 15px
 
-  .app__modal-info
-    flex 1
-    padding 5px
-    h2
-      margin-top: 0
-    p
-      color white
+  .modal-title
+    color: white;
 
-  .app__modal-player
-    flex 1
+  .modal-title,
+  .modal-player
+    max-width 800px
+
+  .modal-player
+    text-align center
+    display block
+    margin 0 auto
     width 100%
-    div
-      position: relative
-      width 100%
-      .player
-        position: absolute;
-        top: 0;
-        max-width:"100%"
-        left: 0;
-        width: 100%;
-        height: 100%;
 
   @media screen and (max-width: 600px)
     flex-direction column
@@ -45,11 +30,11 @@
       top 10
       right 10
 
-    .app__modal-info,
-    .app__modal-player
+    .modal-info,
+    .modal-player
      flex 1
 
-     .app__modal-player
+     .modal-player
        width 100%
        div
          width 100%
