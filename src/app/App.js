@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Graph from './Graph';
 import Modal from './Modal';
-import { nodes } from './app.props';
+import { nodes as nodeProps } from './app.props';
+import {
+  setBigCircleNodes,
+  setSmallCircleNodes,
+  setSmallCircleTextNodes,
+  setBigCircleTextNodes,
+  getBigCircleEdges,
+} from '../selectors';
+import graphOpts from './graph.config';
 import './_app.styl';
 
 const propTypes = {
   data: PropTypes.shape({
-    nodes,
+    nodes: nodeProps,
     edges: PropTypes.arrayOf(
       PropTypes.shape({
         from: PropTypes.number,
@@ -28,6 +36,10 @@ class App extends Component {
     this.state = {
       modalOpen: false,
       activeNode: null,
+      data: null,
+      textNodes: [],
+      groups: [],
+      dotNodes: [],
     };
 
     this.onCloseModal = this.onCloseModal.bind(this);
@@ -41,12 +53,10 @@ class App extends Component {
     });
   }
 
-  onNodeClick(nodeId) {
-    const { data } = this.props;
-    const id = nodeId > data.nodes.length * 2 - 1 ? nodeId - data.nodes.length * 2 - 1 : nodeId;
-    console.log(nodeId, id);
-
-    const node = data && data.nodes.find(n => n.id === id);
+  onNodeClick(id) {
+    const { textNodes, dotNodes } = this.state;
+    const node = dotNodes.find(n => n.id === id) || textNodes.find(n => n.id === id);
+    console.log(node);
     if (node) {
       this.setState({
         modalOpen: true,
@@ -55,13 +65,88 @@ class App extends Component {
     }
   }
 
+  setNetworkInstance = (nw) => {
+    this.setState({ network: nw }, () => {
+      const state = this.setStateFromProps();
+      console.log(state);
+      this.setState({ ...state });
+    });
+  }
+
+  setStateFromProps = () => {
+    const { data } = this.props;
+    const { network } = this.state;
+    if (!data || !network) {
+      return console.error('network instance or props not valid');
+    }
+    const xViewportOffset = 300;
+    const yViewportOffset = 300;
+    // Counting nodes for the big circle
+    const nodesCount = data.nodes.filter(n => n.id > 5).length;
+    const dotNodes = data.nodes
+      .map(node => setBigCircleNodes(node, nodesCount, network))
+      .map((n) => {
+        if (n.id > 5) {
+          return {
+            ...n,
+            x: n.x - xViewportOffset,
+            y: n.y - yViewportOffset,
+          };
+        }
+        return n;
+      })
+      .map(node => setSmallCircleNodes(node, 4, network));
+
+    const textNodes = data.nodes
+      .map(node => setSmallCircleTextNodes(node, 4, network, dotNodes.length))
+      .map(node => setBigCircleTextNodes(node, nodesCount, dotNodes.length));
+
+    const groups = data.nodes.reduce(
+      (acc, curr) => ({
+        ...acc,
+        [`group-${curr.wpId}`]: {
+          color: {
+            hover: { background: 'red' },
+            background: 'white',
+            highlight: 'white',
+          },
+          font: { color: 'white' },
+          chosen: {
+            label(values, id, selected, hovering) {
+              if (hovering) {
+                values.color = 'red'; // eslint-disable-line
+              }
+            },
+            node(values, id, selected, hovering) {
+              if (hovering) {
+                values.color = 'red'; // eslint-disable-line
+              }
+            },
+          },
+        },
+      }),
+      {},
+    );
+    console.log(groups);
+    const newData = {
+      edges: [...data.edges, ...getBigCircleEdges(data.nodes)],
+      nodes: [...dotNodes, ...textNodes],
+    };
+
+    return {
+      network,
+      data: newData,
+      textNodes,
+      dotNodes,
+      groups,
+    };
+  };
+
   render() {
-    const { modalOpen, activeNode } = this.state;
-
-    const { data, loading } = this.props;
-
-    const showGraph = !!(data && data.nodes);
-
+    const {
+      modalOpen, activeNode, data, groups
+    } = this.state;
+    const { loading } = this.props;
     const contentElem = loading ? (
       <div className="app__loader">
         <span className="loader-wrapper">Cargando . . .</span>
@@ -69,9 +154,15 @@ class App extends Component {
     ) : (
       <div className="app__content">
         <Modal open={modalOpen} onClose={this.onCloseModal} data={activeNode} />
-        <Graph show={showGraph} onClick={this.onNodeClick} data={data} />
+        <Graph
+          setNetworkInstance={this.setNetworkInstance}
+          onClick={this.onNodeClick}
+          data={data || this.props.data}
+          options={{ ...graphOpts, groups }}
+        />
       </div>
     );
+
     return (
       <div ref="app" className="app">
         <h1 className="app__title">Mecánica celeste</h1>

@@ -21,4 +21,4 @@ Next Steps:
 - [x] Remove unused components/code (categories)
 - [ ] Add favicon
 - [ ] Change title and url when modal is open (and react to changes?)
-- [ ] Make nodes labels clickable
+- [x] Make nodes labels clickable

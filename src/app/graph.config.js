@@ -19,12 +19,14 @@ export default {
     selectionWidth: 0,
   },
   nodes: {
-    labelHighlightBold: false,
+    labelHighlightBold: true,
     font: {
-      color: '#FFFFFF',
-      size: 10,
-      bold: { size: 10 },
+      size: 5,
     },
+    shape: 'dot',
+    size: 3,
+    shadow: true,
+    borderWidth: 0,
   },
   manipulation: {
     enabled: false,

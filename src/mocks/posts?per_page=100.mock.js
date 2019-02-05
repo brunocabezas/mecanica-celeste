@@ -9,8 +9,7 @@ export default [
     slug: 'funcionamiento-de-alma',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/funcionamiento-de-alma/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/funcionamiento-de-alma/',
     title: { rendered: 'Funcionamiento de ALMA' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -39,12 +38,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/97' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/97' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -59,40 +54,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=97',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=97',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/97/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/97/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=97',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=97',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=97',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=97',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=97',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=97',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=97',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=97',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -108,8 +97,7 @@ export default [
     slug: 'astronomia-y-otras-disciplinas',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/astronomia-y-otras-disciplinas/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/astronomia-y-otras-disciplinas/',
     title: { rendered: 'Astronom\u00eda y otras disciplinas' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -138,12 +126,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/95' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/95' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -158,40 +142,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=95',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=95',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/95/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/95/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=95',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=95',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=95',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=95',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=95',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=95',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=95',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=95',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -207,8 +185,7 @@ export default [
     slug: 'funcionamiento-antenas-de-alma',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/funcionamiento-antenas-de-alma/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/funcionamiento-antenas-de-alma/',
     title: { rendered: 'Funcionamiento antenas de ALMA' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -237,12 +214,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/93' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/93' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -257,40 +230,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=93',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=93',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/93/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/93/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=93',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=93',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=93',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=93',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=93',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=93',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=93',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=93',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -335,12 +302,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/91' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/91' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -355,40 +318,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=91',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=91',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/91/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/91/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=91',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=91',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=91',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=91',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=91',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=91',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=91',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=91',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -404,8 +361,7 @@ export default [
     slug: 'tecnologia-de-alma',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/tecnologia-de-alma/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/tecnologia-de-alma/',
     title: { rendered: 'Tecnolog\u00eda de ALMA' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -434,12 +390,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/89' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/89' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -454,40 +406,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=89',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=89',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/89/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/89/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=89',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=89',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=89',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=89',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=89',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=89',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=89',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=89',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -532,12 +478,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/87' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/87' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -552,40 +494,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=87',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=87',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/87/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/87/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=87',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=87',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=87',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=87',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=87',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=87',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=87',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=87',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -601,8 +537,7 @@ export default [
     slug: 'sonidos-del-universo',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/sonidos-del-universo/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/sonidos-del-universo/',
     title: { rendered: 'Sonidos del Universo' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -631,12 +566,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/85' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/85' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -651,40 +582,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=85',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=85',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/85/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/85/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=85',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=85',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=85',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=85',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=85',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=85',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=85',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=85',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -700,8 +625,7 @@ export default [
     slug: 'ondas-gravitacionales',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/ondas-gravitacionales/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/ondas-gravitacionales/',
     title: { rendered: 'Ondas Gravitacionales' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -730,12 +654,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/83' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/83' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -750,40 +670,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=83',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=83',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/83/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/83/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=83',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=83',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=83',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=83',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=83',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=83',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=83',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=83',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -831,12 +745,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/81' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/81' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -851,40 +761,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=81',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=81',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/81/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/81/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=81',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=81',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=81',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=81',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=81',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=81',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=81',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=81',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -929,12 +833,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/79' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/79' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -949,40 +849,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=79',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=79',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/79/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/79/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=79',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=79',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=79',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=79',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=79',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=79',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=79',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=79',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -998,8 +892,7 @@ export default [
     slug: 'la-importancia-de-federico-rutllant',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/la-importancia-de-federico-rutllant/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/la-importancia-de-federico-rutllant/',
     title: { rendered: 'La importancia de Federico Rutllant' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -1028,12 +921,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/77' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/77' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1048,40 +937,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=77',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=77',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/77/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/77/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=77',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=77',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=77',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=77',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=77',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=77',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=77',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=77',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1126,12 +1009,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/75' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/75' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1146,40 +1025,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=75',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=75',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/75/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/75/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=75',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=75',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=75',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=75',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=75',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=75',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=75',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=75',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1195,8 +1068,7 @@ export default [
     slug: 'respuestas-a-traves-de-alma',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/respuestas-a-traves-de-alma/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/respuestas-a-traves-de-alma/',
     title: { rendered: 'Respuestas a trav\u00e9s de ALMA' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -1225,12 +1097,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/73' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/73' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1245,40 +1113,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=73',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=73',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/73/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/73/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=73',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=73',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=73',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=73',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=73',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=73',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=73',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=73',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1294,8 +1156,7 @@ export default [
     slug: 'galaxias-espirales',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/galaxias-espirales/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/galaxias-espirales/',
     title: { rendered: 'Galaxias Espirales' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -1324,12 +1185,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/71' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/71' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1344,40 +1201,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=71',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=71',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/71/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/71/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=71',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=71',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=71',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=71',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=71',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=71',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=71',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=71',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1422,12 +1273,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/69' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/69' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1442,40 +1289,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=69',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=69',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/69/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/69/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=69',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=69',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=69',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=69',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=69',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=69',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=69',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=69',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1521,12 +1362,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/67' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/67' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1541,40 +1378,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=67',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=67',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/67/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/67/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=67',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=67',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=67',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=67',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=67',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=67',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=67',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=67',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1619,12 +1450,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/65' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/65' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1639,40 +1466,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=65',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=65',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/65/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/65/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=65',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=65',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=65',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=65',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=65',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=65',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=65',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=65',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1688,8 +1509,7 @@ export default [
     slug: 'observatorio-paranal-y-armazones',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/08/06/observatorio-paranal-y-armazones/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/08/06/observatorio-paranal-y-armazones/',
     title: { rendered: 'Observatorio Paranal y Armazones' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -1718,12 +1538,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/63' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/63' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1738,40 +1554,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=63',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=63',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/63/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/63/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=63',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=63',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=63',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=63',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=63',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=63',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=63',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=63',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1815,12 +1625,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/46' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/46' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1835,40 +1641,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=46',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=46',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/46/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/46/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=46',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=46',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=46',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=46',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=46',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=46',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=46',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=46',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1884,8 +1684,7 @@ export default [
     slug: 'vivir-en-otros-planetas',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/07/15/vivir-en-otros-planetas/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/07/15/vivir-en-otros-planetas/',
     title: { rendered: 'Vivir en otros planetas' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -1914,12 +1713,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/44' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/44' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -1934,40 +1729,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=44',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=44',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/44/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/44/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=44',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=44',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=44',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=44',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=44',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=44',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=44',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=44',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -1983,8 +1772,7 @@ export default [
     slug: 'inicios-de-la-astronomia-en-chile',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2018/07/15/inicios-de-la-astronomia-en-chile/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2018/07/15/inicios-de-la-astronomia-en-chile/',
     title: { rendered: 'Inicios de la astronom\u00eda en Chile' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -2013,12 +1801,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/42' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/42' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -2033,40 +1817,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=42',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=42',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/42/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/42/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=42',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=42',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=42',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=42',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=42',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=42',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=42',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=42',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -2111,12 +1889,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/40' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/40' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -2131,40 +1905,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=40',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=40',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/40/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/40/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=40',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=40',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=40',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=40',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=40',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=40',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=40',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=40',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -2177,8 +1945,7 @@ export default [
     guid: { rendered: 'http://www.poeticaastronomica.cchv.cl/?p=31' },
     modified: '2017-11-03T12:51:56',
     modified_gmt: '2017-11-03T18:51:56',
-    slug:
-      'moleculas-de-azucar-en-el-gas-que-rodea-a-una-joven-estrella-de-tipo-solar',
+    slug: 'moleculas-de-azucar-en-el-gas-que-rodea-a-una-joven-estrella-de-tipo-solar',
     status: 'publish',
     type: 'post',
     link:
@@ -2213,12 +1980,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/31' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/31' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -2233,40 +1996,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=31',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=31',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/31/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/31/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=31',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=31',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=31',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=31',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=31',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=31',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=31',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=31',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -2282,8 +2039,7 @@ export default [
     slug: 'galaxia-activa-distante-pks-1830-211',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2017/11/03/galaxia-activa-distante-pks-1830-211/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2017/11/03/galaxia-activa-distante-pks-1830-211/',
     title: { rendered: 'Galaxia activa distante PKS 1830-211' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -2313,12 +2069,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/29' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/29' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -2333,40 +2085,34 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=29',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=29',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/29/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/29/revisions',
         },
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=29',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=29',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=29',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=29',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=29',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=29',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=29',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=29',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
@@ -2382,8 +2128,7 @@ export default [
     slug: 'la-enana-cafe-iso-oph-102',
     status: 'publish',
     type: 'post',
-    link:
-      'http://www.poeticaastronomica.cchv.cl/2017/11/03/la-enana-cafe-iso-oph-102/',
+    link: 'http://www.poeticaastronomica.cchv.cl/2017/11/03/la-enana-cafe-iso-oph-102/',
     title: { rendered: 'La enana caf\u00e9 ISO-Oph 102' },
     content: { rendered: '', protected: false },
     excerpt: { rendered: '', protected: false },
@@ -2414,12 +2159,8 @@ export default [
       documento: false,
     },
     _links: {
-      self: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/26' },
-      ],
-      collection: [
-        { href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' },
-      ],
+      self: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/26' }],
+      collection: [{ href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts' }],
       about: [
         {
           href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/types/post',
@@ -2434,14 +2175,12 @@ export default [
       replies: [
         {
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=26',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/comments?post=26',
         },
       ],
       'version-history': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/26/revisions',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/posts/26/revisions',
         },
       ],
       'wp:featuredmedia': [
@@ -2452,28 +2191,24 @@ export default [
       ],
       'wp:attachment': [
         {
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=26',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/media?parent=26',
         },
       ],
       'wp:term': [
         {
           taxonomy: 'category',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=26',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/categories?post=26',
         },
         {
           taxonomy: 'post_tag',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=26',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/tags?post=26',
         },
         {
           taxonomy: 'repositorio',
           embeddable: true,
-          href:
-            'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=26',
+          href: 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/repositorio?post=26',
         },
       ],
       curies: [{ name: 'wp', href: 'https://api.w.org/{rel}', templated: true }],
