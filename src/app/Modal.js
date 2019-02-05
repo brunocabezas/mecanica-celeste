@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
-// import DOMPurify from 'dompurify';
 import ReactModal from 'react-responsive-modal';
 import { node as nodeProps } from './app.props';
 import './_modal.styl';
@@ -23,8 +22,10 @@ const defaultModalProps = {
   modalStyle: {
     background: 'transparent',
     boxShadow: 'none',
+    position: 'relative',
     maxWidth: '100%',
     width: '100%',
+    height: '100%',
     border: 'none',
   },
   overlayStyle: { padding: '0' },
@@ -36,13 +37,15 @@ class Modal extends Component {
     loading: true,
   };
 
-  onPlayerRedy = (player) => {
+  onPlayerRedy = () => {
     this.setState({ loading: false });
   };
 
   onClose = (e) => {
+    const { onClose } = this.props;
+    // Set loading to true when closing; to show loader first next time is opened
     this.setState({ loading: true });
-    this.props.onClose(e);
+    onClose(e);
   };
 
   render() {
@@ -62,7 +65,7 @@ class Modal extends Component {
           {hasVideo && (
             <div className="modal-player">
               <ReactPlayer
-                onReady={this.onPlayerRedy} //eslint-disable-line
+                onReady={this.onPlayerRedy}
                 className="player"
                 width="100%"
                 height={videoHeight}
