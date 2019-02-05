@@ -2,18 +2,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VisGraph from 'react-graph-vis';
-import graphOpts from './graph.config';
 import { config } from './app.props';
 import {
-  setBigCircleNodes,
-  setSmallCircleNodes,
-  setSmallCircleTextNodes,
-  setBigCircleTextNodes,
-  getBigCircleEdges,
   MAX_SVG_DRAW_WIDTH,
-} from '../helpers';
-
-const simpleEqual = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2);
+} from '../selectors';
 
 export default class Graph extends Component {
   static propTypes = {
@@ -27,8 +19,9 @@ export default class Graph extends Component {
         }),
       ),
     }),
-    options: config,
+    options: config.isRequired,
     onClick: PropTypes.func.isRequired,
+    setNetworkInstance: PropTypes.func,
     show: PropTypes.bool,
   };
 
@@ -38,8 +31,8 @@ export default class Graph extends Component {
       edges: [],
       groups: {},
     },
-    show: false,
-    options: graphOpts,
+    setNetworkInstance: null,
+    show: true,
   };
 
   afterzoomlimit = {
@@ -47,25 +40,9 @@ export default class Graph extends Component {
     scale: 0.49,
   };
 
-  /* eslint-disable react/destructuring-assignment */
   state = {
     /* graph instance */
     network: null,
-    data: {
-      nodes: this.props.data ? this.props.data.nodes : [],
-      edges: this.props.data ? this.props.data.edges : [],
-    },
-  };
-  /* eslint-disable react/destructuring-assignment */
-
-  componentWillReceiveProps = (nextProps) => {
-    const { data } = this.props;
-    if (!simpleEqual(nextProps.data, data) && this.state.network) {
-      console.log('cwrp');
-      this.setState(prevState => ({
-        data: this.setStateFromProps(nextProps.data, prevState.network),
-      }));
-    }
   };
 
   hoverNode = ({ event }) => {
@@ -85,75 +62,12 @@ export default class Graph extends Component {
     console.log("hoverEdge",a); */
   };
 
-  setStateFromProps = (data = null, nw = null) => {
-    if (!data || !nw) {
-      return console.error('network instance or props not valid');
-    }
-    const xViewportOffset = 300;
-    const yViewportOffset = 300;
-    // Counting nodes for the big circle
-    const nodesCount = data.nodes.filter(n => n.id > 5).length;
-    const dotNodes = data.nodes
-      .map(node => setBigCircleNodes(node, nodesCount, nw))
-      .map((n) => {
-        if (n.id > 5) {
-          return {
-            ...n,
-            x: n.x - xViewportOffset,
-            y: n.y - yViewportOffset,
-          };
-        }
-        return n;
-      })
-      .map(node => setSmallCircleNodes(node, 4, nw));
-
-    const textNodes = data.nodes
-      .map(node => setSmallCircleTextNodes(node, 4, nw, dotNodes.length))
-      .map(node => setBigCircleTextNodes(node, nodesCount, dotNodes.length));
-
-    const groups = data.nodes.reduce(
-      (acc, curr) => ({
-        ...acc,
-        [`group-${curr.wpId}`]: {
-          color: {
-            hover: { background: 'red' },
-            background: 'white',
-            highlight: 'white',
-          },
-          font: { color: 'white' },
-          chosen: {
-            label(values, id, selected, hovering) {
-              console.log(values, id, selected, hovering);
-              if (hovering) {
-                values.color = 'red'; // eslint-disable-line
-              }
-            },
-            node(values, id, selected, hovering) {
-              if (hovering) {
-                values.color = 'red'; // eslint-disable-line
-              }
-            },
-          },
-        },
-      }),
-      {},
-    );
-
-    const newData = {
-      edges: [...data.edges, ...getBigCircleEdges(data.nodes)],
-      nodes: [...dotNodes, ...textNodes],
-      groups,
-    };
-
-    return {
-      network: nw,
-      data: newData,
-    };
-  };
-
   setNetworkInstance = (nw) => {
-    const newState = this.setStateFromProps(this.props.data, nw);
-    return this.setState({ ...newState });
+    const { setNetworkInstance } = this.props;
+    if (setNetworkInstance) {
+      setNetworkInstance(nw);
+    }
+    return this.setState({ network: nw });
   };
 
   setLabelColor = (values, id) => {
@@ -239,8 +153,8 @@ export default class Graph extends Component {
   };
 
   render() {
-    const { data } = this.state;
-    const { options, show } = this.props;
+    // const { data } = this.state;
+    const { options, show, data } = this.props;
 
     const events = {
       zoom: this.onZoom,
@@ -249,12 +163,11 @@ export default class Graph extends Component {
       blurNode: this.blurNode,
       beforeDrawing: this.drawCross,
     };
-
-    return !show || !data || !data.nodes ? null : (
+    return !show ? null : (
       <VisGraph
         getNetwork={this.setNetworkInstance}
         graph={data}
-        options={{ ...options, groups: data.groups }}
+        options={options}
         events={events}
       />
     );
