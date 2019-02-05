@@ -38,7 +38,7 @@ class App extends Component {
       activeNode: null,
       data: null,
       textNodes: [],
-      groups: [],
+      groups: {},
       dotNodes: [],
     };
 
@@ -55,8 +55,8 @@ class App extends Component {
 
   onNodeClick(id) {
     const { textNodes, dotNodes } = this.state;
+    // If node is not found on dotNodes, then look for it on textNodes
     const node = dotNodes.find(n => n.id === id) || textNodes.find(n => n.id === id);
-    console.log(node);
     if (node) {
       this.setState({
         modalOpen: true,
@@ -68,10 +68,9 @@ class App extends Component {
   setNetworkInstance = (nw) => {
     this.setState({ network: nw }, () => {
       const state = this.setStateFromProps();
-      console.log(state);
       this.setState({ ...state });
     });
-  }
+  };
 
   setStateFromProps = () => {
     const { data } = this.props;
@@ -127,7 +126,6 @@ class App extends Component {
       }),
       {},
     );
-    console.log(groups);
     const newData = {
       edges: [...data.edges, ...getBigCircleEdges(data.nodes)],
       nodes: [...dotNodes, ...textNodes],
@@ -144,9 +142,10 @@ class App extends Component {
 
   render() {
     const {
-      modalOpen, activeNode, data, groups
+      modalOpen, activeNode, data, groups,
     } = this.state;
     const { loading } = this.props;
+    const graphData = data || this.props.data; /* eslint-disable-line */
     const contentElem = loading ? (
       <div className="app__loader">
         <span className="loader-wrapper">Cargando . . .</span>
@@ -157,7 +156,7 @@ class App extends Component {
         <Graph
           setNetworkInstance={this.setNetworkInstance}
           onClick={this.onNodeClick}
-          data={data || this.props.data}
+          data={graphData}
           options={{ ...graphOpts, groups }}
         />
       </div>
