@@ -19,6 +19,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=development parcel public/index_parcel.html",
+    "dev:no-cache": "NODE_ENV=development parcel public/index_parcel.html --no-cache",
     "build": "NODE_ENV=production parcel build public/index_parcel.html --out-dir parcel-build --public-url ./",
     "lint": "npx eslint src/",
     "test": "node scripts/test.js --env=jsdom"

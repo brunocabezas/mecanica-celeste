@@ -105,7 +105,7 @@ class App extends Component {
         ...acc,
         [`group-${curr.wpId}`]: {
           color: {
-            hover: { background: 'red' },
+            hover: { background: '#DADADA' },
             background: 'white',
             highlight: 'white',
           },
@@ -113,12 +113,12 @@ class App extends Component {
           chosen: {
             label(values, id, selected, hovering) {
               if (hovering) {
-                values.color = 'red'; // eslint-disable-line
+                values.color = '#DADADA'; // eslint-disable-line
               }
             },
             node(values, id, selected, hovering) {
               if (hovering) {
-                values.color = 'red'; // eslint-disable-line
+                values.color = '#DADADA'; // eslint-disable-line
               }
             },
           },

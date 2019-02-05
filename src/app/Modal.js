@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
-import DOMPurify from 'dompurify';
+// import DOMPurify from 'dompurify';
 import ReactModal from 'react-responsive-modal';
 import { node as nodeProps } from './app.props';
 import './_modal.styl';

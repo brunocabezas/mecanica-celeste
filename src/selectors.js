@@ -1,4 +1,3 @@
-
 export const nodes = (nodeArray) => {
   if (!nodeArray) return nodeArray;
 
@@ -17,7 +16,6 @@ export const nodes = (nodeArray) => {
 // Helpers to draw svg shapes
 export const MAX_SVG_DRAW_WIDTH = 600;
 const WIDTH_CONSTRAINT = 90;
-
 
 // Saves configuration to have custom position to text labels
 const getTextOffset = (id) => {
@@ -155,10 +153,10 @@ export const setSmallCircleTextNodes = (
   };
 };
 
-export const getBigCircleEdges = (nodes = []) => {
-  const count = nodes.filter(n => n.id > 5).length;
+export const getBigCircleEdges = (nodeArray = []) => {
+  const count = nodeArray.filter(n => n.id > 5).length;
   return [
-    ...nodes
+    ...nodeArray
       .filter(n => n.id > 5)
       .map(n => ({
         from: n.id,
