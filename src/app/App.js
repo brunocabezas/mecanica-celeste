@@ -148,7 +148,7 @@ class App extends Component {
     const graphData = data || this.props.data; /* eslint-disable-line */
     const contentElem = loading ? (
       <div className="app__loader">
-        <span className="loader-wrapper">Cargando . . .</span>
+        <span className="signal-loader" />
       </div>
     ) : (
       <div className="app__content">

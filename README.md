@@ -12,7 +12,7 @@ Next Steps:
 - [x] Add new circle with more nodes
 - [x] Correct layout
 - [x] Check different screen widths
-- [ ] Style nodes (hover and text)
+- [x] Style nodes (hover and text)
 - [x] Check style when displaying information on modal
 - [x] Limit zoom (https://jsfiddle.net/styb8u9o/)
 - [x] Style dashes that relate nodes
