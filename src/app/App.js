@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import equal from 'fast-deep-equal';
 import Graph from './Graph';
 import Modal from './Modal';
 import { nodes as nodeProps } from './app.props';
@@ -11,59 +12,89 @@ import {
   getBigCircleEdges,
 } from '../selectors';
 import graphOpts from './graph.config';
+import { getJsonFromUrl } from '../helpers';
 import './_app.styl';
 
-const propTypes = {
-  data: PropTypes.shape({
-    nodes: nodeProps,
-    edges: PropTypes.arrayOf(
-      PropTypes.shape({
-        from: PropTypes.number,
-        to: PropTypes.number,
-      }),
-    ),
-  }),
-  loading: PropTypes.bool.isRequired,
-};
+const APP_TITLE = 'Mecanica Celeste';
 
-const defaultProps = {
-  data: null,
-};
+export default class App extends Component {
+  static propTypes = {
+    data: PropTypes.shape({
+      nodes: nodeProps,
+      edges: PropTypes.arrayOf(
+        PropTypes.shape({
+          from: PropTypes.number,
+          to: PropTypes.number,
+        }),
+      ),
+    }),
+    loading: PropTypes.bool.isRequired,
+  };
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalOpen: false,
-      activeNode: null,
-      data: null,
-      textNodes: [],
-      groups: {},
-      dotNodes: [],
-    };
+  static defaultProps = {
+    data: null,
+  };
 
-    this.onCloseModal = this.onCloseModal.bind(this);
-    this.onNodeClick = this.onNodeClick.bind(this);
-  }
+  state = {
+    activeNode: {
+      wpLabel: null,
+      id: null,
+      label: null,
+      acf: { video: [] },
+    },
+    data: null,
+    textNodes: [],
+    groups: {},
+    dotNodes: [],
+  };
 
-  onCloseModal() {
+  componentWillReceiveProps = (nextProps) => {
+    const paramsInUrl = window.location.href.includes('?');
+    const { data } = this.props;
+    // console.log(!equal(data, nextProps.data), data, nextProps.data);
+    if (
+      paramsInUrl
+      && !data.nodes
+      && !equal(data, nextProps.data)
+      && nextProps.data
+      && nextProps.data.nodes
+    ) {
+      const { video } = getJsonFromUrl(window.location.href);
+      const videoInData = nextProps.data.nodes.find(n => n.wpLabel === video);
+      // console.log('videoHeight', videoInData, video);
+
+      if (videoInData) {
+        document.title = `${APP_TITLE} | ${videoInData.wpLabel}`;
+        this.setState({ activeNode: videoInData });
+      }
+    }
+  };
+
+  onCloseModal = () => {
+    document.title = APP_TITLE;
     this.setState({
-      modalOpen: false,
-      activeNode: null,
+      activeNode: {
+        wpLabel: null,
+        id: null,
+        label: null,
+        acf: { video: [] },
+      },
     });
-  }
+    window.history.pushState(null, null, `${window.location.href.split('?')[0]}`);
+  };
 
-  onNodeClick(id) {
+  onNodeClick = (id) => {
     const { textNodes, dotNodes } = this.state;
     // If node is not found on dotNodes, then look for it on textNodes
     const node = dotNodes.find(n => n.id === id) || textNodes.find(n => n.id === id);
     if (node) {
+      document.title = `${APP_TITLE} | ${node.wpLabel}`;
+      window.history.pushState(null, null, `${window.location.href}?video=${node.wpLabel}`);
       this.setState({
-        modalOpen: true,
         activeNode: node,
       });
     }
-  }
+  };
 
   setNetworkInstance = (nw) => {
     this.setState({ network: nw }, () => {
@@ -141,9 +172,8 @@ class App extends Component {
   };
 
   render() {
-    const {
-      modalOpen, activeNode, data, groups,
-    } = this.state;
+    const { activeNode, data, groups } = this.state;
+    const openModal = !!activeNode;
     const { loading } = this.props;
     const graphData = data || this.props.data; /* eslint-disable-line */
     const contentElem = loading ? (
@@ -152,7 +182,7 @@ class App extends Component {
       </div>
     ) : (
       <div className="app__content">
-        <Modal open={modalOpen} onClose={this.onCloseModal} data={activeNode} />
+        <Modal open={openModal} onClose={this.onCloseModal} data={activeNode} />
         <Graph
           setNetworkInstance={this.setNetworkInstance}
           onClick={this.onNodeClick}
@@ -170,7 +200,3 @@ class App extends Component {
     );
   }
 }
-
-App.defaultProps = defaultProps;
-App.propTypes = propTypes;
-export default App;

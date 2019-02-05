@@ -16,9 +16,9 @@ Next Steps:
 - [x] Check style when displaying information on modal
 - [x] Limit zoom (https://jsfiddle.net/styb8u9o/)
 - [x] Style dashes that relate nodes
-- [ ] Add modal transition?
+- [x] Add modal transition?
 - [ ] Add Reset Zoom button/icon (https://www.onlinewebfonts.com/icon/490098)
 - [x] Remove unused components/code (categories)
 - [ ] Add favicon
-- [ ] Change title and url when modal is open (and react to changes?)
+- [x] Change title and url when modal is open (and react to changes?)
 - [x] Make nodes labels clickable
