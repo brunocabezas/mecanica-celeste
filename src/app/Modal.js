@@ -19,10 +19,12 @@ const defaultProps = {
 
 const defaultModalProps = {
   closeIconClassName: 'close',
-  modalClassName: 'node-modal',
+  modalClassName: 'modal',
   modalStyle: {
     background: 'transparent',
     boxShadow: 'none',
+    maxWidth: '100%',
+    width: '100%',
     border: 'none',
   },
   overlayStyle: { padding: '0' },
@@ -39,38 +41,14 @@ class Modal extends Component {
     const modalProps = { ...defaultModalProps, open, onClose };
 
     return !data ? null : (
-      <div ref="app__modal">
+      <div ref="modal">
         <ReactModal {...modalProps}>
-          <div className="app__modal-player">
-            {open && hasVideo && (
-              <div style={{ height: videoHeight }}>
-                <ReactPlayer className="player" width="100%" height={videoHeight} url={videoUrl} />
-              </div>
-            )}
-          </div>
-          <div className="app__modal-info">
-            <h2 style={{ color: data.color }}>{data.title}</h2>
-            <h4>
-              {data.acf.anio}
-              {' '}
-              {data.acf.lugar && `- ${data.acf.lugar}`}
-              {' '}
-            </h4>
-            <h5>
-              Autores:
-              {' '}
-              {data.acf.nombre}
-              {' '}
-              {data.acf.profesion && `- ${data.acf.profesion}`}
-              {' '}
-            </h5>
-            <p
-              className="app__modal-abstract"
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(data.acf.resena),
-              }}
-            />
-          </div>
+          <h1 className="modal-title">{data.wpLabel}</h1>
+          {hasVideo && (
+            <div className="modal-player">
+              <ReactPlayer className="player" width="100%" height={videoHeight} url={videoUrl} />
+            </div>
+          )}
         </ReactModal>
       </div>
     );
