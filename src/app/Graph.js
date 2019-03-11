@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VisGraph from 'react-graph-vis';
 import { config } from './app.props';
-import {
-  MAX_SVG_DRAW_WIDTH,
-} from '../selectors';
+import { MAX_SVG_DRAW_WIDTH } from '../selectors/dotNodes';
 
 export default class Graph extends Component {
   static propTypes = {
@@ -97,10 +95,10 @@ export default class Graph extends Component {
 
   // draw main white dashed cross with its lines
   drawCross = (ctx) => {
-    const canvasWidth = ctx.canvas.width > MAX_SVG_DRAW_WIDTH
-      ? MAX_SVG_DRAW_WIDTH : ctx.canvas.width;
-    const canvasHeight = ctx.canvas.height > MAX_SVG_DRAW_WIDTH
-      ? MAX_SVG_DRAW_WIDTH : ctx.canvas.height;
+    const canvasWidth = ctx.canvas.width
+      > MAX_SVG_DRAW_WIDTH ? MAX_SVG_DRAW_WIDTH : ctx.canvas.width;
+    const canvasHeight = ctx.canvas.height
+      > MAX_SVG_DRAW_WIDTH ? MAX_SVG_DRAW_WIDTH : ctx.canvas.height;
     const width = (canvasWidth * 2) / 3;
     const height = canvasHeight;
     const heightDivideBy4 = height / 4;

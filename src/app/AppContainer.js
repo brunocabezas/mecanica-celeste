@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-import { nodes as nodesSelector } from '../selectors';
+import { nodes as nodesSelector } from '../selectors/selectors';
 import App from './App';
 import { edges } from './graph.config';
 

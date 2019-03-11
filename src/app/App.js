@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import equal from 'fast-deep-equal';
 import Graph from './Graph';
-import Modal from './Modal';
+import Modal from './LoadableModal';
 import { nodes as nodeProps } from './app.props';
-import {
-  setBigCircleNodes,
-  setSmallCircleNodes,
-  setSmallCircleTextNodes,
-  setBigCircleTextNodes,
-  getBigCircleEdges,
-} from '../selectors';
+import { getBigCircleEdges } from '../selectors/selectors';
+import { setBigCircleNodes, setSmallCircleNodes } from '../selectors/dotNodes';
+import { setSmallCircleTextNodes, setBigCircleTextNodes } from '../selectors/textNodes';
 import graphOpts from './graph.config';
 import { getJsonFromUrl } from '../helpers';
 import './_app.styl';
@@ -109,22 +105,10 @@ export default class App extends Component {
     if (!data || !network) {
       return console.error('network instance or props not valid');
     }
-    const xViewportOffset = 300;
-    const yViewportOffset = 300;
-    // Counting nodes for the big circle
     const nodesCount = data.nodes.filter(n => n.id > 5).length;
+
     const dotNodes = data.nodes
-      .map(node => setBigCircleNodes(node, nodesCount, network))
-      .map((n) => {
-        if (n.id > 5) {
-          return {
-            ...n,
-            x: n.x - xViewportOffset,
-            y: n.y - yViewportOffset,
-          };
-        }
-        return n;
-      })
+      .map(node => setBigCircleNodes(node, nodesCount))
       .map(node => setSmallCircleNodes(node, 4, network));
 
     const textNodes = data.nodes
