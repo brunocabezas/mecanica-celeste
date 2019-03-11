@@ -64,3 +64,22 @@ export const config = PropTypes.shape({
     hoverConnectedEdges: PropTypes.bool,
   }),
 });
+
+export const modalData = PropTypes.shape({
+  wpId: PropTypes.number,
+  wpLabel: PropTypes.string,
+  title: PropTypes.string,
+  id: PropTypes.number,
+  acf: PropTypes.shape({
+    nombre: PropTypes.string,
+    profesion: PropTypes.string,
+    anio: PropTypes.string,
+    duracion: PropTypes.string,
+    lugar: PropTypes.string,
+    resena: PropTypes.string,
+    biografia: PropTypes.string,
+    video: PropTypes.string,
+    imagenes: PropTypes.bool,
+    documento: PropTypes.bool,
+  }),
+});

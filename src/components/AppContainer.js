@@ -11,7 +11,7 @@ class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nodes: null,
+      nodes: [],
       loading: false,
     };
   }
