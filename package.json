@@ -14,6 +14,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.0.0",
     "react-graph-vis": "^1.0.2",
+    "react-loadable": "^5.5.0",
     "react-player": "^1.9.3",
     "react-responsive-modal": "^1.9.0",
     "whatwg-fetch": "^3.0.0"
@@ -21,6 +22,7 @@
   "scripts": {
     "start": "NODE_ENV=development parcel public/index_parcel.html",
     "dev:no-cache": "NODE_ENV=development parcel public/index_parcel.html --no-cache",
+    "prebuild": "rm -rf parcel-build",
     "build": "NODE_ENV=production parcel build public/index_parcel.html --out-dir parcel-build --public-url ./",
     "lint": "npx eslint src/",
     "test": "node scripts/test.js --env=jsdom"
