@@ -35,7 +35,7 @@ export const setBigCircleTextNodes = (node = {}, nodesCount = 0, dotNodesCount =
     widthConstraint: WIDTH_CONSTRAINT,
     label: node.wpLabel,
     // For a semicircle, we would use (i / numNodes) * Math.PI.
-    x: (450 * Math.cos(angle)) / 2 - 15,
+    x: (450 * Math.cos(angle)) / 2,
     y: (450 * Math.sin(angle)) / 2,
   };
 };

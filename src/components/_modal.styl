@@ -1,23 +1,35 @@
 
 .modal
+  position relative
+  height 100%
+
   .close
     color white
     fill white
     top 15px
     right 15px
+    &:hover
+      opacity .7
 
   .modalTitle
     color: white;
+    margin-top 0
+  //
+  // .modalTitle,
+  // .modalPlayer
+  //   max-width 800px
 
-  .modalTitle,
   .modalPlayer
-    max-width 800px
-
-  .modalPlayer
+    position relative
+    height calc(100% - 100px)
     text-align center
     display block
     margin 0 auto
     width 100%
+    .player
+      position: absolute;
+      top: 0;
+      left: 0;
 
   @media screen and (max-width: 600px)
     flex-direction column

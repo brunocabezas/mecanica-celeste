@@ -16,7 +16,7 @@ export const setBigCircleNodes = (node = [], nodesCount = 0) => {
     physics: false,
     fixed: true,
     group: `group-${node.wpId}`,
-    x: (450 * Math.cos(angle)) / 2 - 15,
+    x: (450 * Math.cos(angle)) / 2,
     y: (450 * Math.sin(angle)) / 2,
   };
 };

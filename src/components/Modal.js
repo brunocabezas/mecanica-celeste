@@ -5,7 +5,7 @@ import ReactModal from 'react-responsive-modal';
 import { node as nodeProps } from './app.props';
 import './_modal.styl';
 
-const VIDEO_HEIGHT = '350px';
+const MIN_VIDEO_HEIGHT = '350px';
 
 const ReactModalDefaultProps = {
   closeIconClassName: 'close',
@@ -31,7 +31,22 @@ export default class Modal extends Component {
 
   state = {
     loading: true,
+    videoHeight: MIN_VIDEO_HEIGHT,
   };
+
+
+  componentDidMount = () => {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount = () => {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ videoHeight: window.innerWidth > 600 ? '100%' : MIN_VIDEO_HEIGHT });
+  }
 
   onPlayerRedy = () => {
     this.setState({ loading: false });
@@ -45,7 +60,7 @@ export default class Modal extends Component {
   };
 
   render() {
-    const { loading } = this.state;
+    const { loading, videoHeight } = this.state;
     const { open, data } = this.props;
     const hasVideo = data.acf && data.acf.video.length > 0;
     let videoUrl = hasVideo && data.acf.video.split('src=')[1];
@@ -61,14 +76,14 @@ export default class Modal extends Component {
       <div ref="modal">
         <ReactModal {...modalProps}>
           <h1 className="modalTitle">{data.wpLabel}</h1>
-          {loading && <span className="signal-loader" />}
+          {loading && <span className="loader" />}
           {hasVideo && (
             <div className="modalPlayer">
               <ReactPlayer
                 onReady={this.onPlayerRedy}
                 className="player"
+                height={videoHeight}
                 width="100%"
-                height={VIDEO_HEIGHT}
                 url={videoUrl}
               />
             </div>
