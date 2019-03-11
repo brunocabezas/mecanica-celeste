@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Helpers to draw svg shapes
 export const MAX_SVG_DRAW_WIDTH = 600;
 
@@ -39,7 +40,7 @@ export const setSmallCircleNodes = (node = [], nodesCount = 0, network = null) =
     fixed: true,
     group: `group-${node.wpId}`,
     // For a semicircle, we would use (i / numNodes) * Math.PI.
-    x: 75 * Math.cos(angle) + width / 2 + xOffset,
-    y: 75 * Math.sin(angle) + width / 2 + yOffset,
+    x: 75 * Math.cos(angle),
+    y: 75 * Math.sin(angle),
   };
 };

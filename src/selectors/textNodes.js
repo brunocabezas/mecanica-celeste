@@ -1,18 +1,21 @@
+/* eslint-disable */
 export const WIDTH_CONSTRAINT = 90;
 let biggerCircleTextNodesCount = 0;
 let biggerCircleNodesCount = 0;
 
-// Saves configuration to have custom position to text labels
-const getTextOffset = (id) => {
-  switch (id) {
-    case 1:
-      return { x: WIDTH_CONSTRAINT / 2 + 10, y: 0 };
-    case 2:
+// getTextOffset: Returns custom (x, y) positions for text nodes
+// Based on wpId attr, coordinates are defined statically
+// Coordanes represent the distance from the node
+const getTextOffset = (wpId) => {
+  switch (wpId) {
+    case 91:
+      return { x: 0, y: 0 };
+    case 93:
       return { x: 0, y: 10 };
-    case 4:
+    case 95:
       return { x: 0, y: -10 };
-    default:
-      return { x: -WIDTH_CONSTRAINT / 2 - 10, y: 0 };
+    case 97:
+      return { x: 0, y: 0 };
   }
 };
 
@@ -63,7 +66,7 @@ export const setSmallCircleTextNodes = (
       y: 0,
     };
   }
-  const textOffset = getTextOffset(node.id);
+  const textOffset = getTextOffset(node.wpId);
   const canvasWidth = network.canvas.width || network.canvas.canvasViewCenter.x * 2;
   const width = canvasWidth > 75 ? 75 : canvasWidth;
   // Calculate the angle at which the element will be placed.
@@ -73,6 +76,7 @@ export const setSmallCircleTextNodes = (
   const widthConstraint = node.id === 1 || node.id === 3 ? WIDTH_CONSTRAINT : false;
   const textAlign = node.id === 3 ? 'right' : 'left';
   // console.log(dotNodesCount + node.id);
+  console.log(node);
   return {
     ...node,
     id: dotNodesCount + node.id,
@@ -84,7 +88,7 @@ export const setSmallCircleTextNodes = (
     font: { align: textAlign },
     widthConstraint,
     // For a semicircle, we would use (i / numNodes) * Math.PI.
-    x: 75 * Math.cos(angle) + width / 2 + xOffset + textOffset.x,
-    y: 75 * Math.sin(angle) + width / 2 + yOffset + textOffset.y,
+    x: 75 * Math.cos(angle) + textOffset.x,
+    y: 75 * Math.sin(angle) + textOffset.y,
   };
 };
