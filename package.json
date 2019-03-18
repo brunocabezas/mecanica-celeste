@@ -20,10 +20,9 @@
     "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development parcel public/index_parcel.html",
-    "dev:no-cache": "NODE_ENV=development parcel public/index_parcel.html --no-cache",
+    "start": "NODE_ENV=development parcel src/index.html",
     "prebuild": "rm -rf parcel-build",
-    "build": "NODE_ENV=production parcel build public/index_parcel.html --out-dir parcel-build --public-url ./",
+    "build": "NODE_ENV=production parcel build src/index.html --out-dir parcel-build --public-url ./",
     "lint": "npx eslint src/",
     "test": "node scripts/test.js --env=jsdom"
   },

@@ -5,7 +5,10 @@ import Modal from './LoadableModal';
 import { nodes as nodeProps } from './app.props';
 import { getBigCircleEdges } from '../selectors/selectors';
 import { setBigCircleNodes, setSmallCircleNodes } from '../selectors/dotNodes';
-import { setSmallCircleTextNodes, setBigCircleTextNodes } from '../selectors/textNodes';
+import {
+  setSmallCircleTextNodes,
+  setBigCircleTextNodes,
+} from '../selectors/textNodes';
 import graphOpts from './graph.config';
 import { getJsonFromUrl } from '../helpers';
 import './_app.styl';
@@ -52,8 +55,9 @@ export default class App extends Component {
     if (paramsInUrl && nextProps.data.nodes) {
       const { video } = getJsonFromUrl(window.location.href);
       const videoFromUrl = video.replace(/_/g, ' ');
-      const videoInData = nextProps.data.nodes
-        .find(n => n.wpLabel.toLowerCase() === videoFromUrl);
+      const videoInData = nextProps.data.nodes.find(
+        n => n.wpLabel.toLowerCase() === videoFromUrl,
+      );
 
       if (videoInData) {
         // Updating title and opening modal
@@ -82,7 +86,11 @@ export default class App extends Component {
         acf: { video: [] },
       },
     });
-    window.history.pushState(null, null, `${window.location.href.split('?')[0]}`);
+    window.history.pushState(
+      null,
+      null,
+      `${window.location.href.split('?')[0]}`,
+    );
   };
 
   onNodeClick = (id) => {
@@ -123,7 +131,7 @@ export default class App extends Component {
       .map(node => setSmallCircleNodes(node, 4, network));
 
     const textNodes = data.nodes
-      .map(node => setSmallCircleTextNodes(node, 4, network, dotNodes.length))
+      .map(node => setSmallCircleTextNodes(node, 4, dotNodes.length))
       .map(node => setBigCircleTextNodes(node, nodesCount, dotNodes.length));
 
     const groups = data.nodes.reduce(
