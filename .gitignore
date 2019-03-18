@@ -24,10 +24,13 @@ yarn-error.log*
 .idea
 node_modules/
 .cache/
-dist/
 *.log
 .idea/
 report.html
 *.orig
 coverage/
+
+# used for parcel to dev env builds
+dist
+# used when building the app
 parcel-build
