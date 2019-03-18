@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Graph from './Graph';
+import About from './About';
 import Modal from './LoadableModal';
 import { nodes as nodeProps } from './app.props';
 import { getBigCircleEdges } from '../selectors/selectors';
@@ -43,6 +44,7 @@ export default class App extends Component {
       label: null,
       acf: { video: '' },
     },
+    aboutUsOpened: false,
     data: null,
     textNodes: [],
     groups: {},
@@ -118,6 +120,10 @@ export default class App extends Component {
     });
   };
 
+  toggleAboutUs = () => {
+    this.setState(prevState => ({ aboutUsOpened: !prevState.aboutUsOpened }));
+  };
+
   setStateFromProps = () => {
     const { data } = this.props;
     const { network } = this.state;
@@ -175,7 +181,9 @@ export default class App extends Component {
   };
 
   render() {
-    const { activeNode, data, groups } = this.state;
+    const {
+      activeNode, data, groups, aboutUsOpened,
+    } = this.state;
     const openModal = !!activeNode;
     const { loading } = this.props;
     const graphData = data || this.props.data; /* eslint-disable-line */
@@ -197,7 +205,15 @@ export default class App extends Component {
 
     return (
       <div ref="app" className="app">
-        <h1 className="app__title">Mecánica celeste</h1>
+        <button
+          title="Acerca de nosotros"
+          onClick={this.toggleAboutUs}
+          type="button"
+          className="app__title"
+        >
+          Mecánica celeste
+        </button>
+        {aboutUsOpened && <About />}
         {contentElem}
       </div>
     );
