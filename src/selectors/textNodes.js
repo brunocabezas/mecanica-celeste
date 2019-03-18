@@ -93,7 +93,7 @@ export const setBigCircleTextNodes = (
   if (xAngle === -zeroAngle) {
     textAlign = 'right';
   }
-  console.log(node, node.wpId, xAngle, yAngle, textAlign);
+  // console.log(node, node.wpId, xAngle, yAngle, textAlign);
   return {
     ...node,
     id: dotNodesCount + node.id,
@@ -140,7 +140,7 @@ export const setSmallCircleTextNodes = (
   biggerCircleNodesCount += 1;
   // Limiting width if nodes is left or right
   const textAlign = node.id === 3 ? 'right' : 'left';
-  console.log(node, node.id);
+  // console.log(node, node.id);
   return {
     ...node,
     id: dotNodesCount + node.id,

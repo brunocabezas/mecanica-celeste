@@ -41,7 +41,7 @@ export default class App extends Component {
       wpLabel: null,
       id: null,
       label: null,
-      acf: { video: [] },
+      acf: { video: '' },
     },
     data: null,
     textNodes: [],
@@ -83,7 +83,7 @@ export default class App extends Component {
         wpLabel: null,
         id: null,
         label: null,
-        acf: { video: [] },
+        acf: { video: '' },
       },
     });
     window.history.pushState(

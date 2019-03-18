@@ -2,23 +2,23 @@ import PropTypes from 'prop-types';
 
 export const node = PropTypes.shape({
   acf: PropTypes.shape({
-    anio: PropTypes.string.isRequired,
-    biografia: PropTypes.string.isRequired,
-    documento: PropTypes.bool.isRequired,
-    duracion: PropTypes.string.isRequired,
-    imagenes: PropTypes.bool.isRequired,
-    lugar: PropTypes.string.isRequired,
-    nombre: PropTypes.string.isRequired,
-    profesion: PropTypes.string.isRequired,
-    resena: PropTypes.string.isRequired,
-    video: PropTypes.string.isRequired,
-  }).isRequired,
-  color: PropTypes.string.isRequired,
-  hiddenLabel: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired,
-  wpId: PropTypes.number.isRequired,
-}).isRequired;
+    anio: PropTypes.string,
+    biografia: PropTypes.string,
+    documento: PropTypes.bool,
+    duracion: PropTypes.string,
+    imagenes: PropTypes.bool,
+    lugar: PropTypes.string,
+    nombre: PropTypes.string,
+    profesion: PropTypes.string,
+    resena: PropTypes.string,
+    video: PropTypes.string,
+  }),
+  color: PropTypes.string,
+  hiddenLabel: PropTypes.string,
+  id: PropTypes.number,
+  label: PropTypes.string,
+  wpId: PropTypes.number,
+});
 
 export const nodes = PropTypes.arrayOf(
   PropTypes.shape({
@@ -28,8 +28,8 @@ export const nodes = PropTypes.arrayOf(
         id: PropTypes.string.isRequired,
         to: PropTypes.number.isRequired,
       }).isRequired,
-    ).isRequired,
-    nodes: PropTypes.arrayOf(node).isRequired,
+    ),
+    nodes: PropTypes.arrayOf(node),
   }).isRequired,
 );
 
