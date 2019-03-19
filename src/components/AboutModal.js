@@ -17,6 +17,9 @@ const AboutModal = ({ show, onClose }) => {
     onClose,
   };
 
+  if (!show) {
+    return null;
+  }
   return (
     <ReactModal {...modalProps}>
       <div className={className}>

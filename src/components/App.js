@@ -49,6 +49,7 @@ export default class App extends Component {
     textNodes: [],
     groups: {},
     dotNodes: [],
+    visitedGroups: [],
   };
 
   componentWillReceiveProps = (nextProps) => {
@@ -108,7 +109,8 @@ export default class App extends Component {
         `${window.location.href}?video=${videoToUrl}`,
       );
       this.setState({
-        activeNode: node,
+        activeNode: Object.assign({}, node),
+        visitedGroups: [...new Set([...this.state.visitedGroups, node.group])],
       });
     }
   };
@@ -182,11 +184,15 @@ export default class App extends Component {
 
   render() {
     const {
-      activeNode, data, groups, aboutUsOpened,
+      activeNode,
+      data,
+      groups,
+      aboutUsOpened,
+      visitedGroups,
     } = this.state;
     const openModal = !!activeNode;
     const { loading } = this.props;
-    const graphData = data || this.props.data; /* eslint-disable-line */
+    const graphData = data || this.props.data;
     const contentElem = loading ? (
       <div className="app__loader">
         <span className="loader" />
@@ -195,6 +201,7 @@ export default class App extends Component {
       <div className="app__content">
         <Modal open={openModal} onClose={this.onCloseModal} data={activeNode} />
         <Graph
+          groupsVisited={visitedGroups}
           setNetworkInstance={this.setNetworkInstance}
           onClick={this.onNodeClick}
           data={graphData}

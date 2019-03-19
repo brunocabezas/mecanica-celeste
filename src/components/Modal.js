@@ -25,7 +25,7 @@ export const ReactModalDefaultProps = {
 
 export default class Modal extends Component {
   static propTypes = {
-    data: nodeProps.isRequired,
+    data: nodeProps,
     open: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
   };

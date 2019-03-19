@@ -1,4 +1,5 @@
-/* eslint no-param-reassign: ["error", { "props": false }] */
+/* eslint-disable */
+// /* eslint no-param-reassign: ["error", { "props": false }] */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VisGraph from 'react-graph-vis';
@@ -19,6 +20,7 @@ export default class Graph extends Component {
     }),
     options: config.isRequired,
     onClick: PropTypes.func.isRequired,
+    groupsVisited: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     setNetworkInstance: PropTypes.func,
     show: PropTypes.bool,
   };
@@ -41,6 +43,47 @@ export default class Graph extends Component {
   state = {
     /* graph instance */
     network: null,
+    options: this.props.options,
+  };
+
+  componentWillReceiveProps = nextProps => {
+    const { groupsVisited, options } = nextProps;
+
+    // If groups visited change, updating state options styles
+    if (
+      JSON.stringify(groupsVisited) !== JSON.stringify(this.props.groupsVisited)
+    ) {
+      // Getting visited groups style
+      const opts = Object.assign({}, options, {
+        groups: Object.keys(Object.assign({}, options.groups)).reduce(
+          (acc, curr) => {
+            if (groupsVisited.includes(curr)) {
+              const opts = Object.assign(
+                {},
+                options.groups[curr],
+                {
+                  chosen: values => {
+                    values.color = 'red';
+                  },
+                },
+                {
+                  font: { color: 'red' },
+                  color: { background: 'red', highlight: 'red' },
+                },
+              );
+              acc[curr] = opts;
+            }
+            return acc;
+          },
+          {},
+        ),
+      });
+      this.state.network.setOptions(opts);
+      this.setState({ options: opts });
+      // If options are different, updating state
+    } else if (JSON.stringify(options) !== JSON.stringify(this.props.options)) {
+      this.setState({ options });
+    }
   };
 
   hoverNode = ({ event }) => {
@@ -55,12 +98,7 @@ export default class Graph extends Component {
     network.unselectAll();
   };
 
-  hoverEdge = () => {
-    /* console.log(this.state.network.getConnectedNodes(a.edge))
-    console.log("hoverEdge",a); */
-  };
-
-  setNetworkInstance = (nw) => {
+  setNetworkInstance = nw => {
     const { setNetworkInstance } = this.props;
     if (setNetworkInstance) {
       setNetworkInstance(nw);
@@ -76,11 +114,11 @@ export default class Graph extends Component {
     if (node) values.color = node.category ? node.category.color : node.color;
   };
 
-  onNodeClick = (args) => {
+  onNodeClick = args => {
     const { nodes } = args;
     const { onClick } = this.props;
     if (nodes.length === 1 && nodes[0]) {
-      // opening modal
+      // Open video modal
       onClick(nodes[0]);
     }
   };
@@ -94,11 +132,15 @@ export default class Graph extends Component {
   };
 
   // draw main white dashed cross with its lines
-  drawCross = (ctx) => {
-    const canvasWidth = ctx.canvas.width
-      > MAX_SVG_DRAW_WIDTH ? MAX_SVG_DRAW_WIDTH : ctx.canvas.width;
-    const canvasHeight = ctx.canvas.height
-      > MAX_SVG_DRAW_WIDTH ? MAX_SVG_DRAW_WIDTH : ctx.canvas.height;
+  drawCross = ctx => {
+    const canvasWidth =
+      ctx.canvas.width > MAX_SVG_DRAW_WIDTH
+        ? MAX_SVG_DRAW_WIDTH
+        : ctx.canvas.width;
+    const canvasHeight =
+      ctx.canvas.height > MAX_SVG_DRAW_WIDTH
+        ? MAX_SVG_DRAW_WIDTH
+        : ctx.canvas.height;
     const width = (canvasWidth * 2) / 3;
     const height = canvasHeight;
     const heightDivideBy4 = height / 4;
@@ -152,8 +194,8 @@ export default class Graph extends Component {
 
   render() {
     // const { data } = this.state;
-    const { options, show, data } = this.props;
-
+    const { show, data, groupsVisited } = this.props;
+    const { options } = this.state;
     const events = {
       zoom: this.onZoom,
       click: this.onNodeClick,
