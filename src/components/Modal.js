@@ -7,12 +7,13 @@ import './_modal.styl';
 
 const MIN_VIDEO_HEIGHT = '350px';
 
-const ReactModalDefaultProps = {
+export const ReactModalDefaultProps = {
   closeIconClassName: 'close',
   modalClassName: 'modal',
   modalStyle: {
     background: 'transparent',
     boxShadow: 'none',
+    boxSizing: 'border-box',
     position: 'relative',
     maxWidth: '100%',
     width: '100%',

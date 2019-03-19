@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Graph from './Graph';
-import About from './About';
+import AboutModal from './AboutModal';
 import Modal from './LoadableModal';
 import { nodes as nodeProps } from './app.props';
 import { getBigCircleEdges } from '../selectors/selectors';
@@ -213,7 +213,7 @@ export default class App extends Component {
         >
           Mecánica celeste
         </button>
-        {aboutUsOpened && <About />}
+        <AboutModal show={aboutUsOpened} onClose={this.toggleAboutUs} />
         {contentElem}
       </div>
     );
