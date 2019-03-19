@@ -1,24 +1,35 @@
-### Mecánica Celeste
+# Mecánica Celeste
 
-App that displays videos in a space-like way using [react-graph-vis network module](https://github.com/crubier/react-graph-vis).
+Space nodes with Chilean astrology videos.
 
-[Create React App](https://github.com/facebookincubator/create-react-app) after [ejecting](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject) is used as boilerplate.
+## Development
 
-Uses [Parcel.js](https://parceljs.org) to build and serve app on development.
+This is a [Create React App](https://github.com/facebookincubator/create-react-app) after [ejecting](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject). [react-graph-vis network module](https://github.com/crubier/react-graph-vis) is used as main visualization library.
 
-Next Steps:
+[Parcel.js](https://parceljs.org) is the tool used to build to production and serves app on a development env.
 
-- [x] Correct shape of lines; set big cross min width
-- [x] Add new circle with more nodes
-- [x] Correct layout
-- [x] Check different screen widths
-- [x] Style nodes (hover and text)
-- [x] Check style when displaying information on modal
-- [x] Limit zoom (https://jsfiddle.net/styb8u9o/)
-- [x] Style dashes that relate nodes
-- [x] Add modal transition?
-- [ ] Add Reset Zoom button/icon (https://www.onlinewebfonts.com/icon/490098)
-- [x] Remove unused components/code (categories)
-- [ ] Add favicon
-- [x] Change title and url when modal is open (and react to changes?)
-- [x] Make nodes labels clickable
+These instructions will get you a copy of the project up and running on your local machine for development and deployment purposes.
+
+### Installing
+Before all, install _npm_ dependencies:
+```
+npm install
+```
+
+### Development server
+This will start the app on `http://localhost:1234`:
+```
+npm start
+```
+
+_Linting_ (with [airbnb config]('.eslintrc.json')) is possible by running:
+
+```
+npm run lint
+```
+
+### Build
+This will build the app on `parcel-build/`:
+```
+npm run build
+```
