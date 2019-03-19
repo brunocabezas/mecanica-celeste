@@ -34,19 +34,20 @@ export default class Modal extends Component {
     videoHeight: MIN_VIDEO_HEIGHT,
   };
 
-
   componentDidMount = () => {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
-  }
+  };
 
   componentWillUnmount = () => {
     window.removeEventListener('resize', this.updateWindowDimensions);
-  }
+  };
 
   updateWindowDimensions = () => {
-    this.setState({ videoHeight: window.innerWidth > 600 ? '100%' : MIN_VIDEO_HEIGHT });
-  }
+    this.setState({
+      videoHeight: window.innerWidth > 600 ? '100%' : MIN_VIDEO_HEIGHT,
+    });
+  };
 
   onPlayerRedy = () => {
     this.setState({ loading: false });
@@ -66,7 +67,11 @@ export default class Modal extends Component {
     let videoUrl = hasVideo && data.acf.video.split('src=')[1];
     videoUrl = hasVideo && videoUrl.substring(1, videoUrl.length).split('"')[0];
 
-    const modalProps = { ...ReactModalDefaultProps, open, onClose: this.onClose };
+    const modalProps = {
+      ...ReactModalDefaultProps,
+      open,
+      onClose: this.onClose,
+    };
 
     if (!data.id) {
       return null;
@@ -85,6 +90,7 @@ export default class Modal extends Component {
                 height={videoHeight}
                 width="100%"
                 url={videoUrl}
+                playing
               />
             </div>
           )}
