@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-responsive-modal';
-import { ReactModalDefaultProps } from './Modal';
-import './_about.styl';
+import { ReactModalDefaultProps } from './NodeModal';
+import './_aboutModal.styl';
 
 const propTypes = {
   show: PropTypes.bool.isRequired,

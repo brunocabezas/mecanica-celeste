@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Graph from './Graph';
-import AboutModal from './AboutModal';
-import Modal from './LoadableModal';
+import AboutModal from './modals/LoadableAboutModal';
+import NodeModal from './modals/LoadableNodeModal';
 import { nodes as nodeProps } from './app.props';
 import { getBigCircleEdges } from '../selectors/selectors';
 import { setBigCircleNodes, setSmallCircleNodes } from '../selectors/dotNodes';
@@ -15,6 +15,7 @@ import { getJsonFromUrl } from '../helpers';
 import './_app.styl';
 
 const APP_TITLE = 'Mecanica Celeste';
+const NODE_COLOR = '#DADADA';
 
 export default class App extends Component {
   static propTypes = {
@@ -97,7 +98,7 @@ export default class App extends Component {
   };
 
   onNodeClick = (id) => {
-    const { textNodes, dotNodes } = this.state;
+    const { textNodes, dotNodes, visitedGroups } = this.state;
     // If node is not found on dotNodes, then look for it on textNodes
     const node = dotNodes.find(n => n.id === id) || textNodes.find(n => n.id === id);
     if (node) {
@@ -110,7 +111,7 @@ export default class App extends Component {
       );
       this.setState({
         activeNode: Object.assign({}, node),
-        visitedGroups: [...new Set([...this.state.visitedGroups, node.group])],
+        visitedGroups: [...new Set([...visitedGroups, node.group])],
       });
     }
   };
@@ -147,7 +148,7 @@ export default class App extends Component {
         ...acc,
         [`group-${curr.wpId}`]: {
           color: {
-            hover: { background: '#DADADA' },
+            hover: { background: NODE_COLOR },
             background: 'white',
             highlight: 'white',
           },
@@ -155,12 +156,12 @@ export default class App extends Component {
           chosen: {
             label(values, id, selected, hovering) {
               if (hovering) {
-                values.color = '#DADADA'; // eslint-disable-line
+                values.color = NODE_COLOR; // eslint-disable-line no-param-reassign
               }
             },
             node(values, id, selected, hovering) {
               if (hovering) {
-                values.color = '#DADADA'; // eslint-disable-line
+                values.color = NODE_COLOR; // eslint-disable-line no-param-reassign
               }
             },
           },
@@ -192,14 +193,18 @@ export default class App extends Component {
     } = this.state;
     const openModal = !!activeNode;
     const { loading } = this.props;
-    const graphData = data || this.props.data;
+    const graphData = data || this.props.data; // eslint-disable-line react/destructuring-assignment
     const contentElem = loading ? (
       <div className="app__loader">
         <span className="loader" />
       </div>
     ) : (
       <div className="app__content">
-        <Modal open={openModal} onClose={this.onCloseModal} data={activeNode} />
+        <NodeModal
+          open={openModal}
+          onClose={this.onCloseModal}
+          data={activeNode}
+        />
         <Graph
           groupsVisited={visitedGroups}
           setNetworkInstance={this.setNetworkInstance}

@@ -2,9 +2,9 @@ import React from 'react';
 import Loadable from 'react-loadable';
 
 const Loading = () => <span />;
-const LoadableModal = Loadable({
-  loader: () => import('./Modal'),
+const LoadableAboutModal = Loadable({
+  loader: () => import('./AboutModal'),
   loading: Loading,
 });
 
-export default LoadableModal;
+export default LoadableAboutModal;

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import ReactModal from 'react-responsive-modal';
-import { node as nodeProps } from './app.props';
-import './_modal.styl';
+import { node as nodeProps } from '../app.props';
+import './_nodeModal.styl';
 
 const MIN_VIDEO_HEIGHT = '350px';
 
@@ -23,9 +23,9 @@ export const ReactModalDefaultProps = {
   overlayStyle: { padding: '0' },
 };
 
-export default class Modal extends Component {
+export default class NodeModal extends Component {
   static propTypes = {
-    data: nodeProps,
+    data: nodeProps.isRequired,
     open: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
   };
