@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-responsive-modal';
-import { ReactModalDefaultProps } from './NodeModal';
+import ReactModalDefaultProps from './defaultModalProps';
 import GithubCorner from '../GithubCorner';
 import './_aboutModal.styl';
 
@@ -22,7 +22,7 @@ const AboutModal = ({ show, onClose }) => {
     return null;
   }
   return (
-    <ReactModal {...modalProps}>
+    <ReactModal blockScroll={false} {...modalProps}>
       <div className={className}>
         <GithubCorner />
         <div className="about__video">

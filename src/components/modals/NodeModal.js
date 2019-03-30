@@ -3,19 +3,11 @@ import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import ReactModal from 'react-responsive-modal';
 import { node as nodeProps } from '../app.props';
+import ReactModalDefaultProps from './defaultModalProps';
 import './_nodeModal.styl';
 
 const MIN_VIDEO_HEIGHT = '350px';
 
-export const ReactModalDefaultProps = {
-  classNames: { modal: 'modal', closeIcon: 'modalCloseIcon' },
-  blockScroll: false,
-  styles: {
-    overlay: { padding: '0' },
-    modal: {},
-  },
-  animationDuration: 300,
-};
 export default class NodeModal extends Component {
   static propTypes = {
     data: nodeProps.isRequired,
