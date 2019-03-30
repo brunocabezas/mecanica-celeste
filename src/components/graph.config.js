@@ -21,7 +21,8 @@ export default {
   nodes: {
     labelHighlightBold: true,
     font: {
-      size: 5,
+      size: 6,
+      face: 'Roboto-Light',
     },
     shape: 'dot',
     size: 3,

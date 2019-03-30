@@ -92,10 +92,10 @@ export default class NodeModal extends Component {
       open,
       onClose,
     };
-    console.log('modalProps', modalProps);
+
     return (
       <div ref="modal">
-        <ReactModal {...modalProps} blockScroll={false}>
+        <ReactModal {...modalProps}>
           <h1 className="modalTitle">{data.wpLabel}</h1>
           {loading && <span className="loader" />}
           <div className="modalPlayer">

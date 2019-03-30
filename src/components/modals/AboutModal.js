@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-responsive-modal';
 import { ReactModalDefaultProps } from './NodeModal';
-import * as url from '../../helpers/url';
+import GithubCorner from '../GithubCorner';
 import './_aboutModal.styl';
 
 const propTypes = {
@@ -24,6 +24,7 @@ const AboutModal = ({ show, onClose }) => {
   return (
     <ReactModal {...modalProps}>
       <div className={className}>
+        <GithubCorner />
         <div className="about__video">
           <iframe
             title="Teaser Mecanica Celeste"

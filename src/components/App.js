@@ -17,7 +17,10 @@ import { getJsonFromUrl } from '../helpers';
 import './_app.styl';
 
 const APP_TITLE = 'Mecanica Celeste';
-const NODE_COLOR = '#DADADA';
+const ABOUT_US_ROUTE = 'nosotros';
+const NODE_COLOR = 'white';
+const ACTIVE_NODE_COLOR = '#DADADA';
+export const VISITED_NODE_COLOR = '#8c8c8c';
 
 export default class App extends Component {
   static propTypes = {
@@ -49,15 +52,13 @@ export default class App extends Component {
     },
     aboutUsOpened: false,
     data: null,
-    textNodes: [],
     groups: {},
-    dotNodes: [],
     visitedGroups: [],
   };
 
   componentWillReceiveProps = (nextProps) => {
     const paramsInUrl = url.hasParams();
-    const hasAboutOpened = url.get().includes('nosotros');
+    const hasAboutOpened = url.get().includes(ABOUT_US_ROUTE);
 
     if (paramsInUrl && nextProps.data.nodes) {
       const { video } = getJsonFromUrl(url.get());
@@ -95,12 +96,18 @@ export default class App extends Component {
   };
 
   onNodeClick = (id) => {
-    const { textNodes, dotNodes, visitedGroups } = this.state;
+    const {
+      data: { nodes },
+      visitedGroups,
+    } = this.state;
     // If node is not found on dotNodes, then look for it on textNodes
-    const node = dotNodes.find(n => n.id === id) || textNodes.find(n => n.id === id);
+    const node = nodes.find(n => n.id === id);
+
+    // console.log(node, id, nodes);
     if (node) {
       document.title = `${APP_TITLE} | ${capitalize(node.wpLabel)}`;
       url.setVideo(node.wpLabel);
+      // console.log('node', node, [...new Set([...visitedGroups, node.group])]);
       this.setState({
         activeNode: Object.assign({}, node),
         visitedGroups: [...new Set([...visitedGroups, node.group])],
@@ -110,8 +117,7 @@ export default class App extends Component {
 
   setNetworkInstance = (nw) => {
     this.setState({ network: nw }, () => {
-      const state = this.setStateFromProps();
-      this.setState({ ...state });
+      this.setStateFromProps();
     });
   };
 
@@ -121,9 +127,8 @@ export default class App extends Component {
       if (isBeingClosed) {
         url.clear();
       } else {
-        url.push('/nosotros');
+        url.push(`/${ABOUT_US_ROUTE}`);
       }
-      console.log(isBeingClosed);
       return { aboutUsOpened: !prevState.aboutUsOpened };
     });
   };
@@ -132,37 +137,38 @@ export default class App extends Component {
     const { data } = this.props;
     const { network } = this.state;
     if (!data || !network) {
-      return console.error('network instance or props not valid');
+      return console.error('unvalid vis.js network instance or props');
     }
-    const nodesCount = data.nodes.filter(n => n.id > 5).length;
+    const biggerCircleNodesCount = data.nodes.filter(n => n.id > 5).length;
 
     const dotNodes = data.nodes
-      .map(node => setBigCircleNodes(node, nodesCount))
+      .map(node => setBigCircleNodes(node, biggerCircleNodesCount))
       .map(node => setSmallCircleNodes(node, 4, network));
 
     const textNodes = data.nodes
       .map(node => setSmallCircleTextNodes(node, 4, dotNodes.length))
-      .map(node => setBigCircleTextNodes(node, nodesCount, dotNodes.length));
+      .map(node => setBigCircleTextNodes(node, biggerCircleNodesCount, dotNodes.length));
 
+    // console.log(textNodes);
     const groups = data.nodes.reduce(
       (acc, curr) => ({
         ...acc,
         [`group-${curr.wpId}`]: {
           color: {
-            hover: { background: NODE_COLOR },
-            background: 'white',
-            highlight: 'white',
+            hover: { background: ACTIVE_NODE_COLOR },
+            background: NODE_COLOR,
+            highlight: NODE_COLOR,
           },
-          font: { color: 'white' },
+          font: { color: NODE_COLOR },
           chosen: {
             label(values, id, selected, hovering) {
               if (hovering) {
-                values.color = NODE_COLOR; // eslint-disable-line no-param-reassign
+                values.color = ACTIVE_NODE_COLOR; // eslint-disable-line no-param-reassign
               }
             },
             node(values, id, selected, hovering) {
               if (hovering) {
-                values.color = NODE_COLOR; // eslint-disable-line no-param-reassign
+                values.color = ACTIVE_NODE_COLOR; // eslint-disable-line no-param-reassign
               }
             },
           },
@@ -170,16 +176,14 @@ export default class App extends Component {
       }),
       {},
     );
-    return {
+    return this.setState({
       network,
       data: {
         edges: [...data.edges, ...getBigCircleEdges(data.nodes)],
-        nodes: [...dotNodes, ...textNodes],
+        nodes: textNodes.concat(dotNodes),
       },
-      textNodes,
-      dotNodes,
       groups,
-    };
+    });
   };
 
   render() {
@@ -192,7 +196,8 @@ export default class App extends Component {
     } = this.state;
     const openModal = activeNode && !!activeNode.id;
     const { loading } = this.props;
-    const graphData = data || this.props.data; // eslint-disable-line react/destructuring-assignment
+    const graphData = data || this.props.data;
+    // console.log(graphData);
     const contentElem = loading ? (
       <div className="app__loader">
         <span className="loader" />

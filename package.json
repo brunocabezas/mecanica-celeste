@@ -25,6 +25,10 @@
     "lint": "npx eslint src/",
     "test": "node scripts/test.js --env=jsdom"
   },
+  "engines": {
+    "node": "^6.9.0",
+    "node": "^11.0.0"
+  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"

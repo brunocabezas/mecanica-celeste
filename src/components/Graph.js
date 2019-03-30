@@ -1,10 +1,10 @@
-/* eslint-disable */
-// /* eslint no-param-reassign: ["error", { "props": false }] */
+/* eslint no-param-reassign: ["error", { "props": false }] */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VisGraph from 'react-graph-vis';
 import { config } from './app.props';
 import { MAX_SVG_DRAW_WIDTH } from '../selectors/dotNodes';
+import { VISITED_NODE_COLOR } from './App';
 
 export default class Graph extends Component {
   static propTypes = {
@@ -46,7 +46,7 @@ export default class Graph extends Component {
     options: this.props.options,
   };
 
-  componentWillReceiveProps = nextProps => {
+  componentWillReceiveProps = (nextProps) => {
     const { groupsVisited, options } = nextProps;
 
     // If groups visited change, updating state options styles
@@ -57,21 +57,18 @@ export default class Graph extends Component {
       const opts = Object.assign({}, options, {
         groups: Object.keys(Object.assign({}, options.groups)).reduce(
           (acc, curr) => {
+            // if current group has been visited, adding styles
             if (groupsVisited.includes(curr)) {
-              const opts = Object.assign(
-                {},
-                options.groups[curr],
-                {
-                  chosen: values => {
-                    values.color = 'red';
-                  },
+              acc[curr] = Object.assign({}, options.groups[curr], {
+                chosen: (values) => {
+                  values.color = VISITED_NODE_COLOR;
                 },
-                {
-                  font: { color: 'red' },
-                  color: { background: 'red', highlight: 'red' },
+                font: { color: VISITED_NODE_COLOR, face: 'Roboto' },
+                color: {
+                  background: VISITED_NODE_COLOR,
+                  highlight: VISITED_NODE_COLOR,
                 },
-              );
-              acc[curr] = opts;
+              });
             }
             return acc;
           },
@@ -98,7 +95,7 @@ export default class Graph extends Component {
     network.unselectAll();
   };
 
-  setNetworkInstance = nw => {
+  setNetworkInstance = (nw) => {
     const { setNetworkInstance } = this.props;
     if (setNetworkInstance) {
       setNetworkInstance(nw);
@@ -114,7 +111,7 @@ export default class Graph extends Component {
     if (node) values.color = node.category ? node.category.color : node.color;
   };
 
-  onNodeClick = args => {
+  onNodeClick = (args) => {
     const { nodes } = args;
     const { onClick } = this.props;
     if (nodes.length === 1 && nodes[0]) {
@@ -132,15 +129,13 @@ export default class Graph extends Component {
   };
 
   // draw main white dashed cross with its lines
-  drawCross = ctx => {
-    const canvasWidth =
-      ctx.canvas.width > MAX_SVG_DRAW_WIDTH
-        ? MAX_SVG_DRAW_WIDTH
-        : ctx.canvas.width;
-    const canvasHeight =
-      ctx.canvas.height > MAX_SVG_DRAW_WIDTH
-        ? MAX_SVG_DRAW_WIDTH
-        : ctx.canvas.height;
+  drawCross = (ctx) => {
+    const canvasWidth = ctx.canvas.width > MAX_SVG_DRAW_WIDTH
+      ? MAX_SVG_DRAW_WIDTH
+      : ctx.canvas.width;
+    const canvasHeight = ctx.canvas.height > MAX_SVG_DRAW_WIDTH
+      ? MAX_SVG_DRAW_WIDTH
+      : ctx.canvas.height;
     const width = (canvasWidth * 2) / 3;
     const height = canvasHeight;
     const heightDivideBy4 = height / 4;
@@ -193,8 +188,8 @@ export default class Graph extends Component {
   };
 
   render() {
-    // const { data } = this.state;
-    const { show, data, groupsVisited } = this.props;
+    // console.log(this.props);
+    const { show, data } = this.props;
     const { options } = this.state;
     const events = {
       zoom: this.onZoom,
