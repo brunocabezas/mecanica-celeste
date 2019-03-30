@@ -15,6 +15,7 @@ const AboutModal = ({ show, onClose }) => {
     ...ReactModalDefaultProps,
     open: show,
     onClose,
+    blockScroll: false,
   };
 
   if (!show) {

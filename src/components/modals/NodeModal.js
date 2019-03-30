@@ -22,7 +22,6 @@ export const ReactModalDefaultProps = {
   },
   overlayStyle: { padding: '0' },
 };
-
 export default class NodeModal extends Component {
   static propTypes = {
     data: nodeProps.isRequired,
@@ -31,17 +30,38 @@ export default class NodeModal extends Component {
   };
 
   state = {
+    open: this.props.open,
     loading: true,
     videoHeight: MIN_VIDEO_HEIGHT,
   };
 
   componentDidMount = () => {
     this.updateWindowDimensions();
+    this.setStateFromProps(this.props);
     window.addEventListener('resize', this.updateWindowDimensions);
   };
 
   componentWillUnmount = () => {
     window.removeEventListener('resize', this.updateWindowDimensions);
+  };
+
+  componentWillReceiveProps = (nextProps) => {
+    this.setStateFromProps(nextProps);
+  };
+
+  setStateFromProps = (props) => {
+    const { data, open } = props;
+    const hasVideo = data && data.acf && data.acf.video;
+    this.updateWindowDimensions();
+    if (!hasVideo && open) {
+      console.warn(
+        `Wrong/Invalid video url for '${data.label}' video`,
+        data.acf.video,
+      );
+      this.setState({ open: false });
+    } else if (open !== this.state.open) {
+      this.setState({ open });
+    }
   };
 
   updateWindowDimensions = () => {
@@ -54,47 +74,47 @@ export default class NodeModal extends Component {
     this.setState({ loading: false });
   };
 
-  onClose = (e) => {
-    const { onClose } = this.props;
-    // Set loading to true when closing; to show loader first next time is opened
-    this.setState({ loading: true });
-    onClose(e);
-  };
-
   render() {
-    const { loading, videoHeight } = this.state;
-    const { open, data } = this.props;
-    const hasVideo = data.acf && data.acf.video.length > 0;
-    let videoUrl = hasVideo && data.acf.video.split('src=')[1];
-    videoUrl = hasVideo && videoUrl.substring(1, videoUrl.length).split('"')[0];
+    const { loading, videoHeight, open } = this.state;
+    const { data, onClose } = this.props;
+    console.log('this.props', this.props);
+
+    if (!open || !data.id) return null;
+
+    // Video url is obtained from node data as an iframe string e.g.
+    // <iframe
+    //   src="https://player.vimeo.com/video/175792812?app_id=122963"
+    //   width="640"
+    //   height="360"
+    //   frameBorder="0"
+    //   title="Sugar molecules in the gas surrounding a young Sun-like star (zoom)"
+    //   allow="autoplay; fullscreen"
+    //   allowFullScreen
+    // />
+    const strAfterSrc = data.acf.video.split('src=')[1];
+    const videoUrl = strAfterSrc.substring(1, strAfterSrc.length).split('"')[0]; // eslint-disable-line
 
     const modalProps = {
       ...ReactModalDefaultProps,
       open,
-      onClose: this.onClose,
+      onClose,
     };
-
-    if (!data.id) {
-      return null;
-    }
 
     return (
       <div ref="modal">
         <ReactModal {...modalProps}>
           <h1 className="modalTitle">{data.wpLabel}</h1>
           {loading && <span className="loader" />}
-          {hasVideo && (
-            <div className="modalPlayer">
-              <ReactPlayer
-                onReady={this.onPlayerRedy}
-                className="player"
-                height={videoHeight}
-                width="100%"
-                url={videoUrl}
-                playing
-              />
-            </div>
-          )}
+          <div className="modalPlayer">
+            <ReactPlayer
+              onReady={this.onPlayerRedy}
+              className="player"
+              height={videoHeight}
+              width="100%"
+              url={videoUrl}
+              playing
+            />
+          </div>
         </ReactModal>
       </div>
     );

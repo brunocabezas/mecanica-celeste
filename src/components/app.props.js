@@ -27,7 +27,7 @@ export const nodes = PropTypes.arrayOf(
         from: PropTypes.number.isRequired,
         id: PropTypes.string.isRequired,
         to: PropTypes.number.isRequired,
-      }).isRequired,
+      }),
     ),
     nodes: PropTypes.arrayOf(node),
   }).isRequired,
