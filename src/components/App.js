@@ -56,14 +56,24 @@ export default class App extends Component {
     visitedGroups: [],
   };
 
+  componentDidMount = () => {
+    window.onpopstate = () => {
+      this.setStateFromUrl(this.props);
+    };
+  };
+
   componentWillReceiveProps = (nextProps) => {
+    this.setStateFromUrl(nextProps);
+  };
+
+  setStateFromUrl = (props) => {
     const paramsInUrl = url.hasParams();
     const hasAboutOpened = url.get().includes(ABOUT_US_ROUTE);
 
-    if (paramsInUrl && nextProps.data.nodes) {
+    if (paramsInUrl && props.data.nodes) {
       const { video } = getJsonFromUrl(url.get());
       const videoFromUrl = video.replace(/_/g, ' ');
-      const videoInData = nextProps.data.nodes.find(
+      const videoInData = props.data.nodes.find(
         n => n.wpLabel.toLowerCase() === videoFromUrl,
       );
 
@@ -78,6 +88,16 @@ export default class App extends Component {
       }
     } else if (hasAboutOpened) {
       this.setState({ aboutUsOpened: true });
+    } else if (!hasAboutOpened && !paramsInUrl) {
+      this.setState({
+        aboutUsOpened: false,
+        activeNode: {
+          wpLabel: null,
+          id: null,
+          label: null,
+          acf: { video: '' },
+        },
+      });
     }
   };
 
