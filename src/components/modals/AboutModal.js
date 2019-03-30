@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-responsive-modal';
-import { ReactModalDefaultProps } from './Modal';
-import './_about.styl';
+import ReactModalDefaultProps from './defaultModalProps';
+import GithubCorner from '../GithubCorner';
+import './_aboutModal.styl';
 
 const propTypes = {
   show: PropTypes.bool.isRequired,
@@ -17,9 +18,13 @@ const AboutModal = ({ show, onClose }) => {
     onClose,
   };
 
+  if (!show) {
+    return null;
+  }
   return (
-    <ReactModal {...modalProps}>
+    <ReactModal blockScroll={false} {...modalProps}>
       <div className={className}>
+        <GithubCorner />
         <div className="about__video">
           <iframe
             title="Teaser Mecanica Celeste"

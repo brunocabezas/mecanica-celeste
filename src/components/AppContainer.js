@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import 'whatwg-fetch';
+import React, { Component } from 'react';
 import { nodes as nodesSelector } from '../selectors/selectors';
 import App from './App';
 import { edges } from './graph.config';
@@ -7,16 +7,13 @@ import { edges } from './graph.config';
 const wpRestUrl = 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/';
 const postsRoute = `${wpRestUrl}posts?per_page=100`;
 
-class AppContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      nodes: [],
-      loading: false,
-    };
-  }
+export default class AppContainer extends Component {
+  state = {
+    nodes: [],
+    loading: false,
+  };
 
-  componentWillMount() {
+  componentWillMount = () => {
     this.setState({ loading: true });
 
     fetch(postsRoute)
@@ -29,7 +26,7 @@ class AppContainer extends Component {
         console.error(`error fetching ${postsRoute} : `, err);
         this.setState({ loading: false });
       });
-  }
+  };
 
   render() {
     const { nodes, loading, categories } = this.state;
@@ -41,5 +38,3 @@ class AppContainer extends Component {
     return <App categories={categories} loading={loading} data={data} />;
   }
 }
-
-export default AppContainer;

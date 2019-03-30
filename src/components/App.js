@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Graph from './Graph';
-import AboutModal from './AboutModal';
-import Modal from './LoadableModal';
+import AboutModal from './modals/LoadableAboutModal';
+import NodeModal from './modals/LoadableNodeModal';
 import { nodes as nodeProps } from './app.props';
+import * as url from '../helpers/url';
+import { capitalize } from '../helpers/string';
 import { getBigCircleEdges } from '../selectors/selectors';
 import { setBigCircleNodes, setSmallCircleNodes } from '../selectors/dotNodes';
 import {
@@ -15,11 +17,15 @@ import { getJsonFromUrl } from '../helpers';
 import './_app.styl';
 
 const APP_TITLE = 'Mecanica Celeste';
+const ABOUT_US_ROUTE = 'nosotros';
+const NODE_COLOR = 'white';
+const ACTIVE_NODE_COLOR = '#DADADA';
+export const VISITED_NODE_COLOR = '#8c8c8c';
 
 export default class App extends Component {
   static propTypes = {
     data: PropTypes.shape({
-      nodes: nodeProps.isRequired,
+      nodes: nodeProps,
       edges: PropTypes.arrayOf(
         PropTypes.shape({
           from: PropTypes.number,
@@ -46,16 +52,16 @@ export default class App extends Component {
     },
     aboutUsOpened: false,
     data: null,
-    textNodes: [],
     groups: {},
-    dotNodes: [],
+    visitedGroups: [],
   };
 
   componentWillReceiveProps = (nextProps) => {
-    const paramsInUrl = window.location.href.includes('?');
+    const paramsInUrl = url.hasParams();
+    const hasAboutOpened = url.get().includes(ABOUT_US_ROUTE);
 
     if (paramsInUrl && nextProps.data.nodes) {
-      const { video } = getJsonFromUrl(window.location.href);
+      const { video } = getJsonFromUrl(url.get());
       const videoFromUrl = video.replace(/_/g, ' ');
       const videoInData = nextProps.data.nodes.find(
         n => n.wpLabel.toLowerCase() === videoFromUrl,
@@ -63,102 +69,106 @@ export default class App extends Component {
 
       if (videoInData) {
         // Updating title and opening modal
-        document.title = `${APP_TITLE} | ${videoInData.wpLabel}`;
+        document.title = `${APP_TITLE} | ${capitalize(videoInData.wpLabel)}`;
         this.setState({ activeNode: videoInData });
       } else {
         console.warn('Video from url not found');
         // Clearing url
-        const ix = window.location.href.indexOf('?');
-        window.history.pushState(
-          null,
-          null,
-          `${window.location.href.substring(0, ix)}`,
-        );
+        url.clear();
       }
+    } else if (hasAboutOpened) {
+      this.setState({ aboutUsOpened: true });
     }
   };
 
   onCloseModal = () => {
     document.title = APP_TITLE;
+    const activeNode = {
+      wpLabel: null,
+      id: null,
+      label: null,
+      acf: { video: '' },
+    };
     this.setState({
-      activeNode: {
-        wpLabel: null,
-        id: null,
-        label: null,
-        acf: { video: '' },
-      },
+      activeNode,
     });
-    window.history.pushState(
-      null,
-      null,
-      `${window.location.href.split('?')[0]}`,
-    );
+    url.clear();
   };
 
   onNodeClick = (id) => {
-    const { textNodes, dotNodes } = this.state;
+    const {
+      data: { nodes },
+      visitedGroups,
+    } = this.state;
     // If node is not found on dotNodes, then look for it on textNodes
-    const node = dotNodes.find(n => n.id === id) || textNodes.find(n => n.id === id);
+    const node = nodes.find(n => n.id === id);
+
+    // console.log(node, id, nodes);
     if (node) {
-      const videoToUrl = node.wpLabel.toLowerCase().replace(/ /g, '_');
-      document.title = `${APP_TITLE} | ${node.wpLabel}`;
-      window.history.pushState(
-        null,
-        null,
-        `${window.location.href}?video=${videoToUrl}`,
-      );
+      document.title = `${APP_TITLE} | ${capitalize(node.wpLabel)}`;
+      url.setVideo(node.wpLabel);
+      // console.log('node', node, [...new Set([...visitedGroups, node.group])]);
       this.setState({
-        activeNode: node,
+        activeNode: Object.assign({}, node),
+        visitedGroups: [...new Set([...visitedGroups, node.group])],
       });
     }
   };
 
   setNetworkInstance = (nw) => {
     this.setState({ network: nw }, () => {
-      const state = this.setStateFromProps();
-      this.setState({ ...state });
+      this.setStateFromProps();
     });
   };
 
   toggleAboutUs = () => {
-    this.setState(prevState => ({ aboutUsOpened: !prevState.aboutUsOpened }));
+    this.setState((prevState) => {
+      const isBeingClosed = !!prevState.aboutUsOpened;
+      if (isBeingClosed) {
+        url.clear();
+      } else {
+        url.push(`/${ABOUT_US_ROUTE}`);
+      }
+      return { aboutUsOpened: !prevState.aboutUsOpened };
+    });
   };
 
   setStateFromProps = () => {
     const { data } = this.props;
     const { network } = this.state;
     if (!data || !network) {
-      return console.error('network instance or props not valid');
+      return console.error('unvalid vis.js network instance or props');
     }
-    const nodesCount = data.nodes.filter(n => n.id > 5).length;
+    const biggerCircleNodesCount = data.nodes.filter(n => n.id > 5).length;
 
     const dotNodes = data.nodes
-      .map(node => setBigCircleNodes(node, nodesCount))
+      .map(node => setBigCircleNodes(node, biggerCircleNodesCount))
       .map(node => setSmallCircleNodes(node, 4, network));
 
     const textNodes = data.nodes
       .map(node => setSmallCircleTextNodes(node, 4, dotNodes.length))
-      .map(node => setBigCircleTextNodes(node, nodesCount, dotNodes.length));
+      .map(node => setBigCircleTextNodes(node, biggerCircleNodesCount, dotNodes.length));
 
+    // console.log(textNodes);
     const groups = data.nodes.reduce(
       (acc, curr) => ({
         ...acc,
         [`group-${curr.wpId}`]: {
           color: {
-            hover: { background: '#DADADA' },
-            background: 'white',
-            highlight: 'white',
+            hover: { background: ACTIVE_NODE_COLOR },
+            background: NODE_COLOR,
+            highlight: NODE_COLOR,
           },
-          font: { color: 'white' },
+          font: { color: NODE_COLOR },
           chosen: {
             label(values, id, selected, hovering) {
               if (hovering) {
-                values.color = '#DADADA'; // eslint-disable-line
+                values.color = ACTIVE_NODE_COLOR; // eslint-disable-line no-param-reassign
               }
             },
             node(values, id, selected, hovering) {
               if (hovering) {
-                values.color = '#DADADA'; // eslint-disable-line
+                values.color = ACTIVE_NODE_COLOR; // eslint-disable-line no-param-reassign
               }
             },
           },
@@ -166,35 +176,41 @@ export default class App extends Component {
       }),
       {},
     );
-    const newData = {
-      edges: [...data.edges, ...getBigCircleEdges(data.nodes)],
-      nodes: [...dotNodes, ...textNodes],
-    };
-
-    return {
+    return this.setState({
       network,
-      data: newData,
-      textNodes,
-      dotNodes,
+      data: {
+        edges: [...data.edges, ...getBigCircleEdges(data.nodes)],
+        nodes: textNodes.concat(dotNodes),
+      },
       groups,
-    };
+    });
   };
 
   render() {
     const {
-      activeNode, data, groups, aboutUsOpened,
+      activeNode,
+      data,
+      groups,
+      aboutUsOpened,
+      visitedGroups,
     } = this.state;
-    const openModal = !!activeNode;
+    const openModal = activeNode && !!activeNode.id;
     const { loading } = this.props;
-    const graphData = data || this.props.data; /* eslint-disable-line */
+    const graphData = data || this.props.data;
+    // console.log(graphData);
     const contentElem = loading ? (
       <div className="app__loader">
         <span className="loader" />
       </div>
     ) : (
       <div className="app__content">
-        <Modal open={openModal} onClose={this.onCloseModal} data={activeNode} />
+        <NodeModal
+          open={openModal}
+          onClose={this.onCloseModal}
+          data={activeNode}
+        />
         <Graph
+          groupsVisited={visitedGroups}
           setNetworkInstance={this.setNetworkInstance}
           onClick={this.onNodeClick}
           data={graphData}

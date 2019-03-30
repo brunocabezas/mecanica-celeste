@@ -10,7 +10,11 @@
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/no-string-refs": "off",
-    "max-len": ["error", { "code": 100, "tabWidth": 4, "ignoreComments": true }],
+    "react/destructuring-assignment": "off",
+    "max-len": [
+      "error",
+      { "code": 100, "tabWidth": 4, "ignoreComments": true }
+    ],
     "no-console": "off"
   }
 }

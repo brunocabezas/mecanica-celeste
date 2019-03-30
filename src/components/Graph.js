@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import VisGraph from 'react-graph-vis';
 import { config } from './app.props';
 import { MAX_SVG_DRAW_WIDTH } from '../selectors/dotNodes';
+import { VISITED_NODE_COLOR } from './App';
 
 export default class Graph extends Component {
   static propTypes = {
@@ -19,6 +20,7 @@ export default class Graph extends Component {
     }),
     options: config.isRequired,
     onClick: PropTypes.func.isRequired,
+    groupsVisited: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     setNetworkInstance: PropTypes.func,
     show: PropTypes.bool,
   };
@@ -41,6 +43,44 @@ export default class Graph extends Component {
   state = {
     /* graph instance */
     network: null,
+    options: this.props.options,
+  };
+
+  componentWillReceiveProps = (nextProps) => {
+    const { groupsVisited, options } = nextProps;
+
+    // If groups visited change, updating state options styles
+    if (
+      JSON.stringify(groupsVisited) !== JSON.stringify(this.props.groupsVisited)
+    ) {
+      // Getting visited groups style
+      const opts = Object.assign({}, options, {
+        groups: Object.keys(Object.assign({}, options.groups)).reduce(
+          (acc, curr) => {
+            // if current group has been visited, adding styles
+            if (groupsVisited.includes(curr)) {
+              acc[curr] = Object.assign({}, options.groups[curr], {
+                chosen: (values) => {
+                  values.color = VISITED_NODE_COLOR;
+                },
+                font: { color: VISITED_NODE_COLOR, face: 'Roboto' },
+                color: {
+                  background: VISITED_NODE_COLOR,
+                  highlight: VISITED_NODE_COLOR,
+                },
+              });
+            }
+            return acc;
+          },
+          {},
+        ),
+      });
+      this.state.network.setOptions(opts);
+      this.setState({ options: opts });
+      // If options are different, updating state
+    } else if (JSON.stringify(options) !== JSON.stringify(this.props.options)) {
+      this.setState({ options });
+    }
   };
 
   hoverNode = ({ event }) => {
@@ -53,11 +93,6 @@ export default class Graph extends Component {
     event.target.style.cursor = 'auto';
     network.disableEditMode();
     network.unselectAll();
-  };
-
-  hoverEdge = () => {
-    /* console.log(this.state.network.getConnectedNodes(a.edge))
-    console.log("hoverEdge",a); */
   };
 
   setNetworkInstance = (nw) => {
@@ -80,7 +115,7 @@ export default class Graph extends Component {
     const { nodes } = args;
     const { onClick } = this.props;
     if (nodes.length === 1 && nodes[0]) {
-      // opening modal
+      // Open video modal
       onClick(nodes[0]);
     }
   };
@@ -95,10 +130,12 @@ export default class Graph extends Component {
 
   // draw main white dashed cross with its lines
   drawCross = (ctx) => {
-    const canvasWidth = ctx.canvas.width
-      > MAX_SVG_DRAW_WIDTH ? MAX_SVG_DRAW_WIDTH : ctx.canvas.width;
-    const canvasHeight = ctx.canvas.height
-      > MAX_SVG_DRAW_WIDTH ? MAX_SVG_DRAW_WIDTH : ctx.canvas.height;
+    const canvasWidth = ctx.canvas.width > MAX_SVG_DRAW_WIDTH
+      ? MAX_SVG_DRAW_WIDTH
+      : ctx.canvas.width;
+    const canvasHeight = ctx.canvas.height > MAX_SVG_DRAW_WIDTH
+      ? MAX_SVG_DRAW_WIDTH
+      : ctx.canvas.height;
     const width = (canvasWidth * 2) / 3;
     const height = canvasHeight;
     const heightDivideBy4 = height / 4;
@@ -151,9 +188,9 @@ export default class Graph extends Component {
   };
 
   render() {
-    // const { data } = this.state;
-    const { options, show, data } = this.props;
-
+    // console.log(this.props);
+    const { show, data } = this.props;
+    const { options } = this.state;
     const events = {
       zoom: this.onZoom,
       click: this.onNodeClick,

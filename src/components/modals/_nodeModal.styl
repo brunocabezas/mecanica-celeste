@@ -1,0 +1,61 @@
+
+.modal
+  position relative
+  background transparent
+  box-shadow none
+  box-sizing border-box
+  position relative
+  max-width 100%
+  width 100%
+  height 100%
+  border none
+  display flex
+  flex-direction column
+
+  .modalCloseIcon
+    position absolute
+    color white
+    fill white
+    top 5px
+    right 5px
+    cursor pointer
+    &:hover
+      opacity .7
+
+  .modalTitle,
+  .modalPlayer
+    flex 1
+
+  .modalTitle
+    color white
+    margin-top 0
+    // Makes space for .modalCloseIcon
+    padding-right 28px
+    // Dont grow
+    flex-grow unset
+
+  .modalPlayer
+    display flex
+    // Centering video player
+    justify-content center
+    align-items center
+    
+  @media screen and (max-width: 600px)
+    flex-direction column
+    position absolute
+    top 0
+    right 0
+    left 0
+    width 100%
+    .modalCloseIcon
+      top 10
+      right 10
+
+    .modal-info,
+    .modalPlayer
+     flex 1
+
+     .modalPlayer
+       width 100%
+       div
+         width 100%

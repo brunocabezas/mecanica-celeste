@@ -1,5 +1,5 @@
 // Text nodes max width
-export const WIDTH_CONSTRAINT = 90;
+export const WIDTH_CONSTRAINT = 100;
 const BIG_CIRCLE_RADIUS = 450;
 const SMALL_CIRCLE_RADIUS = 75;
 let biggerCircleTextNodesCount = 0;
@@ -14,11 +14,11 @@ const getTextNodesOffset = (wpId) => {
     case 91:
       return { x: 38, y: -8 };
     case 93:
-      return { x: -53, y: 0 };
+      return { x: -53, y: -2 };
     case 95:
       return { x: 0, y: 10 };
     case 97:
-      return { x: 55, y: 0 };
+      return { x: 55, y: -10 };
     // Big circle text nodes
     case 26:
       return { x: 55, y: 0 };
@@ -71,7 +71,8 @@ export const setBigCircleTextNodes = (
   dotNodesCount = 0,
 ) => {
   const topId = 5 + dotNodesCount;
-  if (node.id <= topId) {
+  if (node.id < topId) {
+    // console.log(node);
     return node;
   }
   // Calculate the angle at which the element will be placed.
@@ -101,7 +102,8 @@ export const setBigCircleTextNodes = (
     fixed: true,
     font: { align: textAlign },
     shape: 'text',
-    widthConstraint: node.id === 36 || node.id === 46 ? false : WIDTH_CONSTRAINT,
+    widthConstraint:
+      node.id === 36 || node.id === 46 ? false : WIDTH_CONSTRAINT,
     label: node.wpLabel,
     // For a semicircle, we would use (i / numNodes) * Math.PI.
     x: xAngle + textOffset.x,
@@ -123,6 +125,7 @@ export const setSmallCircleTextNodes = (
       id: dotNodesCount + node.id,
     };
   }
+  // console.log('setSmallCircleTextNodes', node.id, node);
   // Centered text node inside circle
   if (node.id === 5) {
     return {
@@ -149,7 +152,7 @@ export const setSmallCircleTextNodes = (
     shape: 'text',
     group: `group-${node.wpId}`,
     label: node.wpLabel,
-    font: { align: textAlign, lineHeight: 20 },
+    font: { align: textAlign, lineHeight: 23 },
     widthConstraint: node.id === 2 ? false : WIDTH_CONSTRAINT,
     // For a semicircle, we would use (i / numNodes) * Math.PI.
     x: SMALL_CIRCLE_RADIUS * Math.cos(angle) + textOffset.x,
