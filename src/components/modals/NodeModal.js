@@ -8,19 +8,13 @@ import './_nodeModal.styl';
 const MIN_VIDEO_HEIGHT = '350px';
 
 export const ReactModalDefaultProps = {
-  closeIconClassName: 'close',
-  modalClassName: 'modal',
-  modalStyle: {
-    background: 'transparent',
-    boxShadow: 'none',
-    boxSizing: 'border-box',
-    position: 'relative',
-    maxWidth: '100%',
-    width: '100%',
-    maxHeight: '100%',
-    border: 'none',
+  classNames: { modal: 'modal', closeIcon: 'modalCloseIcon' },
+  blockScroll: false,
+  styles: {
+    overlay: { padding: '0' },
+    modal: {},
   },
-  overlayStyle: { padding: '0' },
+  animationDuration: 300,
 };
 export default class NodeModal extends Component {
   static propTypes = {
@@ -58,7 +52,7 @@ export default class NodeModal extends Component {
         `Wrong/Invalid video url for '${data.label}' video`,
         data.acf.video,
       );
-      this.setState({ open: false });
+      this.props.onClose();
     } else if (open !== this.state.open) {
       this.setState({ open });
     }
@@ -77,7 +71,6 @@ export default class NodeModal extends Component {
   render() {
     const { loading, videoHeight, open } = this.state;
     const { data, onClose } = this.props;
-    console.log('this.props', this.props);
 
     if (!open || !data.id) return null;
 
@@ -92,17 +85,17 @@ export default class NodeModal extends Component {
     //   allowFullScreen
     // />
     const strAfterSrc = data.acf.video.split('src=')[1];
-    const videoUrl = strAfterSrc.substring(1, strAfterSrc.length).split('"')[0]; // eslint-disable-line
+    const videoUrl =      strAfterSrc && strAfterSrc.substring(1, strAfterSrc.length).split('"')[0]; // eslint-disable-line
 
     const modalProps = {
       ...ReactModalDefaultProps,
       open,
       onClose,
     };
-
+    console.log('modalProps', modalProps);
     return (
       <div ref="modal">
-        <ReactModal {...modalProps}>
+        <ReactModal {...modalProps} blockScroll={false}>
           <h1 className="modalTitle">{data.wpLabel}</h1>
           {loading && <span className="loader" />}
           <div className="modalPlayer">

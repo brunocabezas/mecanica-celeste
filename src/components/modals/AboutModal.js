@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-responsive-modal';
 import { ReactModalDefaultProps } from './NodeModal';
+import * as url from '../../helpers/url';
 import './_aboutModal.styl';
 
 const propTypes = {
@@ -15,7 +16,6 @@ const AboutModal = ({ show, onClose }) => {
     ...ReactModalDefaultProps,
     open: show,
     onClose,
-    blockScroll: false,
   };
 
   if (!show) {

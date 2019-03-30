@@ -57,9 +57,10 @@ export default class App extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     const paramsInUrl = url.hasParams();
+    const hasAboutOpened = url.get().includes('nosotros');
 
     if (paramsInUrl && nextProps.data.nodes) {
-      const { video } = getJsonFromUrl(window.location.href);
+      const { video } = getJsonFromUrl(url.get());
       const videoFromUrl = video.replace(/_/g, ' ');
       const videoInData = nextProps.data.nodes.find(
         n => n.wpLabel.toLowerCase() === videoFromUrl,
@@ -72,9 +73,10 @@ export default class App extends Component {
       } else {
         console.warn('Video from url not found');
         // Clearing url
-        const ix = window.location.href.indexOf('?');
-        url.push(`${window.location.href.substring(0, ix)}`);
+        url.clear();
       }
+    } else if (hasAboutOpened) {
+      this.setState({ aboutUsOpened: true });
     }
   };
 
@@ -89,7 +91,7 @@ export default class App extends Component {
     this.setState({
       activeNode,
     });
-    url.push(url.getBaseUrl());
+    url.clear();
   };
 
   onNodeClick = (id) => {
@@ -97,9 +99,8 @@ export default class App extends Component {
     // If node is not found on dotNodes, then look for it on textNodes
     const node = dotNodes.find(n => n.id === id) || textNodes.find(n => n.id === id);
     if (node) {
-      const videoToUrl = node.wpLabel.toLowerCase().replace(/ /g, '_');
-      document.title = `${APP_TITLE} | ${node.wpLabel}`;
-      url.push(`${window.location.href}?video=${videoToUrl}`);
+      document.title = `${APP_TITLE} | ${capitalize(node.wpLabel)}`;
+      url.setVideo(node.wpLabel);
       this.setState({
         activeNode: Object.assign({}, node),
         visitedGroups: [...new Set([...visitedGroups, node.group])],
@@ -115,7 +116,16 @@ export default class App extends Component {
   };
 
   toggleAboutUs = () => {
-    this.setState(prevState => ({ aboutUsOpened: !prevState.aboutUsOpened }));
+    this.setState((prevState) => {
+      const isBeingClosed = !!prevState.aboutUsOpened;
+      if (isBeingClosed) {
+        url.clear();
+      } else {
+        url.push('/nosotros');
+      }
+      console.log(isBeingClosed);
+      return { aboutUsOpened: !prevState.aboutUsOpened };
+    });
   };
 
   setStateFromProps = () => {
