@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { nodes as nodesSelector } from '../selectors/selectors';
 import App from './App';
 import { edges } from './graph.config';
+import { API_URL } from './app.static';
 
-const API_URL = 'https://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/';
 const postsRoute = `${API_URL}posts?per_page=100`;
 
 export default class AppContainer extends Component {

@@ -199,7 +199,6 @@ export default class App extends Component {
   };
 
   render() {
-    console.log('App data', this.props.data);
     const {
       activeNode,
       data,

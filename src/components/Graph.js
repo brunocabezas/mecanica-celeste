@@ -179,7 +179,6 @@ export default class Graph extends Component {
   };
 
   render() {
-    console.log('Graph data', this.props.data);
     const { show, data } = this.props;
     const { options } = this.state;
     const events = {
