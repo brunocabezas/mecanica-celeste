@@ -4,8 +4,8 @@ import { nodes as nodesSelector } from '../selectors/selectors';
 import App from './App';
 import { edges } from './graph.config';
 
-const wpRestUrl = 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/';
-const postsRoute = `${wpRestUrl}posts?per_page=100`;
+const API_URL = 'https://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/';
+const postsRoute = `${API_URL}posts?per_page=100`;
 
 export default class AppContainer extends Component {
   state = {

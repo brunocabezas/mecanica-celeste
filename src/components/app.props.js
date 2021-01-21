@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const node = PropTypes.shape({
+export const nodeProps = PropTypes.shape({
   acf: PropTypes.shape({
     anio: PropTypes.string,
     biografia: PropTypes.string,
@@ -20,18 +20,16 @@ export const node = PropTypes.shape({
   wpId: PropTypes.number,
 });
 
-export const nodes = PropTypes.arrayOf(
-  PropTypes.shape({
-    edges: PropTypes.arrayOf(
-      PropTypes.shape({
-        from: PropTypes.number.isRequired,
-        id: PropTypes.string.isRequired,
-        to: PropTypes.number.isRequired,
-      }),
-    ),
-    nodes: PropTypes.arrayOf(node),
-  }).isRequired,
-);
+export const dataProps = PropTypes.exact({
+  nodes: PropTypes.arrayOf(nodeProps).isRequired,
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({
+      from: PropTypes.number,
+      id: PropTypes.string,
+      to: PropTypes.number,
+    }),
+  ),
+});
 
 export const config = PropTypes.shape({
   width: PropTypes.string,

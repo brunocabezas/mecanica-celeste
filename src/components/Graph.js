@@ -2,22 +2,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VisGraph from 'react-graph-vis';
-import { config } from './app.props';
+import { config, dataProps } from './app.props';
 import { MAX_SVG_DRAW_WIDTH } from '../selectors/dotNodes';
-import { VISITED_NODE_COLOR } from './App';
+import { VISITED_NODE_COLOR } from './app.static';
+
+const afterZoomLimit = {
+  position: { x: 0, y: 0 },
+  scale: 0.49,
+};
 
 export default class Graph extends Component {
   static propTypes = {
-    data: PropTypes.shape({
-      /* todo define node properties */
-      nodes: PropTypes.array,
-      edges: PropTypes.arrayOf(
-        PropTypes.shape({
-          from: PropTypes.number,
-          to: PropTypes.number,
-        }),
-      ),
-    }),
+    data: dataProps,
     options: config.isRequired,
     onClick: PropTypes.func.isRequired,
     groupsVisited: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
@@ -33,11 +29,6 @@ export default class Graph extends Component {
     },
     setNetworkInstance: null,
     show: true,
-  };
-
-  afterzoomlimit = {
-    position: { x: 0, y: 0 },
-    scale: 0.49,
   };
 
   state = {
@@ -124,7 +115,7 @@ export default class Graph extends Component {
     const { network } = this.state;
     // Limitting zoom to 0,49 scale
     if (network.getScale() <= 0.49) {
-      network.moveTo(this.afterzoomlimit);
+      network.moveTo(afterZoomLimit);
     }
   };
 
@@ -188,7 +179,7 @@ export default class Graph extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    console.log('Graph data', this.props.data);
     const { show, data } = this.props;
     const { options } = this.state;
     const events = {
