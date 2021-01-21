@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { nodes as nodesSelector } from '../selectors/selectors';
 import App from './App';
 import { edges } from './graph.config';
+import { API_URL } from './app.static';
 
-const wpRestUrl = 'http://www.poeticaastronomica.cchv.cl/wp-json/wp/v2/';
-const postsRoute = `${wpRestUrl}posts?per_page=100`;
+const postsRoute = `${API_URL}posts?per_page=100`;
 
 export default class AppContainer extends Component {
   state = {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import ReactModal from 'react-responsive-modal';
-import { node as nodeProps } from '../app.props';
+import { nodeProps } from '../app.props';
 import ReactModalDefaultProps from './defaultModalProps';
 import './_nodeModal.styl';
 

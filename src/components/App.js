@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Graph from './Graph';
 import AboutModal from './modals/LoadableAboutModal';
 import NodeModal from './modals/LoadableNodeModal';
-import { nodes as nodeProps } from './app.props';
+import { dataProps } from './app.props';
 import * as url from '../helpers/url';
 import { capitalize } from '../helpers/string';
 import { getBigCircleEdges } from '../selectors/selectors';
@@ -15,24 +15,16 @@ import {
 import graphOpts from './graph.config';
 import { getJsonFromUrl } from '../helpers';
 import './_app.styl';
-
-const APP_TITLE = 'Mecanica Celeste';
-const ABOUT_US_ROUTE = 'nosotros';
-const NODE_COLOR = 'white';
-const ACTIVE_NODE_COLOR = '#DADADA';
-export const VISITED_NODE_COLOR = '#8c8c8c';
+import {
+  ABOUT_US_ROUTE,
+  ACTIVE_NODE_COLOR,
+  APP_TITLE,
+  NODE_COLOR,
+} from './app.static';
 
 export default class App extends Component {
   static propTypes = {
-    data: PropTypes.shape({
-      nodes: nodeProps,
-      edges: PropTypes.arrayOf(
-        PropTypes.shape({
-          from: PropTypes.number,
-          to: PropTypes.number,
-        }),
-      ).isRequired,
-    }),
+    data: dataProps,
     loading: PropTypes.bool.isRequired,
   };
 
@@ -217,7 +209,7 @@ export default class App extends Component {
     const openModal = activeNode && !!activeNode.id;
     const { loading } = this.props;
     const graphData = data || this.props.data;
-    // console.log(graphData);
+
     const contentElem = loading ? (
       <div className="app__loader">
         <span className="loader" />
